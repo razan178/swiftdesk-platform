@@ -1,0 +1,30 @@
+<!-- Social share image (1200x630). Replace with a branded PNG/JPG named og-image.png
+     and update the og:image / twitter:image paths in index.html if you change the format. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0C1222"/><stop offset="1" stop-color="#141B2E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.6">
+      <stop offset="0" stop-color="#FF5A3C" stop-opacity="0.35"/><stop offset="1" stop-color="#FF5A3C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF5A3C"/><stop offset="1" stop-color="#F6A609"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(90,90)">
+    <rect width="58" height="58" rx="14" fill="#FF5A3C"/>
+    <path d="M29 12 12 21v16l17 9 17-9V21L29 12Z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" transform="scale(0.9) translate(2,2)"/>
+    <text x="78" y="40" font-family="Georgia, serif" font-size="34" font-weight="800" fill="#ffffff">Meridian</text>
+    <text x="78" y="62" font-family="Arial, sans-serif" font-size="15" letter-spacing="3" fill="#FF8A72">IELTS · PTE PREPARATION</text>
+  </g>
+  <text x="90" y="300" font-family="Georgia, serif" font-size="72" font-weight="800" fill="#ffffff">The right score is the</text>
+  <text x="90" y="380" font-family="Georgia, serif" font-size="72" font-weight="800" fill="url(#acc)">first step abroad.</text>
+  <text x="90" y="452" font-family="Arial, sans-serif" font-size="28" fill="#A7B0C4">Live classes · 1-on-1 coaching · Mock tests · Speaking &amp; writing feedback</text>
+  <g transform="translate(90,510)">
+    <rect width="330" height="66" rx="33" fill="#FF5A3C"/>
+    <text x="165" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Get My Preparation Plan</text>
+  </g>
+</svg>

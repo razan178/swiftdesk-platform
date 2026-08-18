@@ -1,0 +1,12 @@
+{
+  "name": "Meridian IELTS & PTE",
+  "short_name": "Meridian",
+  "description": "Expert IELTS & PTE preparation — live classes, 1-on-1 coaching, mock tests and personalised guidance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F4",
+  "theme_color": "#0C1222",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
