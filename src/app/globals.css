@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/*
+  Islamabad Thrift Store — design system
+  Streetwear / Gen-Z sneaker aesthetic: ink black, off-white paper, and a
+  single high-energy "volt" accent. Bold display type, clean product cards.
+*/
+
+@theme {
+  --color-ink: #0a0a0b;
+  --color-ink-800: #17171a;
+  --color-ink-700: #232327;
+  --color-ink-600: #34343a;
+  --color-paper: #f5f4f0;
+  --color-paper-200: #eceae3;
+  --color-muted: #8a8a93;
+  --color-volt: #ccff00;
+  --color-volt-600: #a6d400;
+  --color-flame: #ff4d2e;
+
+  --radius-card: 1rem;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Utility: tight, uppercase display headings */
+.font-display {
+  font-family: var(--font-display), "Arial Black", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+/* Marquee for the hero ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee { animation: none; }
+}
+
+/* Subtle rise-in used sparingly on cards */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: rise 0.5s ease both;
+}
+
+/* Hide scrollbar on horizontal scrollers while keeping scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

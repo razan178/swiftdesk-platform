@@ -1,0 +1,13 @@
+# Netlify configuration for Islamabad Thrift Store (Next.js).
+# The official Next.js plugin handles routing, SSR and image optimization —
+# no manual redirects needed for App Router pages.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "22"
