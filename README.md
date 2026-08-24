@@ -1,10 +1,10 @@
-# Meridian — IELTS & PTE Lead-Generation Website
+# Laiba Institute — IELTS & PTE Lead-Generation Website
 
 A premium, conversion-focused single-page site whose only job is to turn visitors
 into **high-intent WhatsApp leads**. Static, zero-dependency (HTML + CSS + vanilla
 JS) — fast, SEO-friendly, and trivially easy to edit.
 
-> **"Meridian" is a placeholder brand name.** Replace it when you finalise yours
+> **"Laiba Institute" is a placeholder brand name.** Replace it when you finalise yours
 > (see step 2 below).
 
 ---
@@ -30,7 +30,7 @@ Almost everything business-specific lives in **`js/config.js`** — edit that fi
    the entire site funnels here.)*
 
 2. **Brand name** — set `BRAND.name` in `js/config.js`, then do a global
-   find-and-replace of the word **`Meridian`** in `index.html` (it appears in the
+   find-and-replace of the word **`Laiba Institute`** in `index.html` (it appears in the
    visible text, `<title>`, meta tags and schema for SEO).
 
 3. **Phone number** — `js/config.js` → `PHONE_NUMBER` (shown) and `PHONE_DIAL` (dialled).

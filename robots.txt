@@ -1,4 +1,4 @@
-# Meridian — robots.txt
+# Laiba Institute — robots.txt
 # Replace www.example.com with your real domain before going live.
 User-agent: *
 Allow: /
