@@ -1,0 +1,14 @@
+# One-click deploy to Render (https://render.com). Push this repo, then
+# "New + → Blueprint" and point it at the repo. Set ADMIN_TOKEN when prompted.
+services:
+  - type: web
+    name: laiba-institute
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server/server.js
+    envVars:
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: LEAD_WEBHOOK_URL
+        sync: false

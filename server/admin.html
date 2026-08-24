@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Leads · Laiba Institute</title>
+  <style>
+    :root{ --ink:#0C1222; --ground:#F6F7F9; --surface:#fff; --line:#E4E7EC; --muted:#667085; --accent:#FB5A3C; --wa:#128C4A; }
+    *{box-sizing:border-box;margin:0} body{font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--ground);color:var(--ink);padding:clamp(1rem,4vw,2.5rem)}
+    h1{font-size:1.5rem;letter-spacing:-.02em} .sub{color:var(--muted);margin:.25rem 0 1.4rem;font-size:.95rem}
+    .bar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.2rem}
+    input,button{font:inherit;padding:.6rem .9rem;border-radius:10px;border:1.5px solid var(--line)}
+    input{min-width:260px;background:var(--surface)} button{background:var(--ink);color:#fff;border-color:var(--ink);cursor:pointer;font-weight:700}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    table{border-collapse:collapse;width:100%;font-size:.9rem} th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--line);white-space:nowrap}
+    th{background:#fafafa;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+    tr:hover td{background:#fcfbfa} .pill{font-size:.72rem;font-weight:800;padding:.2rem .5rem;border-radius:6px;background:#FFE7E0;color:#E4421F}
+    a.wa{color:var(--wa);font-weight:700;text-decoration:none} .count{font-weight:800}
+    .empty{padding:2rem;text-align:center;color:var(--muted)}
+    .scroll{overflow-x:auto}
+  </style>
+</head>
+<body>
+  <h1>Leads dashboard</h1>
+  <p class="sub">Every form submission is captured here as a safety net alongside WhatsApp. <span class="count" id="count">—</span></p>
+  <div class="bar">
+    <input id="token" type="password" placeholder="Admin token" />
+    <button id="load">Load leads</button>
+    <button id="csv" style="background:#fff;color:var(--ink)">Download CSV</button>
+  </div>
+  <div class="card scroll">
+    <table id="tbl"><thead><tr><th>When</th><th>Name</th><th>WhatsApp</th><th>Exam</th><th>Country</th><th>Timing</th><th>Goal</th></tr></thead><tbody><tr><td colspan="7" class="empty">Enter your admin token and load.</td></tr></tbody></table>
+  </div>
+  <script>
+    var rows = [];
+    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+    function waLink(p){ var d=String(p||'').replace(/[^0-9]/g,''); return d?'<a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+d+'">'+esc(p)+'</a>':esc(p); }
+    async function load(){
+      var t = document.getElementById('token').value.trim();
+      if(!t){ alert('Enter your admin token'); return; }
+      try{ localStorage.setItem('laiba_admin', t); }catch(e){}
+      var r = await fetch('/api/leads?token='+encodeURIComponent(t));
+      if(r.status===401){ alert('Wrong token'); return; }
+      var j = await r.json(); rows = j.leads||[];
+      document.getElementById('count').textContent = j.count+' total';
+      var tb = document.querySelector('#tbl tbody');
+      if(!rows.length){ tb.innerHTML='<tr><td colspan="7" class="empty">No leads yet.</td></tr>'; return; }
+      tb.innerHTML = rows.map(function(x){
+        var when=new Date(x.at).toLocaleString();
+        return '<tr><td>'+esc(when)+'</td><td>'+esc(x.name)+'</td><td>'+waLink(x.phone)+'</td><td><span class="pill">'+esc(x.exam)+'</span></td><td>'+esc(x.country)+'</td><td>'+esc(x.timing)+'</td><td>'+esc(x.goal)+'</td></tr>';
+      }).join('');
+    }
+    function csv(){
+      if(!rows.length){ alert('Load leads first'); return; }
+      var head=['at','name','phone','exam','country','timing','goal'];
+      var lines=[head.join(',')].concat(rows.map(function(x){return head.map(function(k){return '"'+String(x[k]==null?'':x[k]).replace(/"/g,'""')+'"';}).join(',');}));
+      var blob=new Blob([lines.join('\n')],{type:'text/csv'}); var a=document.createElement('a');
+      a.href=URL.createObjectURL(blob); a.download='laiba-leads.csv'; a.click();
+    }
+    document.getElementById('load').onclick=load;
+    document.getElementById('csv').onclick=csv;
+    try{ var saved=localStorage.getItem('laiba_admin'); if(saved){ document.getElementById('token').value=saved; load(); } }catch(e){}
+  </script>
+</body>
+</html>

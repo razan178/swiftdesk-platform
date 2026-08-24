@@ -249,16 +249,21 @@
       track("form_submitted", { exam: data.exam, country: data.country, goal: data.goal });
       track("generate_lead", { exam: data.exam }); // GA4 recommended conversion event
 
-      /* --- OPTIONAL: also send the lead to a CRM / Google Sheet / webhook ----
-         Uncomment and point at your endpoint. The WhatsApp redirect below still
-         runs regardless, so a failed/slow request never blocks the visitor.
-         fetch("https://YOUR_ENDPOINT_HERE", {
-           method: "POST",
-           headers: { "Content-Type": "application/json" },
-           body: JSON.stringify(data),
-           keepalive: true
-         }).catch(function () {});
-      ----------------------------------------------------------------------- */
+      /* --- Capture the lead on the backend (safety net) --------------------
+         Best-effort POST to the bundled lead API. If the site is hosted as
+         pure static files (no backend), this simply fails and the WhatsApp
+         redirect below still happens — so no lead flow is ever blocked.
+         Override the endpoint via SITE_CONFIG.LEAD_ENDPOINT if your API lives
+         elsewhere.                                                            */
+      try {
+        var endpoint = CFG.LEAD_ENDPOINT || "/api/lead";
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function () {});
+      } catch (e) {}
 
       // Prepare success state + fallback button (in case popup blocked)
       successBtn.setAttribute("href", url);

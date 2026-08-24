@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Captured leads (never commit real customer data) & runtime data
+data/
+*.ndjson
+
+# Env & secrets
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+*.log
