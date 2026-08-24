@@ -220,6 +220,53 @@ p  { color: var(--text-muted); }
 .float-chip--b { bottom: 26px; right: -30px; }
 .float-chip small { display:block; font-weight:600; color: var(--text-dim); font-size:.74rem; }
 
+/* ---------- 7b. HERO PHOTO + SOCIAL PROOF (upgrade) ------------------------ */
+/* Avatar + star trust row */
+.hero__social { display:flex; align-items:center; gap:.9rem; margin-top:1.4rem; }
+.hero__social .avatars { display:flex; }
+.hero__social .avatars span { width:40px; height:40px; border-radius:50%; border:2.5px solid var(--canvas); margin-left:-12px; display:grid; place-items:center; font-family:var(--font-display); font-weight:800; font-size:.9rem; color:#fff; }
+.hero__social .avatars span:first-child { margin-left:0; }
+.hero__social .avatars span:nth-child(1){ background:#3E5C8A; }
+.hero__social .avatars span:nth-child(2){ background:#B5713C; }
+.hero__social .avatars span:nth-child(3){ background:#4B7C6A; }
+.hero__social .avatars span:nth-child(4){ background:var(--ink); }
+.hero__social .stars { display:flex; gap:2px; color:var(--amber); margin-bottom:.15rem; }
+.hero__social .stars svg { width:15px; height:15px; }
+.hero__social-txt b { display:block; font-size:.92rem; color:var(--ink); font-weight:700; line-height:1.25; }
+.hero__social-txt span { font-size:.82rem; color:var(--text-dim); }
+
+/* Photo card + overlapping live progress card */
+.hero__visual { position:relative; }
+.hero__photo { position:relative; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--sh-lg); aspect-ratio:4/4.35; background:var(--surface); border:1px solid var(--line); }
+.hero__photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; z-index:2; }
+.hero__photo::after { content:""; position:absolute; inset:0; z-index:3; pointer-events:none; box-shadow:inset 0 -90px 100px -50px rgba(12,18,34,.5); border-radius:var(--radius-lg); }
+.hero__photo-ph { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; color:#8894ad;
+  background: radial-gradient(120% 90% at 72% 4%, rgba(255,90,60,.12), transparent 55%), linear-gradient(160deg,#20293C 0%,#0E1424 55%,#161E30 100%); }
+.hero__photo-ph svg { width:70px; height:70px; opacity:.55; }
+.hero__photo-ph .lbl { font-size:.78rem; font-weight:600; padding:.4rem .8rem; border-radius:var(--radius-pill); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:#c4ccdb; }
+
+/* Three floating stat cards around the photo */
+.hero__visual .float-chip { z-index:5; }
+.hero__visual .float-chip--a { top:7%; left:-5%; }
+.hero__visual .float-chip--c { top:12%; right:-5%; }
+.hero__visual .float-chip--b { bottom:9%; left:-6%; right:auto; top:auto; }
+@media (prefers-reduced-motion:no-preference){
+  .hero__visual .float-chip { animation:hero-float 6s var(--ease) infinite; }
+  .hero__visual .float-chip--c { animation-delay:-2s; }
+  .hero__visual .float-chip--b { animation-delay:-4s; }
+}
+@keyframes hero-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+@media (max-width:1000px){
+  .hero__visual .float-chip--a { left:-2%; }
+  .hero__visual .float-chip--c { right:-2%; }
+  .hero__visual .float-chip--b { left:-2%; }
+}
+@media (max-width:680px){
+  .hero__photo { aspect-ratio:4/3.6; }
+  .hero__social { justify-content:center; }
+}
+
 /* ---------- 8. COMPONENTS -------------------------------------------------- */
 /* Marquee trust strip */
 .trust-strip { border-block: 1px solid var(--line); background: var(--surface); }
