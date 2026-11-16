@@ -82,6 +82,17 @@ h1,h2,h3,h4{margin:0; color:var(--ink); font-family:var(--f-serif); font-weight:
 .ph--cut.ph--dark::after{color:rgba(255,255,255,.4)}
 .ph--cut > img{object-fit:contain; object-position:bottom center}
 .gray > img{filter:grayscale(1)}
+/* real photo on a white background: no placeholder look, white melts into the hero */
+.ph--photo{background:none; border-radius:0}
+.ph--photo::after{display:none}
+.ph--photo > img{object-fit:contain; object-position:bottom center; mix-blend-mode:multiply}
+.home-hero .hero__art .ph{width:min(100%,500px); aspect-ratio:1123/1400}
+.home-hero.hero--light{background:#fff}
+.home-hero .ph--photo > img{mix-blend-mode:normal;
+  -webkit-mask-image:linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 6%);
+  -webkit-mask-composite:source-in;
+          mask-image:linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 6%);
+          mask-composite:intersect}
 
 /* ---------- kanji, ink-wash and handwriting decorations ---------- */
 .kanji{font-family:var(--f-kanji); writing-mode:vertical-rl; color:var(--ink); line-height:1; letter-spacing:.08em; pointer-events:none; user-select:none}
