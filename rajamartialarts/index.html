@@ -1,358 +1,217 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Raja's Martial Arts &amp; Fitness Gym — Kyokushin Karate Classes</title>
-  <meta name="description" content="Kyokushin Karate and fitness training for kids, teens and adults. Disciplined classes, real grading, a dojo that trains like it matters. Book a free trial class on WhatsApp.">
-  <meta name="theme-color" content="#0A0A0C">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Raja's Martial Arts &amp; Fitness Gym">
-  <meta property="og:description" content="Kyokushin Karate and fitness training for kids, teens and adults. Book a free trial class.">
-  <meta property="og:image" content="assets/img/og-cover.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/styles.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    "name": "Raja's Martial Arts & Fitness Gym",
-    "description": "Kyokushin Karate and fitness training for kids, teens and adults.",
-    "sport": ["Karate", "Kyokushin", "Fitness"]
-  }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raja's Martial Arts — More Than Just a Martial Art | Kyokushin Karate</title>
+<meta name="description" content="Kyokushin Karate, self defense and fitness under Shihan Raja Khalid Mehmood Janjua. Book a free trial class.">
+<meta name="theme-color" content="#0C0C0E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Raja's Martial Arts — More Than Just a Martial Art | Kyokushin Karate">
+<meta property="og:description" content="Kyokushin Karate, self defense and fitness under Shihan Raja Khalid Mehmood Janjua. Book a free trial class.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@600;700;800;900&family=Oswald:wght@500;600;700&family=Yuji+Syuku&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
 <a class="skip" href="#main">Skip to content</a>
-
-<!-- Belt progress spine: fills white → black as you scroll -->
-<div class="spine" aria-hidden="true"><div class="spine__fill" id="spineFill"></div></div>
-
-<header class="nav" id="nav">
-  <div class="wrap nav__in">
-    <a href="#top" class="brand" aria-label="Raja's Martial Arts — home">
-      <span class="brand__mark">押忍</span>
-      <span class="brand__txt">Raja's<b>Martial Arts</b></span>
-    </a>
-    <nav class="nav__links" aria-label="Main">
-      <a href="#programs">Programs</a>
-      <a href="#instructors">Instructors</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#join">Join</a>
-    </nav>
-    <a class="btn btn--wa btn--sm nav__cta" data-wa="Assalam o Alaikum! I'd like to book a free trial class." href="#join">Free trial</a>
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="panel"><span></span><span></span></button>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="index.html" aria-label="Raja's Martial Arts — home"><span class="logo__img"><img src="assets/img/logo.png" alt=""></span><span class="logo__txt"><b>Raja's</b><small>Martial Arts &amp; Fitness</small></span></a>
+    <nav class="menu" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="biography.html">About</a><a href="instructors.html">Instructors</a><a href="courses.html">Courses</a><a href="syllabus.html">Syllabus</a><a href="belt-test.html">Belt Test</a><a href="terminology.html">Terminology</a><a href="index.html#contact">Contact</a></nav>
+    <a class="btn btn--red btn--sm hdr__cta" href="index.html#trial">Book Free Trial</a>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
   </div>
-  <div class="nav__panel" id="panel" hidden>
-    <a href="#programs">Programs</a>
-    <a href="#instructors">Instructors</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#join">Join</a>
-    <a class="btn btn--wa btn--full" data-wa="Assalam o Alaikum! I'd like to book a free trial class." href="#join">Book a free trial</a>
-  </div>
+  <nav class="drawer" id="drawer" aria-label="Mobile" hidden><a href="index.html" aria-current="page">Home</a><a href="biography.html">About</a><a href="instructors.html">Instructors</a><a href="courses.html">Courses</a><a href="syllabus.html">Syllabus</a><a href="belt-test.html">Belt Test</a><a href="terminology.html">Terminology</a><a href="index.html#contact">Contact</a><a class="btn btn--red btn--full" href="index.html#trial">Book Free Trial</a></nav>
 </header>
-
 <main id="main">
 
-  <!-- ================= HERO ================= -->
-  <section class="hero" id="top">
-    <div class="hero__mark" aria-hidden="true">KYOKUSHIN</div>
-    <div class="wrap hero__in">
-      <p class="eyebrow">Kyokushin Karate · Fitness · Self-defence</p>
-      <h1 class="hero__h">Train like<br><em>it matters.</em></h1>
-      <p class="lede hero__lede">Full-contact Kyokushin Karate and strength &amp; conditioning for kids, teens and adults. Real technique, real grading, and a dojo where everyone is pushed to be better than last week.</p>
-      <div class="hero__ctas">
-        <a class="btn btn--wa" data-wa="Assalam o Alaikum! I'd like to book a free trial class." href="#join">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
-          Book a free trial
-        </a>
-        <a class="btn btn--ghost" href="#programs">See programs</a>
-      </div>
-      <dl class="hero__stats">
-        <div><dt>Ages</dt><dd>5+</dd></div>
-        <div><dt>Style</dt><dd>Kyokushin</dd></div>
-        <div><dt>First class</dt><dd>Free</dd></div>
-      </dl>
+<section class="hero hero--light home-hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Kyokushin Karate · Fitness · Self Defense</p>
+      <h1 class="sans">More than<br>just a <span class="red">martial art</span></h1>
+      <p class="lede">Kyokushin Karate under Shihan Raja Khalid Mehmood Janjua — a renowned, verified instructor. Build strength, discipline and the confidence to carry yourself anywhere.</p>
+      <div><a class="btn btn--red" href="#trial">Start your journey <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
-    <div class="wrap">
-      <figure class="slot slot--hero" data-file="assets/img/hero.jpg">
-        <span class="slot__label">hero.jpg · 1600 × 900</span>
-      </figure>
+    <div class="hero__art">
+      <div class="hero__ring" aria-hidden="true"></div>
+      <div class="ph ph--cut" data-file="shihan-hero.png"><img src="assets/img/shihan-hero.png" alt="Shihan Raja Khalid Mehmood Janjua in his gi, arms crossed" loading="lazy"></div>
+      <div class="kanji" aria-hidden="true">極真会</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= ETHOS ================= -->
-  <section class="band band--line">
-    <div class="wrap ethos">
-      <div class="ethos__item rv">
-        <span class="ethos__k">01</span>
-        <h3>Discipline</h3>
-        <p>Every class opens and closes with respect. Bowing in, focus, and showing up when it's hard — that's where it starts.</p>
-      </div>
-      <div class="ethos__item rv">
-        <span class="ethos__k">02</span>
-        <h3>Strength</h3>
-        <p>Kyokushin is known as the strongest karate. Conditioning is built into every session, not added as an afterthought.</p>
-      </div>
-      <div class="ethos__item rv">
-        <span class="ethos__k">03</span>
-        <h3>Confidence</h3>
-        <p>Kids who stand taller. Adults who can protect themselves. Confidence earned on the mat carries into everything else.</p>
+<section class="video-band" data-video-box aria-label="Dojo video">
+  <div class="ph ph--dark" data-file="video-poster.jpg"><img src="assets/img/video-poster.jpg" alt="A Kyokushin student in stance in the dojo" loading="lazy"></div>
+  <button class="play" type="button" data-video="assets/video/intro.mp4" aria-label="Play dojo video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg></button>
+  <p class="video-band__cap">Watch · Inside the dojo</p>
+</section>
+
+<section class="sec" id="trial">
+  <div class="wrap first-step">
+    <div class="rv">
+      <p class="eyebrow">Join the dojo</p>
+      <h2 style="margin-top:14px">Take the first step<br><span class="red">towards a stronger you</span></h2>
+      <p class="lede" style="margin-top:16px">Your first class is free. No experience and no gi needed — just come in comfortable clothes and we'll guide you from the very first bow.</p>
+      <div class="perks">
+        <div class="perk"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="6"/><path d="M8 3h8l-2 6h-4z"/><path d="m12 12 1 2 2 .3-1.5 1.4.4 2.1L12 17l-1.9 1 .4-2.2L9 14.3l2-.3z"/></svg></span><b>Expert guidance</b><span>Certified Kyokushin black belts</span></div>
+        <div class="perk"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></span><b>Strength &amp; fitness</b><span>Conditioning in every class</span></div>
+        <div class="perk"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c-4 0-8-2-9-6 3 0 6 1 9 4 3-3 6-4 9-4-1 4-5 6-9 6Z"/><path d="M12 18c-2-3-2-7 0-11 2 4 2 8 0 11Z"/></svg></span><b>Lifelong discipline</b><span>Respect, focus and spirit</span></div>
       </div>
     </div>
-  </section>
+    <div class="rv"><form class="card trial form" data-trial name="trial" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="trial"><p hidden><label>Skip <input name="bot-field"></label></p>
+  <h3>Book a Free Trial</h3>
+  <div class="field"><label for="trial-name">Full name</label><input id="trial-name" name="name" autocomplete="name" required></div>
+  <div class="row2">
+    <div class="field"><label for="trial-phone">Phone / WhatsApp</label><input id="trial-phone" name="phone" type="tel" autocomplete="tel" required></div>
+    <div class="field"><label for="trial-age">Age</label><input id="trial-age" name="age" type="number" min="3" max="99" inputmode="numeric"></div>
+  </div>
+  <div class="field"><label for="trial-course">Course</label><select id="trial-course" name="course">
+    <option>Kyokushin Karate</option><option>Self Defense</option><option>Weight Loss</option><option>Mental Health &amp; Focus</option><option>Not sure yet</option></select></div>
+  <div class="field"><label for="trial-time">Preferred time</label><select id="trial-time" name="time">
+    <option>Morning</option><option selected>Evening</option><option>Weekend</option></select></div>
+  <button class="btn btn--red btn--full" type="submit">Submit <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <p class="form__note" role="status" aria-live="polite">We'll reply on WhatsApp to confirm your class.</p>
+</form></div>
+  </div>
+</section>
 
-  <!-- ================= PROGRAMS ================= -->
-  <section class="band" id="programs">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="eyebrow">Programs</p>
-        <h2 class="h-sec">Find your <em>class.</em></h2>
-        <p class="lede">From a five-year-old's first white belt to adults chasing black — there's a place on the mat for you.</p>
+<section class="page-dark on-dark" style="padding-top:clamp(80px,9vw,120px)">
+  <div class="wrap">
+    <div class="welcome rv">
+      <div class="sec-head sec-head--c" style="margin:0">
+        <p class="eyebrow eyebrow--c">Welcome to Raja's Martial Arts</p>
+        <h2 class="h-lg">A dojo built on <span class="red">Kyokushin spirit</span></h2>
+        <p class="lede">From the founder's story to your first belt test, everything here is designed to turn hard work into real progress.</p>
       </div>
-
-      <div class="programs">
-        <article class="prog rv" style="--belt:var(--b-yellow)">
-          <figure class="slot" data-file="assets/img/program-kids.jpg"><span class="slot__label">program-kids.jpg</span></figure>
-          <div class="prog__body">
-            <span class="tag">Ages 5–12</span>
-            <h3>Little Warriors</h3>
-            <p>Kyokushin fundamentals through structured, energetic classes. Kids build focus, coordination, manners and the confidence to stand up for themselves.</p>
-            <ul class="ticks"><li>Belt grading system</li><li>Anti-bullying &amp; safety skills</li><li>Fitness through play and drills</li></ul>
-          </div>
-        </article>
-
-        <article class="prog rv" style="--belt:var(--b-blue)">
-          <figure class="slot" data-file="assets/img/program-teens.jpg"><span class="slot__label">program-teens.jpg</span></figure>
-          <div class="prog__body">
-            <span class="tag">Ages 13–17</span>
-            <h3>Teen Kyokushin</h3>
-            <p>Sharper technique, controlled sparring and serious conditioning. Channel energy into discipline and earn every belt on the way up.</p>
-            <ul class="ticks"><li>Kihon, kata &amp; kumite</li><li>Tournament preparation</li><li>Strength &amp; stamina work</li></ul>
-          </div>
-        </article>
-
-        <article class="prog rv" style="--belt:var(--b-black)">
-          <figure class="slot" data-file="assets/img/program-adults.jpg"><span class="slot__label">program-adults.jpg</span></figure>
-          <div class="prog__body">
-            <span class="tag">Adults 18+</span>
-            <h3>Adult Kyokushin</h3>
-            <p>Traditional full-contact karate for complete beginners and experienced fighters alike. Train hard, learn real self-defence and get into the best shape of your life.</p>
-            <ul class="ticks"><li>Beginner-friendly start</li><li>Full-contact sparring (optional)</li><li>Grading to black belt</li></ul>
-          </div>
-        </article>
-
-        <article class="prog rv" style="--belt:var(--hinomaru)">
-          <figure class="slot" data-file="assets/img/program-fitness.jpg"><span class="slot__label">program-fitness.jpg</span></figure>
-          <div class="prog__body">
-            <span class="tag">All levels</span>
-            <h3>Fitness &amp; Conditioning</h3>
-            <p>High-intensity strength and conditioning sessions built on martial-arts training. Burn fat, build power and improve stamina, with or without a gi.</p>
-            <ul class="ticks"><li>Circuit &amp; bag work</li><li>Strength and mobility</li><li>Coach-led every session</li></ul>
-          </div>
-        </article>
+      <div class="grid g3">
+        <div class="welcome__item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><h3>Meet the Shihan</h3><p>Learn the story behind the dojo and the man who built it.</p><a class="link" style="color:#fff" href="biography.html">His story</a></div>
+        <div class="welcome__item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c.8-3.5 3.5-5 7-5s6.2 1.5 7 5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 15c2 .6 3.4 2.2 4 5"/></svg></span><h3>Our Instructors</h3><p>Verified black belts who know every student by name.</p><a class="link" style="color:#fff" href="instructors.html">Meet them</a></div>
+        <div class="welcome__item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="6"/><path d="M8 3h8l-2 6h-4z"/><path d="m12 12 1 2 2 .3-1.5 1.4.4 2.1L12 17l-1.9 1 .4-2.2L9 14.3l2-.3z"/></svg></span><h3>Become a Member</h3><p>Flexible plans for 3, 4 or 6 days a week.</p><a class="link" style="color:#fff" href="courses.html#fees">See fees</a></div>
       </div>
     </div>
-  </section>
 
-  <!-- ================= BELT PATH ================= -->
-  <section class="band band--panel">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="eyebrow">The path</p>
-        <h2 class="h-sec">White to <em>black.</em></h2>
-        <p class="lede">Progress you can see. Students grade through the Kyokushin kyu ranks — each belt earned through technique, kata, fitness and spirit.</p>
+    <div class="split sec">
+      <div class="rv">
+        <p class="eyebrow">Programs for every age</p>
+        <h2 class="h-lg" style="margin:14px 0 16px">Kyokushin is the best <span class="red">self-defense training</span> for you</h2>
+        <p class="lede">Real full-contact karate taught safely and step by step. Kids gain focus and confidence, adults gain fitness and the ability to protect themselves.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px"><a class="btn btn--red" href="courses.html">View courses <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--line" href="syllabus.html">Syllabus</a></div>
       </div>
-      <ol class="belts rv">
-        <li style="--c:var(--b-white)"><span></span>White</li>
-        <li style="--c:var(--b-orange)"><span></span>Orange</li>
-        <li style="--c:var(--b-blue)"><span></span>Blue</li>
-        <li style="--c:var(--b-yellow)"><span></span>Yellow</li>
-        <li style="--c:var(--b-green)"><span></span>Green</li>
-        <li style="--c:var(--b-brown)"><span></span>Brown</li>
-        <li style="--c:var(--b-blackbelt)"><span></span>Black</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ================= INSTRUCTORS ================= -->
-  <section class="band" id="instructors">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="eyebrow">Instructors</p>
-        <h2 class="h-sec">Led by <em>Sensei.</em></h2>
-        <p class="lede">Experienced, certified Kyokushin instructors who know every student by name.</p>
-      </div>
-      <!-- TODO: replace names, ranks and bios with the real instructors -->
-      <div class="coaches">
-        <article class="coach rv">
-          <figure class="slot slot--tall" data-file="assets/img/instructor-1.jpg"><span class="slot__label">instructor-1.jpg</span></figure>
-          <div class="coach__body">
-            <span class="coach__rank">Head Instructor · Dan rank TBC</span>
-            <h3>Sensei Raja</h3>
-            <p>Founder of the dojo. Bio to be added — years training, tournament record and certifications.</p>
-          </div>
-        </article>
-        <article class="coach rv">
-          <figure class="slot slot--tall" data-file="assets/img/instructor-2.jpg"><span class="slot__label">instructor-2.jpg</span></figure>
-          <div class="coach__body">
-            <span class="coach__rank">Instructor · Rank TBC</span>
-            <h3>Instructor name</h3>
-            <p>Bio to be added. Specialities, classes taught and background.</p>
-          </div>
-        </article>
-        <article class="coach rv">
-          <figure class="slot slot--tall" data-file="assets/img/instructor-3.jpg"><span class="slot__label">instructor-3.jpg</span></figure>
-          <div class="coach__body">
-            <span class="coach__rank">Fitness Coach · TBC</span>
-            <h3>Coach name</h3>
-            <p>Bio to be added. Strength &amp; conditioning background and certifications.</p>
-          </div>
-        </article>
+      <div class="age-tiles rv">
+        <a class="age" href="courses.html"><div class="ph ph--dark" data-file="age-kids.jpg"><img src="assets/img/age-kids.jpg" alt="Kids karate class" loading="lazy"></div><span class="age__cap"><b>4–7 Years</b><span>Little Warriors</span></span></a>
+        <a class="age" href="courses.html"><div class="ph ph--dark" data-file="age-juniors.jpg"><img src="assets/img/age-juniors.jpg" alt="Junior karate class" loading="lazy"></div><span class="age__cap"><b>8–12 Years</b><span>Juniors</span></span></a>
+        <a class="age" href="courses.html"><div class="ph ph--dark" data-file="age-teens.jpg"><img src="assets/img/age-teens.jpg" alt="Teen karate class" loading="lazy"></div><span class="age__cap"><b>13–17 Years</b><span>Teens</span></span></a>
+        <a class="age" href="courses.html"><div class="ph ph--dark" data-file="age-adults.jpg"><img src="assets/img/age-adults.jpg" alt="Adult karate class" loading="lazy"></div><span class="age__cap"><b>Adults</b><span>18 and over</span></span></a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= GALLERY ================= -->
-  <section class="band band--panel" id="gallery">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="eyebrow">Gallery</p>
-        <h2 class="h-sec">Inside the <em>dojo.</em></h2>
-      </div>
-      <div class="gallery rv">
-        <figure class="slot g1" data-file="assets/img/gallery-1.jpg"><span class="slot__label">gallery-1.jpg</span></figure>
-        <figure class="slot g2" data-file="assets/img/gallery-2.jpg"><span class="slot__label">gallery-2.jpg</span></figure>
-        <figure class="slot g3" data-file="assets/img/gallery-3.jpg"><span class="slot__label">gallery-3.jpg</span></figure>
-        <figure class="slot g4" data-file="assets/img/gallery-4.jpg"><span class="slot__label">gallery-4.jpg</span></figure>
-        <figure class="slot g5" data-file="assets/img/gallery-5.jpg"><span class="slot__label">gallery-5.jpg</span></figure>
-        <figure class="slot g6" data-file="assets/img/gallery-6.jpg"><span class="slot__label">gallery-6.jpg</span></figure>
-      </div>
+<section class="sched-wrap on-dark sec" id="schedule">
+  <div class="ph ph--dark" data-file="schedule-bg.jpg"><img src="assets/img/schedule-bg.jpg" alt="" loading="lazy"></div>
+  <div class="wrap" style="position:relative">
+    <div class="sec-head sec-head--c rv">
+      <p class="eyebrow eyebrow--c">Weekly schedule</p>
+      <h2 class="h-lg">Kyokushin <span class="red">class schedule</span></h2>
+      <p class="lede">Draft timetable — confirm your slot on WhatsApp before your first visit.</p>
     </div>
-  </section>
-
-  <!-- ================= SCHEDULE ================= -->
-  <section class="band" id="schedule">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="eyebrow">Schedule</p>
-        <h2 class="h-sec">Class <em>times.</em></h2>
-        <p class="lede">Times below are a draft — message us on WhatsApp to confirm before your first visit.</p>
-      </div>
-      <!-- TODO: replace with the real timetable -->
-      <div class="sched rv" role="region" aria-label="Weekly class schedule" tabindex="0">
-        <table>
-          <thead>
-            <tr><th scope="col">Class</th><th scope="col">Days</th><th scope="col">Time</th><th scope="col">Level</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row"><i style="--c:var(--b-yellow)"></i>Little Warriors</th><td>Mon · Wed · Fri</td><td>4:00 – 5:00 pm</td><td>Ages 5–12</td></tr>
-            <tr><th scope="row"><i style="--c:var(--b-blue)"></i>Teen Kyokushin</th><td>Mon · Wed · Fri</td><td>5:00 – 6:15 pm</td><td>Ages 13–17</td></tr>
-            <tr><th scope="row"><i style="--c:var(--b-blackbelt)"></i>Adult Kyokushin</th><td>Tue · Thu · Sat</td><td>6:30 – 8:00 pm</td><td>All grades</td></tr>
-            <tr><th scope="row"><i style="--c:var(--hinomaru)"></i>Fitness &amp; Conditioning</th><td>Mon – Sat</td><td>7:00 – 8:00 am</td><td>All levels</td></tr>
-            <tr><th scope="row"><i style="--c:var(--kohaku)"></i>Sparring / Kumite</th><td>Saturday</td><td>5:00 – 6:30 pm</td><td>Blue belt +</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- TODO: replace with the real weekly timetable -->
+    <div class="sched rv" role="region" aria-label="Weekly class schedule" tabindex="0">
+      <table>
+        <thead><tr><th scope="col">Class</th><th scope="col">Monday</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th><th scope="col">Saturday</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Kids (4–12)</th><td><b>4:00 pm</b>Kihon</td><td>—</td><td><b>4:00 pm</b>Kata</td><td>—</td><td><b>4:00 pm</b>Games &amp; drills</td><td><b>10:00 am</b>All kids</td></tr>
+          <tr><th scope="row">Teens (13–17)</th><td><b>5:15 pm</b>Kihon</td><td><b>5:15 pm</b>Conditioning</td><td><b>5:15 pm</b>Kata</td><td><b>5:15 pm</b>Kumite</td><td>—</td><td><b>11:30 am</b>Open mat</td></tr>
+          <tr><th scope="row">Adults</th><td><b>7:00 pm</b>Kyokushin</td><td><b>7:00 pm</b>Self defense</td><td><b>7:00 pm</b>Kyokushin</td><td><b>7:00 pm</b>Kumite</td><td><b>7:00 pm</b>Kyokushin</td><td><b>5:00 pm</b>Sparring</td></tr>
+          <tr><th scope="row">Fitness</th><td><b>7:00 am</b>Weight loss</td><td><b>7:00 am</b>Strength</td><td><b>7:00 am</b>Weight loss</td><td><b>7:00 am</b>Strength</td><td><b>7:00 am</b>Circuit</td><td>—</td></tr>
+        </tbody>
+      </table>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= JOIN ================= -->
-  <section class="band band--panel" id="join">
-    <div class="wrap join">
-      <div class="join__copy rv">
-        <p class="eyebrow">Join the dojo</p>
-        <h2 class="h-sec">Your first class <em>is free.</em></h2>
-        <p class="lede">Send your details and we'll reply on WhatsApp with a time that suits you. No experience or kit needed — just comfortable clothes and water.</p>
-
-        <ul class="contact">
-          <li><span class="contact__k">WhatsApp</span><a class="contact__v" data-wa="Assalam o Alaikum! I have a question about classes." href="#join" data-bind="phoneDisplay">—</a></li>
-          <li><span class="contact__k">Dojo</span><span class="contact__v" data-bind="address">—</span></li>
-          <li class="contact__email" hidden><span class="contact__k">Email</span><a class="contact__v" data-bind="email" href="#">—</a></li>
-        </ul>
-
-        <div class="map" id="map" aria-label="Map showing the dojo location">
-          <div class="slot slot--map"><span class="slot__label">Map appears once location is set in config.js</span></div>
-        </div>
-      </div>
-
-      <form class="form rv" id="joinForm" name="join" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="join">
-        <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
-
-        <div class="field">
-          <label for="f-name">Full name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-phone">Phone / WhatsApp</label>
-          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="f-age">Student's age</label>
-            <input id="f-age" name="age" type="number" min="3" max="99" inputmode="numeric">
-          </div>
-          <div class="field">
-            <label for="f-program">Program</label>
-            <select id="f-program" name="program">
-              <option>Little Warriors (5–12)</option>
-              <option>Teen Kyokushin (13–17)</option>
-              <option selected>Adult Kyokushin (18+)</option>
-              <option>Fitness &amp; Conditioning</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label>
-          <textarea id="f-msg" name="message" rows="3"></textarea>
-        </div>
-        <button class="btn btn--wa btn--full" type="submit">Send &amp; continue on WhatsApp</button>
-        <p class="form__note" id="formNote" role="status" aria-live="polite">We'll save your request and open WhatsApp with your details filled in.</p>
-      </form>
+<section class="sec page-dark on-dark" id="faq">
+  <div class="wrap">
+    <div class="sec-head sec-head--c rv">
+      <p class="eyebrow eyebrow--c">Questions</p>
+      <h2 class="h-lg">Kyokushin <span class="red">FAQ</span></h2>
     </div>
-  </section>
+    <div class="faq rv">
+      <details><summary>Do I need any experience to join?</summary><p>No. Most students start as complete beginners. Your first classes focus on basics, stances and fitness at your own pace.</p></details>
+      <details><summary>Is Kyokushin safe for children?</summary><p>Yes. Kids train without full contact, with close supervision, padding and age-appropriate drills that build coordination and confidence.</p></details>
+      <details><summary>What should I wear to the free trial?</summary><p>Comfortable sports clothes and a water bottle. You can buy a gi once you decide to join.</p></details>
+      <details><summary>How much are the monthly fees?</summary><p>It depends on how many days a week you train — 3, 4 or 6 days. See the full fee schedule on the Courses page.</p></details>
+      <details><summary>How often are belt tests held?</summary><p>Gradings are held regularly once a student has met the time and syllabus requirements for the next belt. See the Belt Test page.</p></details>
+      <details><summary>Are there classes for women?</summary><p>Yes. Self defense and fitness classes are open to women, and we can advise on the best class times.</p></details>
+      <details><summary>Will karate help me lose weight?</summary><p>Yes. Kyokushin training is high intensity. Our weight loss course combines karate conditioning with strength and circuit work.</p></details>
+      <details><summary>Is the dojo affiliated?</summary><p>Yes. Raja's Martial Arts is an affiliated Kyokushin dojo and our instructors are certified and verified.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="testi on-dark">
+  <div class="ph ph--dark" data-file="testimonial-bg.jpg"><img src="assets/img/testimonial-bg.jpg" alt="" loading="lazy"></div>
+  <div class="wrap"><div class="testi__in rv">
+    <p class="eyebrow">Testimonial</p>
+    <!-- TODO: replace with a real student or parent quote -->
+    <blockquote>“My son was shy and unfocused. After six months with Shihan Raja he walks taller, listens better and has earned his first two belts.”</blockquote>
+    <cite>Parent of a junior student</cite>
+  </div></div>
+</section>
+
+<section class="sec page-dark on-dark">
+  <div class="wrap split">
+    <div class="rv">
+      <p class="eyebrow">Why train with us</p>
+      <h2 class="h-lg" style="margin:14px 0 16px">The best <span class="red">Kyokushin dojo</span> to start your journey</h2>
+      <p class="lede">Traditional Japanese terminology, a clear syllabus, regular belt tests and instructors who care about every student's progress.</p>
+      <div style="margin-top:24px"><a class="btn btn--red" href="instructors.html">Meet the instructors <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="mosaic rv">
+      <div class="ph ph--dark m1" data-file="gallery-1.jpg"><img src="assets/img/gallery-1.jpg" alt="Students training" loading="lazy"></div><div class="ph ph--dark" data-file="gallery-2.jpg"><img src="assets/img/gallery-2.jpg" alt="Kata practice" loading="lazy"></div><div class="ph ph--dark" data-file="gallery-3.jpg"><img src="assets/img/gallery-3.jpg" alt="Belt ceremony" loading="lazy"></div>
+      <div class="ph ph--dark" data-file="gallery-4.jpg"><img src="assets/img/gallery-4.jpg" alt="Kids class" loading="lazy"></div><div class="ph ph--dark" data-file="gallery-5.jpg"><img src="assets/img/gallery-5.jpg" alt="Sparring" loading="lazy"></div><div class="ph ph--dark" data-file="gallery-6.jpg"><img src="assets/img/gallery-6.jpg" alt="Team photo" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit on-dark" id="contact">
+  <div class="visit__copy">
+    <p class="eyebrow">Visit the dojo</p>
+    <h2 class="h-lg">Book your <span class="red">free trial</span></h2>
+    <ul class="contact-list">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-bind="address">Address coming soon</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg><a data-wa="" href="#" data-bind="phone">WhatsApp us</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a data-bind="email" href="#">—</a></li>
+    </ul>
+    <div><a class="btn btn--red" data-wa="Assalam o Alaikum! I'd like to book a free trial class." href="#">Message on WhatsApp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+  <div class="map" data-map><div class="ph " data-file="map.jpg"><img src="assets/img/map.jpg" alt="Map placeholder — set the location in config.js" loading="lazy"></div></div>
+</section>
 
 </main>
-
-<footer class="ft">
-  <div class="wrap ft__in">
-    <div class="ft__brand">
-      <span class="brand__mark">押忍</span>
-      <p><b>Raja's Martial Arts &amp; Fitness Gym</b><br>Kyokushin Karate · Fitness · Self-defence</p>
+<footer class="ftr on-dark">
+  <div class="wrap ftr__top">
+    <div>
+      <a class="logo" href="index.html"><span class="logo__img"><img src="assets/img/logo.png" alt=""></span><span class="logo__txt"><b>Raja's</b><small>Martial Arts &amp; Fitness</small></span></a>
+      <p class="ftr__about">Kyokushin Karate and fitness under Shihan Raja Khalid Mehmood Janjua. Discipline, strength and confidence for every age.</p>
+      <div class="social"><a data-social="facebook" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10 3.6 10 6.1V8H8v3h2v11h4V11h2.7l.3-3h-3Z"/></svg></a><a data-social="instagram" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM16.3 2H7.7A5.7 5.7 0 0 0 2 7.7v8.6A5.7 5.7 0 0 0 7.7 22h8.6a5.7 5.7 0 0 0 5.7-5.7V7.7A5.7 5.7 0 0 0 16.3 2Zm3.9 14.3a3.9 3.9 0 0 1-3.9 3.9H7.7a3.9 3.9 0 0 1-3.9-3.9V7.7a3.9 3.9 0 0 1 3.9-3.9h8.6a3.9 3.9 0 0 1 3.9 3.9Z"/></svg></a><a data-social="youtube" href="#" aria-label="Youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.8 15V9l5.8 3-5.8 3Z"/></svg></a></div>
     </div>
-    <nav class="ft__links" aria-label="Footer">
-      <a href="#programs">Programs</a>
-      <a href="#instructors">Instructors</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#join">Join</a>
-    </nav>
-    <div class="ft__social" id="social"></div>
+    <div><h4>Explore</h4><ul><li><a href="biography.html">About Shihan</a></li><li><a href="instructors.html">Instructors</a></li><li><a href="courses.html">Courses &amp; Fees</a></li><li><a href="syllabus.html">Syllabus</a></li></ul></div>
+    <div><h4>Learn</h4><ul><li><a href="belt-test.html">Belt Test</a></li><li><a href="terminology.html">Terminology</a></li><li><a href="index.html#schedule">Class Schedule</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
+    <div><h4>Visit</h4><ul class="contact-list">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-bind="address">Address coming soon</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg><a data-wa="" href="#" data-bind="phone">WhatsApp</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a data-bind="email" href="#">—</a></li></ul></div>
   </div>
-  <div class="wrap ft__base">
-    <span>© <span id="yr"></span> Raja's Martial Arts &amp; Fitness Gym</span>
-    <span class="mono">OSU · 押忍</span>
-  </div>
+  <div class="wrap ftr__base"><span>© <span class="js-year">2026</span> Raja's Martial Arts &amp; Fitness. All rights reserved.</span><span>押忍 · OSU</span></div>
 </footer>
-
-<a class="wa-float" data-wa="Assalam o Alaikum! I'd like to know more about classes." href="#join" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
-</a>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
+<a class="wa-float" data-wa="Assalam o Alaikum! I'd like to know more about classes." href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg></a>
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>

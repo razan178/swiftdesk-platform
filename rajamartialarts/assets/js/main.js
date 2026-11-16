@@ -1,190 +1,181 @@
-/* Raja's Martial Arts — site behaviour. Every lookup is null-guarded. */
+/* Raja's Martial Arts — shared behaviour for every page. All lookups are null-guarded. */
 (function () {
   "use strict";
   document.documentElement.classList.add("js");
-
   var C = window.RAJA || {};
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-
-  function waLink(text) {
-    var num = String(C.whatsapp || "").replace(/\D/g, "");
-    return "https://wa.me/" + num + (text ? "?text=" + encodeURIComponent(text) : "");
+  function wa(text) {
+    return "https://wa.me/" + String(C.whatsapp || "").replace(/\D/g, "") + (text ? "?text=" + encodeURIComponent(text) : "");
   }
 
-  /* ---------- year ---------- */
-  var yr = $("#yr");
-  if (yr) yr.textContent = new Date().getFullYear();
+  /* year */
+  $$(".js-year").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
-  /* ---------- WhatsApp links ---------- */
+  /* WhatsApp links */
   $$("[data-wa]").forEach(function (a) {
-    a.href = waLink(a.getAttribute("data-wa"));
-    a.target = "_blank";
-    a.rel = "noopener";
+    a.href = wa(a.getAttribute("data-wa") || "Assalam o Alaikum! I'd like to know more about classes.");
+    a.target = "_blank"; a.rel = "noopener";
   });
 
-  /* ---------- contact details from config ---------- */
-  var addr = C.address || {};
-  var addrText = [addr.line1, addr.city, addr.country].filter(Boolean).join(", ");
+  /* contact details from config.js */
+  var ad = C.address || {};
+  var addr = [ad.line1, ad.city, ad.country].filter(Boolean).join(", ");
   $$("[data-bind]").forEach(function (el) {
-    var key = el.getAttribute("data-bind");
-    if (key === "phoneDisplay" && C.phoneDisplay) el.textContent = C.phoneDisplay;
-    if (key === "address" && addrText) el.textContent = addrText;
-    if (key === "email" && C.email) {
-      el.textContent = C.email;
-      el.href = "mailto:" + C.email;
-      var row = el.closest(".contact__email");
-      if (row) row.hidden = false;
+    var k = el.getAttribute("data-bind");
+    if (k === "phone" && C.phoneDisplay) el.textContent = C.phoneDisplay;
+    if (k === "address" && addr) el.textContent = addr;
+    if (k === "email") {
+      if (C.email) { el.textContent = C.email; if (el.tagName === "A") el.href = "mailto:" + C.email; }
+      else { var li = el.closest("li"); if (li) li.hidden = true; }
     }
   });
+  $$("[data-social]").forEach(function (a) {
+    var url = C[a.getAttribute("data-social")];
+    if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; } else { a.hidden = true; }
+  });
 
-  /* ---------- social icons ---------- */
-  var ICONS = {
-    instagram: '<path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM21.9 7c-.1-1.6-.4-3-1.6-4.2C19.1 1.6 17.6 1.2 16 1.1 14.4 1 9.6 1 8 1.1 6.4 1.2 5 1.5 3.7 2.7S2.1 5.4 2 7c-.1 1.6-.1 6.4 0 8 .1 1.6.4 3 1.6 4.2s2.7 1.6 4.3 1.7c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.3-1.7 1.2-1.2 1.6-2.6 1.6-4.2.1-1.6.1-6.4.1-8Zm-2.1 9.8a3.2 3.2 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.6.4s-4.4.1-5.6-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.6s-.1-4.4.4-5.6A3.2 3.2 0 0 1 6.8 3.8C8 3.3 11 3.4 12.4 3.4s4.4-.1 5.6.4a3.2 3.2 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.6s.1 4.4-.4 5.6Z"/>',
-    facebook: '<path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10 3.6 10 6.1V8H8v3h2v11h4V11h2.7l.3-3h-3Z"/>',
-    youtube: '<path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.8 15V9l5.8 3-5.8 3Z"/>'
-  };
-  var social = $("#social");
-  if (social) {
-    Object.keys(ICONS).forEach(function (k) {
-      if (!C[k]) return;
-      var a = document.createElement("a");
-      a.href = C[k]; a.target = "_blank"; a.rel = "noopener";
-      a.setAttribute("aria-label", k.charAt(0).toUpperCase() + k.slice(1));
-      a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[k] + "</svg>";
-      social.appendChild(a);
-    });
-  }
+  /* photo placeholders: if the named file is missing, the labelled placeholder stays */
+  $$(".ph > img, .logo__img > img").forEach(function (img) {
+    function drop() { img.remove(); }
+    if (img.complete && !img.naturalWidth) drop(); else img.addEventListener("error", drop);
+  });
 
-  /* ---------- photos: drop a file in assets/img and it replaces the placeholder ---------- */
-  $$(".slot[data-file]").forEach(function (slot) {
-    var src = slot.getAttribute("data-file");
-    var img = new Image();
-    img.onload = function () {
-      var label = $(".slot__label", slot);
-      img.alt = slot.getAttribute("data-alt") || (label ? label.textContent.replace(/\.\w+.*$/, "").replace(/-/g, " ") : "");
-      img.loading = "lazy";
-      img.decoding = "async";
-      slot.appendChild(img);
-      slot.classList.add("has-img");
+  /* header shadow + mobile drawer */
+  var hdr = $(".hdr");
+  function onScroll() { if (hdr) hdr.classList.toggle("is-scrolled", window.scrollY > 6); }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  var burger = $(".burger"), drawer = $(".drawer");
+  if (burger && drawer) {
+    var setOpen = function (open) {
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      drawer.hidden = !open;
     };
-    img.src = src;
-  });
-
-  /* ---------- mobile menu ---------- */
-  var burger = $("#burger"), panel = $("#panel");
-  function closeMenu() {
-    if (!burger || !panel) return;
-    burger.setAttribute("aria-expanded", "false");
-    burger.setAttribute("aria-label", "Open menu");
-    panel.hidden = true;
-  }
-  if (burger && panel) {
-    burger.addEventListener("click", function () {
-      var open = burger.getAttribute("aria-expanded") === "true";
-      burger.setAttribute("aria-expanded", String(!open));
-      burger.setAttribute("aria-label", open ? "Open menu" : "Close menu");
-      panel.hidden = open;
-    });
-    $$("a", panel).forEach(function (a) { a.addEventListener("click", closeMenu); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
-    window.addEventListener("resize", function () { if (window.innerWidth > 900) closeMenu(); });
+    burger.addEventListener("click", function () { setOpen(burger.getAttribute("aria-expanded") !== "true"); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 1100) setOpen(false); });
+    $$("a", drawer).forEach(function (a) { a.addEventListener("click", function () { setOpen(false); }); });
   }
 
-  /* ---------- nav border + belt spine + active link ---------- */
-  var nav = $("#nav"), fill = $("#spineFill");
-  var links = $$(".nav__links a");
-  var sections = links.map(function (a) { return $(a.getAttribute("href")); });
-  var ticking = false;
-  function onScroll() {
-    var y = window.scrollY;
-    if (nav) nav.classList.toggle("is-scrolled", y > 8);
-    if (fill) {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      fill.style.height = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
-    }
-    var current = -1;
-    sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < window.innerHeight * 0.4) current = i; });
-    links.forEach(function (a, i) { a.classList.toggle("is-active", i === current); });
-    ticking = false;
-  }
-  window.addEventListener("scroll", function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
-  }, { passive: true });
-  onScroll();
-
-  /* ---------- scroll reveal ---------- */
+  /* reveal on scroll */
   var rv = $$(".rv");
   if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -6% 0px" });
     rv.forEach(function (el) { io.observe(el); });
-  } else {
-    rv.forEach(function (el) { el.classList.add("is-in"); });
-  }
+  } else rv.forEach(function (el) { el.classList.add("is-in"); });
 
-  /* ---------- map ---------- */
-  var mapEl = $("#map");
-  function initMap() {
-    if (!mapEl || typeof C.lat !== "number" || typeof C.lng !== "number" || !window.L) return;
-    mapEl.innerHTML = "";
-    var map = L.map(mapEl, { scrollWheelZoom: false }).setView([C.lat, C.lng], 16);
-    var dark = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      maxZoom: 19, attribution: '&copy; OpenStreetMap &copy; CARTO'
+  /* video: the play button loads assets/video/<file> if present */
+  $$("[data-video]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var box = btn.closest("[data-video-box]") || btn.parentNode;
+      var v = document.createElement("video");
+      v.src = btn.getAttribute("data-video"); v.controls = true; v.autoplay = true; v.playsInline = true;
+      v.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:4;background:#000";
+      v.addEventListener("error", function () {
+        v.remove(); btn.hidden = false;
+        btn.setAttribute("title", "Video not added yet: " + btn.getAttribute("data-video"));
+      });
+      box.appendChild(v); btn.hidden = true;
     });
-    dark.on("tileerror", function () {
-      if (map.hasLayer(dark)) {
-        map.removeLayer(dark);
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: "&copy; OpenStreetMap" }).addTo(map);
+  });
+
+  /* coach carousel */
+  $$(".carousel").forEach(function (c) {
+    var track = $(".carousel__track", c);
+    var step = function (dir) { if (track) track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: "smooth" }); };
+    var p = $(".carousel__btn--prev", c), n = $(".carousel__btn--next", c);
+    if (p) p.addEventListener("click", function () { step(-1); });
+    if (n) n.addEventListener("click", function () { step(1); });
+  });
+
+  /* terminology sliders — built from the <li> list in each category */
+  $$("[data-term]").forEach(function (cat) {
+    var items = $$(".term-data > li", cat).map(function (li) {
+      return { img: li.getAttribute("data-img"), kind: li.getAttribute("data-kind"),
+        name: $("h3", li).textContent, jp: $(".jp", li).textContent, desc: $("p", li).textContent };
+    });
+    var view = $(".term-slider", cat);
+    if (!items.length || !view) return;
+    $(".term-data", cat).hidden = true; view.hidden = false;
+    var i = 0;
+    var main = $(".term-main", view), info = $(".term-info", view);
+    var prev = $(".term-side--prev", view), next = $(".term-side--next", view);
+    var dots = $(".term-dots", cat), count = $(".term-count", cat);
+    function ph(el, file) {
+      el.setAttribute("data-file", file);
+      el.innerHTML = '<img src="assets/img/' + file + '" alt="" loading="lazy">';
+      var img = el.firstChild;
+      img.addEventListener("error", function () { img.remove(); });
+    }
+    if (dots) items.forEach(function (_, k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-label", "Show term " + (k + 1));
+      b.addEventListener("click", function () { go(k); });
+      dots.appendChild(b);
+    });
+    function go(k) {
+      i = (k + items.length) % items.length;
+      var it = items[i], pv = items[(i - 1 + items.length) % items.length], nx = items[(i + 1) % items.length];
+      ph(main, it.img);
+      var mi = main.querySelector("img"); if (mi) mi.alt = it.name + " — Kyokushin " + it.kind;
+      info.innerHTML = "<small></small><h3></h3><div class='jp'></div><p></p>";
+      info.children[0].textContent = it.kind; info.children[1].textContent = it.name;
+      info.children[2].textContent = it.jp; info.children[3].textContent = it.desc;
+      ph($(".ph", prev), pv.img); ph($(".ph", next), nx.img);
+      prev.setAttribute("aria-label", "Previous: " + pv.name);
+      next.setAttribute("aria-label", "Next: " + nx.name);
+      if (dots) $$("button", dots).forEach(function (b, k) { b.setAttribute("aria-current", String(k === i)); });
+      if (count) {
+        $("span", count).textContent = String(i + 1).padStart(2, "0") + " / " + String(items.length).padStart(2, "0");
+        $("i", count).style.setProperty("--p", ((i + 1) / items.length * 100) + "%");
       }
+    }
+    prev.addEventListener("click", function () { go(i - 1); });
+    next.addEventListener("click", function () { go(i + 1); });
+    view.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") go(i - 1); if (e.key === "ArrowRight") go(i + 1);
     });
-    dark.addTo(map);
-    var icon = L.divIcon({
-      className: "",
-      html: '<div style="width:22px;height:22px;background:#D5121F;border:3px solid #EDE9E3;border-radius:50%;box-shadow:0 0 0 6px rgba(213,18,31,.25)"></div>',
-      iconSize: [22, 22], iconAnchor: [11, 11]
+    var sx = null;
+    main.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    main.addEventListener("touchend", function (e) {
+      if (sx === null) return; var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); sx = null;
     });
-    L.marker([C.lat, C.lng], { icon: icon }).addTo(map)
-      .bindPopup("<b>Raja's Martial Arts</b><br>" + (addrText || ""));
-  }
-  if (document.readyState === "complete") initMap();
-  else window.addEventListener("load", initMap);
+    go(0);
+  });
 
-  /* ---------- join form → Netlify Forms + WhatsApp ---------- */
-  var form = $("#joinForm"), note = $("#formNote");
-  if (form) {
+  /* map: shows once lat/lng are set in config.js */
+  $$("[data-map]").forEach(function (box) {
+    if (typeof C.lat !== "number" || typeof C.lng !== "number") return;
+    var d = 0.006;
+    var f = document.createElement("iframe");
+    f.title = "Map to Raja's Martial Arts"; f.loading = "lazy";
+    f.src = "https://www.openstreetmap.org/export/embed.html?bbox=" + (C.lng - d) + "," + (C.lat - d) + "," + (C.lng + d) + "," + (C.lat + d) + "&layer=mapnik&marker=" + C.lat + "," + C.lng;
+    box.innerHTML = ""; box.appendChild(f);
+  });
+
+  /* trial / enquiry forms → Netlify Forms copy + WhatsApp message */
+  $$("form[data-trial]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
-      var d = new FormData(form);
-      var msg = [
-        "Assalam o Alaikum! I'd like to book a free trial class.",
-        "",
-        "Name: " + (d.get("name") || ""),
-        "Phone: " + (d.get("phone") || ""),
-        d.get("age") ? "Age: " + d.get("age") : null,
-        "Program: " + (d.get("program") || ""),
-        d.get("message") ? "Note: " + d.get("message") : null
-      ].filter(function (l) { return l !== null; }).join("\n");
-
-      // Open WhatsApp right away (inside the click) so pop-up blockers allow it
-      var win = window.open(waLink(msg), "_blank", "noopener");
-
-      // Save a copy in Netlify Forms (works once deployed on Netlify)
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(d).toString()
-      }).catch(function () {});
-
+      var d = new FormData(form), lines = ["Assalam o Alaikum! I'd like to book a free trial class.", ""];
+      $$("[name]", form).forEach(function (f) {
+        if (f.type === "hidden" || f.name === "bot-field" || !f.value) return;
+        var lab = form.querySelector('label[for="' + f.id + '"]');
+        lines.push((lab ? lab.textContent.replace(/\s*\(.*\)/, "") : f.name) + ": " + f.value);
+      });
+      var win = window.open(wa(lines.join("\n")), "_blank", "noopener");
+      fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(d).toString() }).catch(function () {});
+      var note = $(".form__note", form);
       if (note) {
         note.className = "form__note is-ok";
-        note.textContent = win ? "Thanks! WhatsApp has opened with your details. Just press send." : "Thanks! Tap the green WhatsApp button to send your details.";
+        note.textContent = win ? "Thank you! WhatsApp has opened with your details — just press send." : "Thank you! Tap the WhatsApp button to send your details.";
       }
       form.reset();
     });
-  }
+  });
 })();

@@ -1,36 +1,46 @@
-# Raja's Martial Arts & Fitness Gym — Website
+# Raja's Martial Arts & Fitness — Website
 
-A one-page static website: plain HTML, CSS and JS. There's no build step and nothing to install.
+A static multi-page site in plain HTML, CSS and JS. There's no build step and nothing to install.
+
+| Page | File |
+|---|---|
+| Home (landing) | `index.html` |
+| Biography — Shihan Raja | `biography.html` |
+| Instructors | `instructors.html` |
+| Courses & fees | `courses.html` |
+| Syllabus | `syllabus.html` |
+| Belt test | `belt-test.html` |
+| Terminology | `terminology.html` |
 
 ## Preview
 Double-click `index.html`, or run `npx serve .` in this folder.
 
-## Things to fill in (all marked `TODO`)
+## Things to fill in (search the HTML for `TODO`)
 
 | What | Where |
 |---|---|
-| WhatsApp number, phone, address, map pin, social links | `assets/js/config.js` (the only file you need for contact details) |
-| Instructor names, ranks, bios | `index.html` → `#instructors` section |
-| Class timetable | `index.html` → `#schedule` section |
-| Photos | `assets/img/` (see below) |
+| WhatsApp number, address, email, map pin, social links | `assets/js/config.js` (used on every page) |
+| Logo | Save it as `assets/img/logo.png` (square, transparent background) |
+| Shihan's story and milestone years | `biography.html` |
+| Instructor names, ranks, locations, bios | `instructors.html` |
+| Monthly fees (3 / 4 / 6 days) | `courses.html` → `#fees` |
+| Weekly timetable | `index.html` → `#schedule` |
+| Belt order and timings | `belt-test.html` |
+| Branch addresses | `instructors.html` → "Different locations" |
 
 ## Photos
-Every grey hatched box shows the filename it's waiting for. Save a photo with that exact
-name into `assets/img/` and it appears automatically. You don't need to edit any code.
+Every hatched or silhouette box shows the exact filename it is waiting for.
+Save a photo with that name into `assets/img/` and it appears automatically.
 
-| File | Suggested size |
-|---|---|
-| `hero.jpg` | 1600 × 700 |
-| `program-kids.jpg`, `program-teens.jpg`, `program-adults.jpg`, `program-fitness.jpg` | 1200 × 675 |
-| `instructor-1.jpg` … `instructor-3.jpg` | 800 × 1000 (portrait) |
-| `gallery-1.jpg` … `gallery-6.jpg` | 1200 × 900 |
-| `og-cover.jpg` (link preview on WhatsApp/Facebook) | 1200 × 630 |
-
-Keep each JPG under about 300 KB.
+- **Cut-out portraits** (`shihan-hero.png`, `shihan-courses.png`, `instructor-hero.png`, `syllabus-hero.png`):
+  PNG with a **transparent background**, about 900 × 1100.
+- **Everything else**: JPG, under ~300 KB, with a landscape crop around 1200 px wide
+  (instructor and coach photos are portrait, 800 × 1000).
+- **Terminology**: one photo per technique, e.g. `stance-zenkutsu.jpg`, `kick-mae.jpg`.
+  The full list of names is in `terminology.html`.
+- **Videos**: put `intro.mp4`, `shihan.mp4` and `courses.mp4` in `assets/video/`.
 
 ## Deploy on Netlify
-1. Netlify → Add new site → Import from Git → pick this repo.
-2. **Base directory:** `rajamartialarts`. Leave the build command empty. **Publish directory:** `rajamartialarts`.
-3. Deploy. The join form's submissions appear under **Forms → join** in Netlify.
-
+In Netlify, choose Add new site → Import from Git and pick this repo. Set the **Base directory** to `rajamartialarts`
+and leave the build command empty. Trial-form sign-ups appear under **Forms → trial**.
 Alternatively, drag the `rajamartialarts` folder onto app.netlify.com/drop.
