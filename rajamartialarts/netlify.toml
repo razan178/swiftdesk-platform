@@ -1,0 +1,19 @@
+# Netlify settings for the Raja's Martial Arts site.
+# In Netlify, set "Base directory" to: rajamartialarts
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/js/config.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
