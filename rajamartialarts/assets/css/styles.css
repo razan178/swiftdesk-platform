@@ -580,3 +580,44 @@ ul.plain{list-style:none; margin:0; padding:0}
 .page-home main .btn{font-size:14px; font-weight:600}
 .page-home main .age__cap span,.page-home main .perk span{font-size:12px}
 .page-home main .field label{font-size:12px; letter-spacing:.12em; color:var(--ink-2)}
+
+/* ==========================================================================
+   MOTION LAYER (GSAP) — cursor, curtain, progress bar, marquee, split text
+   ========================================================================== */
+.gsap-on .rv{opacity:1; transform:none; transition:none}
+.w{display:inline-block; overflow:hidden; vertical-align:top; padding:0 .1em .08em 0; margin:0 -.1em -.08em 0}
+.wi{display:inline-block; will-change:transform}
+.kanji .ch{display:inline-block}
+
+/* page curtain */
+.curtain{position:fixed; inset:0; z-index:300; background:var(--red); display:grid; place-items:center; transform:translateY(100%); pointer-events:none}
+.curtain::before{content:"押忍"; font-family:var(--f-kanji); font-size:clamp(60px,10vw,120px); color:rgba(255,255,255,.9); letter-spacing:.1em}
+.is-entering .curtain{transform:none}
+
+/* scroll progress */
+.progress{position:fixed; left:0; top:0; right:0; height:3px; z-index:120; background:var(--red); transform:scaleX(0); transform-origin:0 50%; pointer-events:none}
+
+/* custom cursor (mouse only, added by JS) */
+.has-cursor, .has-cursor *{cursor:none}
+.has-cursor.cursor-field input, .has-cursor.cursor-field textarea{cursor:text}
+.has-cursor.cursor-field select{cursor:pointer}
+.cursor-dot,.cursor-ring{position:fixed; left:0; top:0; z-index:400; pointer-events:none; border-radius:50%}
+.cursor-dot{width:8px; height:8px; background:var(--red)}
+.cursor-ring{width:38px; height:38px; border:1.5px solid rgba(224,30,38,.6); display:grid; place-items:center; transition:width .3s, height .3s, background .3s, border-color .3s}
+.cursor-ring span{font:600 11px/1 var(--f-sans); letter-spacing:.16em; text-transform:uppercase; color:#fff}
+.cursor-ring.is-hot{width:64px; height:64px; background:rgba(224,30,38,.12); border-color:var(--red)}
+.cursor-ring.is-play{width:86px; height:86px; background:var(--red); border-color:var(--red)}
+.cursor-field .cursor-dot,.cursor-field .cursor-ring{opacity:0!important}
+
+/* belt test progress line */
+.belt-list{position:relative}
+.belt-line{position:absolute; left:-18px; top:0; bottom:0; width:3px; background:linear-gradient(#F4F2EE,#F2C318,#EE7A1E,#1E8A44,#1F5FC4,#7A3FB3,#7A4A26,#151517); transform-origin:50% 0; border-radius:2px}
+@media(max-width:960px){.belt-line{left:-10px}}
+
+/* marquee strip (home) */
+.marquee{background:var(--red); color:#fff; overflow:hidden; padding:16px 0; border-block:1px solid #b5141b}
+.marquee__track{display:flex; width:max-content}
+.marquee__track span{font-family:var(--f-sans); font-style:italic; font-weight:700; text-transform:uppercase; font-size:clamp(22px,3vw,34px); letter-spacing:.02em; padding-right:28px; white-space:nowrap}
+.marquee__track b{font-family:var(--f-kanji); font-weight:400; color:#111; font-size:clamp(20px,2.6vw,30px); margin-right:28px; white-space:nowrap}
+
+@media(prefers-reduced-motion:reduce){.curtain{display:none}}

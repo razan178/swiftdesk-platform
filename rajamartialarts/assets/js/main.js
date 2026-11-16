@@ -116,7 +116,9 @@
       b.addEventListener("click", function () { go(k); });
       dots.appendChild(b);
     });
+    var first = true;
     function go(k) {
+      var dir = k < i ? -1 : 1;
       i = (k + items.length) % items.length;
       var it = items[i], pv = items[(i - 1 + items.length) % items.length], nx = items[(i + 1) % items.length];
       ph(main, it.img);
@@ -132,6 +134,8 @@
         $("span", count).textContent = String(i + 1).padStart(2, "0") + " / " + String(items.length).padStart(2, "0");
         $("i", count).style.setProperty("--p", ((i + 1) / items.length * 100) + "%");
       }
+      if (!first) cat.dispatchEvent(new CustomEvent("term:change", { bubbles: true, detail: { dir: dir } }));
+      first = false;
     }
     prev.addEventListener("click", function () { go(i - 1); });
     next.addEventListener("click", function () { go(i + 1); });
