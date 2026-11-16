@@ -1,29 +1,28 @@
 /* ==========================================================================
    RAJA'S MARTIAL ARTS — SITE SETTINGS
    This is the ONE file to edit for contact details. Everything on the site
-   (WhatsApp buttons, join form, footer, map) reads from here.
-   Lines marked TODO still hold placeholder values.
+   (WhatsApp buttons, trial form, footer, map) reads from here.
    ========================================================================== */
 window.RAJA = {
-  // WhatsApp number in international format, digits only, no + or spaces.
-  // Example for Pakistan: 923001234567
-  whatsapp: "920000000000", // TODO: real WhatsApp number
-
-  // How the number is shown on the page
-  phoneDisplay: "+92 300 0000000", // TODO: real number
+  // WhatsApp number in international format, digits only (92 = Pakistan, drop the leading 0).
+  // TODO: the number supplied was "0343517193" — that is 10 digits, a Pakistani mobile
+  // number has 11 (0343 + 7 digits). Please confirm the missing digit, then fix both lines.
+  whatsapp: "92343517193",
+  phoneDisplay: "0343 517193",
 
   email: "", // optional, e.g. "info@rajamartialarts.com"
 
   address: {
-    line1: "Street / building — TODO", // TODO: real street address
-    city: "City — TODO",               // TODO: city
+    line1: "Raja's Martial Arts, Civic Center, Bahria Town",
+    city: "Islamabad",
     country: "Pakistan"
   },
 
-  // Map pin. Leave both as null to show a placeholder instead of a map.
-  // Get them from Google Maps: right-click the dojo → click the numbers.
-  lat: null, // TODO: e.g. 33.6844
-  lng: null, // TODO: e.g. 73.0479
+  // Map: Google Maps search used for the embedded map and the "Get directions" link.
+  mapQuery: "Raja Martial Arts, Civic Center, Bahria Town, Islamabad",
+  // Optional exact pin — if set, these are used instead of the search above.
+  lat: null,
+  lng: null,
 
   // Social links — leave "" to hide the icon
   instagram: "",

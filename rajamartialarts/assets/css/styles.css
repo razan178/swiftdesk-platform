@@ -419,6 +419,12 @@ h1,h2,h3,h4{margin:0; color:var(--ink); font-family:var(--f-serif); font-weight:
 .fee__price small{font-family:var(--f-body); font-size:13px; color:var(--muted); font-weight:500}
 .fee .ticks{flex:1}
 @media(max-width:860px){.fees{grid-template-columns:1fr}}
+.fee-extras{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2vw,24px); margin-top:clamp(16px,2vw,24px)}
+.fee-extra{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px; background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:18px 22px}
+.fee-extra b{display:block; color:var(--ink)}
+.fee-extra span{font-size:13px; color:var(--muted)}
+.fee-extra strong{font-family:var(--f-sans); font-style:italic; font-size:26px; color:var(--red); white-space:nowrap}
+@media(max-width:640px){.fee-extras{grid-template-columns:1fr}}
 .choose{position:relative; overflow:hidden; background:linear-gradient(90deg,#3b0507,#8c0f14 50%,#3b0507); padding:clamp(40px,5vw,60px) 0; color:#fff; text-align:center}
 .choose__in{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:16px 40px}
 .choose h2{color:#fff; text-transform:uppercase}

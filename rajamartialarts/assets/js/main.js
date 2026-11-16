@@ -167,15 +167,22 @@
     go(0);
   });
 
-  /* map: shows once lat/lng are set in config.js */
-  $$("[data-map]").forEach(function (box) {
-    if (typeof C.lat !== "number" || typeof C.lng !== "number") return;
-    var d = 0.006;
-    var f = document.createElement("iframe");
-    f.title = "Map to Raja's Martial Arts"; f.loading = "lazy";
-    f.src = "https://www.openstreetmap.org/export/embed.html?bbox=" + (C.lng - d) + "," + (C.lat - d) + "," + (C.lng + d) + "," + (C.lat + d) + "&layer=mapnik&marker=" + C.lat + "," + C.lng;
-    box.innerHTML = ""; box.appendChild(f);
-  });
+  /* map + directions: exact pin if lat/lng are set, otherwise the Google Maps search in config.js */
+  var hasPin = typeof C.lat === "number" && typeof C.lng === "number";
+  var mapQ = hasPin ? (C.lat + "," + C.lng) : (C.mapQuery || addr);
+  if (mapQ) {
+    $$("[data-map]").forEach(function (box) {
+      var f = document.createElement("iframe");
+      f.title = "Map: Raja's Martial Arts, Bahria Town Civic Center, Islamabad";
+      f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade"; f.allowFullscreen = true;
+      f.src = "https://maps.google.com/maps?q=" + encodeURIComponent(mapQ) + "&z=16&output=embed";
+      box.innerHTML = ""; box.appendChild(f);
+    });
+    $$("[data-directions]").forEach(function (a) {
+      a.href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(mapQ);
+      a.target = "_blank"; a.rel = "noopener";
+    });
+  }
 
   /* trial / enquiry forms → Netlify Forms copy + WhatsApp message */
   $$("form[data-trial]").forEach(function (form) {
