@@ -542,3 +542,7 @@ ul.plain{list-style:none; margin:0; padding:0}
 .panel-white .btn--line:hover{background:var(--ink); color:#fff; border-color:var(--ink)}
 /* filename labels sit at the top where captions run along the bottom */
 .coach-card .ph::after,.age .ph::after{inset:10px 0 auto 0}
+/* real logo: show the full badge (no circle crop) */
+.logo__img:has(img){background:none; border-radius:0; overflow:visible; width:60px; height:60px}
+.logo__img:has(img)::before{display:none}
+.ftr .logo__img:has(img){width:72px; height:72px}
