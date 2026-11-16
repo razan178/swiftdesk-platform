@@ -548,38 +548,61 @@ ul.plain{list-style:none; margin:0; padding:0}
 .ftr .logo__img:has(img){width:72px; height:72px}
 
 /* ==========================================================================
-   HOMEPAGE TYPE — bold italic condensed caps (like "SHIHAN RAJA / HEAD INSTRUCTOR").
-   Applies to the homepage content only; the nav bar keeps its own style.
+   SITE TYPE — bold italic condensed caps (like "SHIHAN RAJA / HEAD INSTRUCTOR")
+   on every page's content. The nav bar keeps its own style.
    ========================================================================== */
-.page-home main h1,
-.page-home main h2,
-.page-home main h3,
-.page-home main .age__cap b,
-.page-home main .perk b,
-.page-home main .sched tbody th,
-.page-home main .faq summary,
-.page-home main blockquote{
+main h1, main h2, main h3, main h4,
+main .age__cap b, main .perk b, main .sched tbody th, main .faq summary, main blockquote,
+main .stat b, main .value b, main .tl b, main .mtc__item b, main .steps li b, main .crit b,
+main .belt-name b, main .fee__days, main .fee__price, main .mods li b, main .loc-list b,
+main .quote-bar{
   font-family:var(--f-sans); font-style:italic; font-weight:700; text-transform:uppercase; letter-spacing:.01em; line-height:1.02}
-.page-home main h1{font-size:clamp(46px,7vw,88px); line-height:.95}
-.page-home main h2.h-lg{font-size:clamp(34px,4.8vw,56px)}
-.page-home main .first-step h2{font-size:clamp(36px,4.8vw,58px)}
-.page-home main .faq summary{font-size:16px; line-height:1.3}
-.page-home main blockquote{font-size:clamp(24px,3vw,36px); line-height:1.15}
-.page-home main .sched tbody th{font-size:16px}
+main h1{font-size:clamp(44px,6.8vw,86px); line-height:.95}
+main h2.h-lg{font-size:clamp(34px,4.8vw,56px)}
+main h2.h-md{font-size:clamp(26px,3.4vw,38px)}
+main .first-step h2{font-size:clamp(36px,4.8vw,58px)}
+main .faq summary{font-size:16px; line-height:1.3}
+main blockquote{font-size:clamp(24px,3vw,36px); line-height:1.15}
+main .sched tbody th{font-size:16px}
+main .bio-hero h1 .red{font-size:.6em}
+main .belt-aside h1{font-size:clamp(38px,4.6vw,58px)}
+main .term-hero h1{font-size:clamp(38px,5vw,62px)}
+main .coach__name{font-size:clamp(22px,2.4vw,28px)}
+main .coach-sm .coach__name{font-size:20px}
+main .stat b{font-size:26px}
+main .fee__days{font-size:30px}
+main .fee__price{font-size:38px}
+main .quote-bar{font-size:clamp(20px,2.4vw,28px)}
+main .mods li b,main .steps li b,main .crit b,main .loc-list b,main .value b,main .mtc__item b{font-size:16px}
+main .belt-name b{font-size:19px}
+main .term-cat__head h2 small{font-style:normal; text-transform:none}
+main .term-info .jp{font-style:normal}
 /* the second line: upright, spaced-out caps */
-.page-home main .eyebrow,
-.page-home main .age__cap span,
-.page-home main .perk span,
-.page-home main .testi cite,
-.page-home main .sched thead th,
-.page-home main .video-band__cap,
-.page-home main .btn,
-.page-home main .link,
-.page-home main .field label{
+main .eyebrow, main .crumbs, main .age__cap span, main .perk span, main .testi cite, main .sched thead th,
+main .video-band__cap, main .btn, main .link, main .field label, main .bio-tags, main .coach__role,
+main .course__tag, main .tag, main .term-info small, main .belt-name small, main .belt-name span,
+main .stat span, main .tl h4, main .coach-card__name small, main .mods__h, main .term-count{
   font-family:var(--f-sans); font-style:normal; font-weight:500; text-transform:uppercase; letter-spacing:.18em}
-.page-home main .btn{font-size:14px; font-weight:600}
-.page-home main .age__cap span,.page-home main .perk span{font-size:12px}
-.page-home main .field label{font-size:12px; letter-spacing:.12em; color:var(--ink-2)}
+main .btn{font-size:14px; font-weight:600}
+main .age__cap span,main .perk span,main .stat span{font-size:12px}
+main .field label{font-size:12px; letter-spacing:.12em; color:var(--ink-2)}
+main .tl h4{font-size:13px}
+
+/* ==========================================================================
+   INSTRUCTORS PAGE — blue type
+   ========================================================================== */
+.page-instructors main{--ink:#0B2A5B; --blue:#1F5FC4}
+.page-instructors main h1,.page-instructors main h2,.page-instructors main h3,.page-instructors main .stat b,
+.page-instructors main .loc-list b{color:#0B2A5B}
+.page-instructors main .red,.page-instructors main .coach__role{color:#1F5FC4}
+.page-instructors main .eyebrow::before{background:#1F5FC4}
+.page-instructors main .ico,.page-instructors main .coach__loc svg{color:#1F5FC4; stroke:#1F5FC4}
+.page-instructors main .ticks li::before{background-color:#1F5FC4}
+.page-instructors main .quote-hand{color:#0B2A5B}
+.page-instructors main .quote-hand::after{background:#1F5FC4}
+.page-instructors main .loc-list li::before{background:#1F5FC4}
+.page-instructors .prime h2,.page-instructors .prime .coach-card__name{color:#fff}
+.page-instructors .prime h2{color:#6FA3FF}
 
 /* ==========================================================================
    MOTION LAYER (GSAP) — cursor, curtain, progress bar, marquee, split text
@@ -592,22 +615,19 @@ ul.plain{list-style:none; margin:0; padding:0}
 /* page curtain */
 .curtain{position:fixed; inset:0; z-index:300; background:var(--red); display:grid; place-items:center; transform:translateY(100%); pointer-events:none}
 .curtain::before{content:"押忍"; font-family:var(--f-kanji); font-size:clamp(60px,10vw,120px); color:rgba(255,255,255,.9); letter-spacing:.1em}
-.is-entering .curtain{transform:none}
+.curtain{visibility:hidden}
+.is-entering .curtain{transform:none; visibility:visible}
 
 /* scroll progress */
 .progress{position:fixed; left:0; top:0; right:0; height:3px; z-index:120; background:var(--red); transform:scaleX(0); transform-origin:0 50%; pointer-events:none}
 
-/* custom cursor (mouse only, added by JS) */
-.has-cursor, .has-cursor *{cursor:none}
-.has-cursor.cursor-field input, .has-cursor.cursor-field textarea{cursor:text}
-.has-cursor.cursor-field select{cursor:pointer}
-.cursor-dot,.cursor-ring{position:fixed; left:0; top:0; z-index:400; pointer-events:none; border-radius:50%}
-.cursor-dot{width:8px; height:8px; background:var(--red)}
-.cursor-ring{width:38px; height:38px; border:1.5px solid rgba(224,30,38,.6); display:grid; place-items:center; transition:width .3s, height .3s, background .3s, border-color .3s}
-.cursor-ring span{font:600 11px/1 var(--f-sans); letter-spacing:.16em; text-transform:uppercase; color:#fff}
-.cursor-ring.is-hot{width:64px; height:64px; background:rgba(224,30,38,.12); border-color:var(--red)}
-.cursor-ring.is-play{width:86px; height:86px; background:var(--red); border-color:var(--red)}
-.cursor-field .cursor-dot,.cursor-field .cursor-ring{opacity:0!important}
+/* CURSOR (mouse only): red/black arrow everywhere, red fist over anything clickable */
+@media (hover:hover) and (pointer:fine){
+  html, body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 3l19 8.2-8 2.4-3.6 8.4z' fill='%23E01E26' stroke='%23141416' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6.6 6.4l11 4.8-4.7 1.4' fill='none' stroke='%23fff' stroke-opacity='.55' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") 4 3, auto}
+  a, button, summary, label, select, [role="button"], .term-side, .coach-card, .play{
+    cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='15' fill='%23E01E26' stroke='%23141416' stroke-width='2'/%3E%3Cpath d='M10.5 13.5a1.7 1.7 0 0 1 3.4 0v-1a1.7 1.7 0 0 1 3.4 0v.3a1.7 1.7 0 0 1 3.4 0v.6a1.6 1.6 0 0 1 3.2 0V18a5.2 5.2 0 0 1-5.2 5.2h-3A5.2 5.2 0 0 1 10.5 18z' fill='%23fff'/%3E%3Cpath d='M13.9 13.5v2.2M17.3 12.8v2.9M20.7 13.4v2.3M10.5 17.2h5.2' stroke='%23E01E26' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") 17 17, pointer}
+  input, textarea{cursor:text}
+}
 
 /* belt test progress line */
 .belt-list{position:relative}

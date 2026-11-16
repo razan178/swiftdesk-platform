@@ -67,7 +67,7 @@
       if (url.pathname === location.pathname) return; // same-page anchors scroll normally
       e.preventDefault();
       try { sessionStorage.setItem("rma-nav", "1"); } catch (err) {}
-      gsap.fromTo(curtain, { yPercent: 100 }, { yPercent: 0, duration: 0.55, ease: "power4.inOut", onComplete: function () { location.href = a.href; } });
+      gsap.fromTo(curtain, { yPercent: 100, visibility: "visible" }, { yPercent: 0, duration: 0.55, ease: "power4.inOut", onComplete: function () { location.href = a.href; } });
     });
     // coming back with the browser's back button: make sure the curtain is gone
     window.addEventListener("pageshow", function (e) { if (e.persisted) { gsap.set(curtain, { clearProps: "transform" }); clearCurtain(); } });
@@ -224,33 +224,8 @@
       b.addEventListener("mouseleave", function () { xTo(0); yTo(0); });
     });
 
-    var dot = document.createElement("div"), ringEl = document.createElement("div");
-    dot.className = "cursor-dot"; ringEl.className = "cursor-ring"; ringEl.innerHTML = "<span></span>";
-    document.body.appendChild(ringEl); document.body.appendChild(dot);
-    root.classList.add("has-cursor");
-    var label = ringEl.firstChild;
-    gsap.set([dot, ringEl], { xPercent: -50, yPercent: -50, opacity: 0 });
-    var dx = gsap.quickTo(dot, "x", { duration: 0.08 }), dy = gsap.quickTo(dot, "y", { duration: 0.08 });
-    var rx = gsap.quickTo(ringEl, "x", { duration: 0.45, ease: "power3" }), ry = gsap.quickTo(ringEl, "y", { duration: 0.45, ease: "power3" });
-    var shown = false;
-    window.addEventListener("mousemove", function (e) {
-      if (!shown) { shown = true; gsap.to([dot, ringEl], { opacity: 1, duration: 0.3 }); }
-      dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
-    });
-    document.addEventListener("mouseleave", function () { shown = false; gsap.to([dot, ringEl], { opacity: 0, duration: 0.3 }); });
-    window.addEventListener("mousedown", function () { gsap.to(ringEl, { scale: 0.8, duration: 0.15 }); });
-    window.addEventListener("mouseup", function () { gsap.to(ringEl, { scale: 1, duration: 0.3 }); });
-    document.addEventListener("mouseover", function (e) {
-      var t = e.target;
-      var field = t.closest && t.closest("input, textarea, select");
-      var play = t.closest && t.closest(".play, [data-video]");
-      var hot = t.closest && t.closest("a, button, summary, label, .term-side, .coach-card");
-      root.classList.toggle("cursor-field", !!field);
-      ringEl.classList.toggle("is-hot", !!hot && !play && !field);
-      ringEl.classList.toggle("is-play", !!play);
-      label.textContent = play ? "Play" : "";
-    });
   }
+  /* the cursor itself is pure CSS (see "CURSOR" in styles.css) — sharp and lag-free */
 
   // make sure positions are right once fonts and images settle
   window.addEventListener("load", function () { ST.refresh(); });
