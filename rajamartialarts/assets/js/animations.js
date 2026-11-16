@@ -95,7 +95,8 @@
   }
   if (hero) {
     var art = $(".hero__art .ph", hero);
-    if (art) tl.from(art, { y: 60, opacity: 0, scale: 0.94, duration: 1.2, ease: "expo.out" }, 0.2);
+    // no scaling on the photo: scaling makes the browser render it soft
+    if (art) tl.from(art, { y: 60, opacity: 0, duration: 1.2, ease: "expo.out" }, 0.2);
     var ring = $(".hero__ring", hero);
     if (ring) {
       tl.from(ring, { scale: 0.6, opacity: 0, duration: 1.4, ease: "expo.out" }, 0.1);
