@@ -228,5 +228,9 @@
   /* the cursor itself is pure CSS (see "CURSOR" in styles.css) — sharp and lag-free */
 
   // make sure positions are right once fonts and images settle
-  window.addEventListener("load", function () { ST.refresh(); });
+  ST.clearScrollMemory("manual");
+  window.addEventListener("load", function () {
+    ST.refresh();
+    if (window.RMA_startPosition) window.RMA_startPosition(); // refresh must not leave the page mid-scroll
+  });
 })();

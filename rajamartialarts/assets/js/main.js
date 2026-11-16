@@ -2,6 +2,22 @@
 (function () {
   "use strict";
   document.documentElement.classList.add("js");
+
+  /* Always open a page at the top. The browser would otherwise restore an old
+     scroll position (on reload, back/forward, or inside a preview frame).
+     Only a link that names a section (e.g. index.html#trial) lands on that section. */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  function startPosition() {
+    var id = location.hash ? decodeURIComponent(location.hash.slice(1)) : "";
+    var target = id && document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: "instant", block: "start" });
+    else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
+  window.RMA_startPosition = startPosition;
+  startPosition();
+  window.addEventListener("load", startPosition);
+  window.addEventListener("pageshow", function (e) { if (e.persisted) startPosition(); });
+
   var C = window.RAJA || {};
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
