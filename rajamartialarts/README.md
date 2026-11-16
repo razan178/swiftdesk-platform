@@ -29,7 +29,7 @@ Double-click `index.html`, or run `npx serve .` in this folder.
 | Branch addresses | `instructors.html` → "Different locations" |
 
 ## Photos
-Every hatched or silhouette box shows the exact filename it is waiting for.
+Every image slot without a photo shows designed artwork (red sun + kanji). The filenames are listed below and in the HTML (`data-file`).
 Save a photo with that name into `assets/img/` and it appears automatically.
 
 - **Cut-out portraits** (`shihan-hero.png`, `shihan-courses.png`, `instructor-hero.png`, `syllabus-hero.png`):

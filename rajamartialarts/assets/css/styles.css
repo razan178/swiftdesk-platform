@@ -653,3 +653,64 @@ main .tl h4{font-size:13px}
 .marquee__track b{font-family:var(--f-kanji); font-weight:400; color:#111; font-size:clamp(20px,2.6vw,30px); margin-right:28px; white-space:nowrap}
 
 @media(prefers-reduced-motion:reduce){.curtain{display:none}}
+
+/* ==========================================================================
+   ART PANELS — every image slot without a photo shows designed artwork
+   (red sun, ink mountains, kanji) instead of an empty box. A real photo saved
+   under the slot's filename in assets/img covers the artwork automatically.
+   ========================================================================== */
+.ph{container-type:size}
+.ph:not(.ph--cut):not(.ph--photo):not(.ph--round){
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V190l80-40 70 30 110-90 90 60 60-30 120 80 100-120 120 100 80-40 90 50 110-80 90 60 80-20v150z' fill='%23cfcbc2' opacity='.6'/%3E%3Cpath d='M0 300v-60l120-50 90 40 140-70 120 70 110-40 130 60 120-80 140 70 110-30 120 40v50z' fill='%23bdb8ad' opacity='.7'/%3E%3C/svg%3E") bottom/100% 40% no-repeat,
+    linear-gradient(160deg,#F8F6F1,#E7E3DA)}
+.ph.ph--dark:not(.ph--cut):not(.ph--photo):not(.ph--round){
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V190l80-40 70 30 110-90 90 60 60-30 120 80 100-120 120 100 80-40 90 50 110-80 90 60 80-20v150z' fill='%2326262c' opacity='.9'/%3E%3Cpath d='M0 300v-60l120-50 90 40 140-70 120 70 110-40 130 60 120-80 140 70 110-30 120 40v50z' fill='%231a1a1f'/%3E%3C/svg%3E") bottom/100% 40% no-repeat,
+    linear-gradient(160deg,#2A2A30,#0E0E11)}
+/* the red sun */
+.ph::before{content:""; position:absolute; left:50%; top:45%; width:120px; width:56cqmin; aspect-ratio:1; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #F0333B, #D5121F 70%); transform:translate(-50%,-50%); z-index:0; pointer-events:none}
+/* the kanji, white on the sun */
+.ph::after{content:"極真"; display:grid!important; position:absolute; inset:0 0 10% 0; padding:0; z-index:0; place-items:center; writing-mode:vertical-rl;
+  font-family:var(--f-kanji); font-weight:400; font-size:30px; font-size:clamp(12px,14cqmin,110px); line-height:1; letter-spacing:.06em;
+  color:#fff; text-align:center; pointer-events:none}
+.ph.ph--cut::before,.ph.ph--photo::before,.ph.ph--round::before,
+.ph.ph--cut::after,.ph.ph--photo::after,.ph.ph--round::after{display:none!important}
+
+/* which kanji each slot shows */
+.ph[data-file^="stance-"]::after{content:"立ち方"}
+.ph[data-file^="block-"]::after{content:"受け"}
+.ph[data-file^="strike-"]::after{content:"突き"}
+.ph[data-file^="kick-"]::after{content:"蹴り"}
+.ph[data-file^="kata-"]::after{content:"型"}
+.ph[data-file^="combo-"]::after{content:"連続技"}
+.ph[data-file^="age-"]::after{content:"空手道"}
+.ph[data-file^="instructor-"]::after,.ph[data-file^="coach-"]::after{content:"師範"}
+.ph[data-file^="bio-"]::after{content:"道"}
+.ph[data-file*="karate"]::after{content:"空手"}
+.ph[data-file*="selfdefense"]::after{content:"護身"}
+.ph[data-file*="weightloss"]::after{content:"鍛錬"}
+.ph[data-file*="mental"]::after{content:"心"}
+.ph[data-file^="gallery-"]::after{content:"道場"}
+.ph[data-file="gallery-2.jpg"]::after{content:"型"}
+.ph[data-file="gallery-3.jpg"]::after{content:"帯"}
+.ph[data-file="gallery-5.jpg"]::after{content:"組手"}
+.ph[data-file*="video"]::after{content:"押忍"}
+.ph[data-file$="-bg.jpg"]::after,.ph[data-file="terminology-hero.jpg"]::after,.ph[data-file="bio-final.jpg"]::after{content:"極真会"}
+/* terminology slider: the technique's own Japanese name */
+.ph[data-art]::after{content:attr(data-art); font-size:clamp(10px,6.4cqmin,44px)}
+/* play buttons sit on the sun, so skip the kanji there */
+[data-video-box] > .ph::after, .ph[data-video-box]::after{content:""}
+
+/* back-view figure for the light heroes */
+.ph--cut{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3CclipPath id='t'%3E%3Cpath d='M28 250c4-70 30-120 72-120s68 50 72 120z'/%3E%3C/clipPath%3E%3Ccircle cx='100' cy='62' r='34' fill='%232a2a2e'/%3E%3Cpath d='M28 250c4-70 30-120 72-120s68 50 72 120z' fill='%23f1eee8' stroke='%23cfcbc2' stroke-width='2'/%3E%3Cpath d='M0 198h200v10H0z' fill='%23141416' clip-path='url(%23t)'/%3E%3Cpath d='M100 132v64' stroke='%23d9d5cc' stroke-width='2'/%3E%3C/svg%3E") bottom center/contain no-repeat}
+
+/* Shihan's real photo used as a round portrait on the dark heroes */
+.hero__art .ph--round{width:min(78%,380px); aspect-ratio:1; align-self:center; border-radius:50%; background:#fff;
+  border:4px solid var(--red); box-shadow:0 0 0 12px rgba(224,30,38,.16), 0 30px 60px rgba(0,0,0,.5)}
+.ph--round > img{object-fit:cover; object-position:50% 6%}
+.coach .ph > img,.coach-card .ph > img,.two > .ph > img{object-position:50% 8%}
+.coach-card .ph::after,.age .ph::after{inset:0 0 10% 0}
+/* slots that sit behind text: mountains only, no sun or kanji */
+.ph[data-file$="-bg.jpg"]::before,.ph[data-file$="-bg.jpg"]::after{display:none!important}

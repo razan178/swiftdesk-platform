@@ -120,8 +120,9 @@
     var main = $(".term-main", view), info = $(".term-info", view);
     var prev = $(".term-side--prev", view), next = $(".term-side--next", view);
     var dots = $(".term-dots", cat), count = $(".term-count", cat);
-    function ph(el, file) {
+    function ph(el, file, art) {
       el.setAttribute("data-file", file);
+      if (art) el.setAttribute("data-art", art); // Japanese name shown as artwork until a photo is added
       el.innerHTML = '<img src="assets/img/' + file + '" alt="" loading="lazy">';
       var img = el.firstChild;
       img.addEventListener("error", function () { img.remove(); });
@@ -137,12 +138,12 @@
       var dir = k < i ? -1 : 1;
       i = (k + items.length) % items.length;
       var it = items[i], pv = items[(i - 1 + items.length) % items.length], nx = items[(i + 1) % items.length];
-      ph(main, it.img);
+      ph(main, it.img, it.jp);
       var mi = main.querySelector("img"); if (mi) mi.alt = it.name + " — Kyokushin " + it.kind;
       info.innerHTML = "<small></small><h3></h3><div class='jp'></div><p></p>";
       info.children[0].textContent = it.kind; info.children[1].textContent = it.name;
       info.children[2].textContent = it.jp; info.children[3].textContent = it.desc;
-      ph($(".ph", prev), pv.img); ph($(".ph", next), nx.img);
+      ph($(".ph", prev), pv.img, pv.jp); ph($(".ph", next), nx.img, nx.jp);
       prev.setAttribute("aria-label", "Previous: " + pv.name);
       next.setAttribute("aria-label", "Next: " + nx.name);
       if (dots) $$("button", dots).forEach(function (b, k) { b.setAttribute("aria-current", String(k === i)); });
