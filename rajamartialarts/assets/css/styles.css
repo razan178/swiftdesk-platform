@@ -546,3 +546,37 @@ ul.plain{list-style:none; margin:0; padding:0}
 .logo__img:has(img){background:none; border-radius:0; overflow:visible; width:60px; height:60px}
 .logo__img:has(img)::before{display:none}
 .ftr .logo__img:has(img){width:72px; height:72px}
+
+/* ==========================================================================
+   HOMEPAGE TYPE — bold italic condensed caps (like "SHIHAN RAJA / HEAD INSTRUCTOR").
+   Applies to the homepage content only; the nav bar keeps its own style.
+   ========================================================================== */
+.page-home main h1,
+.page-home main h2,
+.page-home main h3,
+.page-home main .age__cap b,
+.page-home main .perk b,
+.page-home main .sched tbody th,
+.page-home main .faq summary,
+.page-home main blockquote{
+  font-family:var(--f-sans); font-style:italic; font-weight:700; text-transform:uppercase; letter-spacing:.01em; line-height:1.02}
+.page-home main h1{font-size:clamp(46px,7vw,88px); line-height:.95}
+.page-home main h2.h-lg{font-size:clamp(34px,4.8vw,56px)}
+.page-home main .first-step h2{font-size:clamp(36px,4.8vw,58px)}
+.page-home main .faq summary{font-size:16px; line-height:1.3}
+.page-home main blockquote{font-size:clamp(24px,3vw,36px); line-height:1.15}
+.page-home main .sched tbody th{font-size:16px}
+/* the second line: upright, spaced-out caps */
+.page-home main .eyebrow,
+.page-home main .age__cap span,
+.page-home main .perk span,
+.page-home main .testi cite,
+.page-home main .sched thead th,
+.page-home main .video-band__cap,
+.page-home main .btn,
+.page-home main .link,
+.page-home main .field label{
+  font-family:var(--f-sans); font-style:normal; font-weight:500; text-transform:uppercase; letter-spacing:.18em}
+.page-home main .btn{font-size:14px; font-weight:600}
+.page-home main .age__cap span,.page-home main .perk span{font-size:12px}
+.page-home main .field label{font-size:12px; letter-spacing:.12em; color:var(--ink-2)}
