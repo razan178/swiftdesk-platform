@@ -214,19 +214,9 @@
     if (info) gsap.fromTo(info.children, { y: 16, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, duration: 0.5 });
   });
 
-  /* ---------- magnetic buttons + custom cursor (mouse only) ---------- */
-  if (finePointer) {
-    $$("main .btn--red, .play, .wa-float, .carousel__btn, .term-side .arrow").forEach(function (b) {
-      var xTo = gsap.quickTo(b, "x", { duration: 0.4, ease: "power3" }), yTo = gsap.quickTo(b, "y", { duration: 0.4, ease: "power3" });
-      b.addEventListener("mousemove", function (e) {
-        var r = b.getBoundingClientRect();
-        xTo((e.clientX - r.left - r.width / 2) * 0.25); yTo((e.clientY - r.top - r.height / 2) * 0.3);
-      });
-      b.addEventListener("mouseleave", function () { xTo(0); yTo(0); });
-    });
-
-  }
-  /* the cursor itself is pure CSS (see "CURSOR" in styles.css) — sharp and lag-free */
+  /* Cursor: a single CSS arrow set in each page's <head> — no JS, so no lag.
+     (Buttons no longer drift toward the mouse: that movement made the cursor flicker.) */
+  void finePointer;
 
   // make sure positions are right once fonts and images settle
   ST.clearScrollMemory("manual");
