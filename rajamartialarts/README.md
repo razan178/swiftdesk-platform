@@ -44,3 +44,11 @@ Save a photo with that name into `assets/img/` and it appears automatically.
 In Netlify, choose Add new site → Import from Git and pick this repo. Set the **Base directory** to `rajamartialarts`
 and leave the build command empty. Trial-form sign-ups appear under **Forms → trial**.
 Alternatively, drag the `rajamartialarts` folder onto app.netlify.com/drop.
+
+## Instructor profiles
+
+Each instructor has a card on `instructors.html` and a profile page (`instructor-<slug>.html`).
+
+All their details (name, rank, club, biography, achievements, classes) live in one list, `INSTRUCTORS`, in `tools/build.py`.
+
+Edit the list, then run `python3 tools/build.py .` from this folder to regenerate every page.
