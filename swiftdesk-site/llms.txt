@@ -1,0 +1,48 @@
+# SwiftDesk
+
+> SwiftDesk is a website design and development studio in Pakistan. It builds fast, mobile-first websites for businesses in Pakistan and worldwide, with SEO and WhatsApp lead capture built in. Every project gets a fixed quote after a first call.
+
+- Website: https://swiftdeskpk.netlify.app/
+- WhatsApp / phone: +92 343 5171933 (https://wa.me/923435171933)
+- Languages: English, Urdu
+- Serves: Pakistan and clients worldwide (fully online process)
+
+## Services
+- Business websites: A complete company site that explains what you do and makes it easy to get in touch.
+- E-commerce stores: Online stores with clean product pages, simple checkout and local payment options (Shopify, WooCommerce, cash on delivery).
+- Landing pages: One page with one goal, written and designed to convert ad traffic into leads.
+- Portfolio and personal brand websites: Sites for coaches, creators, consultants and founders who sell through their name.
+- Website redesign and speed optimisation: Keep your domain and content, lose the slow, dated site. Rebuilt on a modern stack with good Core Web Vitals.
+- Website care and maintenance: Updates, backups, small changes and monitoring after launch.
+
+## Packages
+- Launch: one-page website, custom design, contact form and WhatsApp button, basic SEO. For new businesses.
+- Business: multi-page website, CMS, scroll animation, analytics and SEO. For established businesses that want leads.
+- Store: e-commerce store, product and collection pages, payments and delivery setup, order notifications.
+
+## Process
+1. Discover: short call, clear scope, fixed quote.
+2. Design: homepage first, then remaining pages after approval.
+3. Build: fast responsive site, CMS, forms to inbox or WhatsApp.
+4. Launch: real-device testing, domain, analytics, handover walkthrough.
+
+## Portfolio
+- Raja's Martial Arts: Kyokushin karate dojo website (https://rajasmartialartspk.netlify.app/)
+- Laiba Institute: IELTS and PTE preparation academy website (https://laibaieltsandptepk.netlify.app/)
+- SwiftDesk IT: IT solutions company website (https://swiftdeskitsolutions.netlify.app/)
+
+## FAQ
+- Q: How long does a website take?
+  A: It depends on the size of the site and how quickly content and feedback come in. You get a timeline with dates in the quote, before any work starts.
+- Q: Do you write the content too?
+  A: Yes. Send us what you have and we shape it into clear copy, or we write it from a short interview with you.
+- Q: Can I update the site myself?
+  A: Yes. Sites that need regular updates are built with a CMS, and we walk you through editing text, images and products at handover.
+- Q: I already have a website. Can you redesign it?
+  A: Yes. We keep your domain and anything worth keeping, and move you to a faster, modern build without losing your search rankings.
+- Q: Do you work with clients outside Pakistan?
+  A: Yes. The whole process runs online, so location does not change how we work.
+- Q: How do I start a project with SwiftDesk?
+  A: Send a message on WhatsApp to +92 343 5171933 or fill in the form on this page. After a short call you get a fixed quote.
+- Q: What does every SwiftDesk website include?
+  A: A responsive mobile-first design, fast loading pages, on-page SEO setup (titles, descriptions, schema and a sitemap), WhatsApp and form leads, and a handover so you own the site, the domain and the logins.
