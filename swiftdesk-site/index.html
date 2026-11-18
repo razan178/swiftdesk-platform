@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SwiftDesk Website</title>
+<link rel="icon" type="image/png" href="./assets/sd-logo.png">
+<link rel="apple-touch-icon" href="./assets/sd-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+window.SD_CONFIG={whatsapp:"923435171933",supabaseUrl:"https://gpihfcfirfbxbacyqqvc.supabase.co",supabaseKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwaWhmY2ZpcmZieGJhY3lxcXZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NzA5NDUsImV4cCI6MjA3MDA0Njk0NX0.ENGwsY56Eoe-8qf0EDFR1AzolQgfeZgTdrmTTlmzNos"};
+window.sdLead=function(lead,text){var c=window.SD_CONFIG;
+try{window.open("https://wa.me/"+c.whatsapp+"?text="+encodeURIComponent(text),"_blank","noopener")}catch(e){}
+if(c.supabaseKey){try{fetch(c.supabaseUrl+"/rest/v1/leads",{method:"POST",keepalive:true,headers:{"apikey":c.supabaseKey,"Authorization":"Bearer "+c.supabaseKey,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify(lead)}).catch(function(){})}catch(e){}}};
+</script>
+  <script type="module" crossorigin src="./assets/index-CVclNbUL.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-48_ShBPn.css">
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
