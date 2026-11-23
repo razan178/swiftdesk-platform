@@ -47,7 +47,7 @@ Alternatively, drag the `rajamartialarts` folder onto app.netlify.com/drop.
 
 ## Instructor profiles
 
-Each instructor has a card on `instructors.html` and a profile page (`instructor-<slug>.html`).
+Each instructor has a card on `instructors.html` and a profile page (`instructor-<slug>.html`). Their portraits are `assets/img/instructor-<slug>.jpg` (800 × 1000, white background).
 
 All their details (name, rank, club, biography, achievements, classes) live in one list, `INSTRUCTORS`, in `tools/build.py`.
 

@@ -411,42 +411,106 @@ INSTRUCTORS = [
       pts=["Dan rank — TBC","Belt examiner","Tournament coach"], quote="Osu — never give up.",
       about=["Shihan Raja Khalid Mehmood Janjua is the founder and head instructor of Raja's Martial Arts &amp; Fitness Gym, an I.K.O So-Kyokushin dojo in Bahria Town, Islamabad.",
              "He teaches authentic full-contact Kyokushin Karate — its etiquette, its Japanese terminology and its standards — and personally conducts every belt test in the dojo."],
-      achievements=[TBA + " — titles, tournaments and certifications", TBA, TBA],
+      achievements=["To be added — titles, tournaments and certifications", "To be added", "To be added"],
       specialities=["Kyokushin Karate","Kumite","Belt examinations","Self defense","Personal training"],
       classes=["Mixed class · 6:00 – 8:00 pm","Belt tests &amp; gradings","Personal training · by appointment"],
       more="biography.html"),
- dict(slug="senior-instructor", img="instructor-2.jpg", coach_img="coach-2.jpg", big=True,
-      role="Senior Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Senior Instructor",
-      club="Raja's Martial Arts &amp; Fitness Gym", loc="Location TBC", rank="Black belt — rank TBC", exp="TBC",
-      card="Senior black belt leading adult Kyokushin and kumite classes.",
-      pts=["Black belt — rank TBC","Adult &amp; kumite classes","Competition experience"], quote="Train hard, stay humble.",
-      about=["Senior black belt leading adult Kyokushin and kumite classes. Full biography to be added."],
-      achievements=[TBA, TBA, TBA], specialities=["Kyokushin Karate","Kumite","Adult classes"],
-      classes=["Mixed class · 6:00 – 8:00 pm"]),
- dict(slug="kids-instructor", img="instructor-3.jpg", coach_img="coach-3.jpg", big=False,
-      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Kids &amp; Juniors",
-      club="Raja's Martial Arts &amp; Fitness Gym", loc="Location TBC", rank="Rank TBC", exp="TBC",
-      card="Teaches kids and juniors with patience and energy.",
-      pts=["Kids &amp; juniors","Kata specialist"], quote="Small steps, big results.",
-      about=["Teaches kids and juniors with patience and energy. Full biography to be added."],
-      achievements=[TBA, TBA, TBA], specialities=["Kids &amp; teens","Kata","Basics (kihon)"],
-      classes=["Kids &amp; teens · 4:00 – 6:00 pm"]),
- dict(slug="self-defense-instructor", img="instructor-4.jpg", coach_img="coach-4.jpg", big=False,
-      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Self Defense",
-      club="Raja's Martial Arts &amp; Fitness Gym", loc="Location TBC", rank="Rank TBC", exp="TBC",
-      card="Leads self defense classes for women and adults.",
-      pts=["Self defense","Women's classes"], quote="Confidence is power.",
-      about=["Leads self defense classes for women and adults. Full biography to be added."],
-      achievements=[TBA, TBA, TBA], specialities=["Self defense","Women's classes"],
-      classes=["Female class · 10:00 am – 12:30 pm"]),
- dict(slug="fitness-coach", img="instructor-5.jpg", coach_img="coach-5.jpg", big=False,
-      role="Fitness Coach", name="Coach — name TBC", short="Coach TBC", tag="Fitness",
-      club="Raja's Martial Arts &amp; Fitness Gym", loc="Location TBC", rank="TBC", exp="TBC",
-      card="Runs the weight loss and conditioning programme.",
-      pts=["Weight loss","Strength &amp; conditioning"], quote="Your body can do it.",
-      about=["Runs the weight loss and conditioning programme. Full biography to be added."],
-      achievements=[TBA, TBA, TBA], specialities=["Weight loss","Strength &amp; conditioning","Kickboxing &amp; boxing"],
-      classes=["Kickboxing &amp; boxing · 9:00 – 10:30 pm"]),
+ # IMG_7379 — name read from his trophy plate
+ dict(slug="aneeb-butt", img="instructor-aneeb-butt.jpg", coach_img="instructor-aneeb-butt.jpg", big=False,
+      role="Instructor", name="Sensei Aneeb Butt", short="Sensei Aneeb", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Sensei Aneeb Butt is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym.", pts=['Kyokushin Karate', 'Championship recognition'], quote="",
+      about=["Sensei Aneeb Butt is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym."],
+      achievements=['Trophy presented at the All Punjab Open So Kyokushin Karate Championship, Chakwal — 22 November 2026', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7381 — name read from his trophy plate
+ dict(slug="toheed-shah", img="instructor-toheed-shah.jpg", coach_img="instructor-toheed-shah.jpg", big=False,
+      role="Instructor", name="Sensei Toheed Shah", short="Sensei Toheed", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Sensei Toheed Shah is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym.", pts=['Kyokushin Karate', 'Championship recognition'], quote="",
+      about=["Sensei Toheed Shah is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym."],
+      achievements=['Trophy presented at the All Punjab Open So Kyokushin Karate Championship, Chakwal — 22 November 2026', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7375
+ dict(slug="sensei-03", img="instructor-sensei-03.jpg", coach_img="instructor-sensei-03.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7367
+ dict(slug="sensei-04", img="instructor-sensei-04.jpg", coach_img="instructor-sensei-04.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7361
+ dict(slug="sensei-05", img="instructor-sensei-05.jpg", coach_img="instructor-sensei-05.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7359
+ dict(slug="sensei-06", img="instructor-sensei-06.jpg", coach_img="instructor-sensei-06.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7356
+ dict(slug="sensei-07", img="instructor-sensei-07.jpg", coach_img="instructor-sensei-07.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7350
+ dict(slug="sensei-08", img="instructor-sensei-08.jpg", coach_img="instructor-sensei-08.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7347
+ dict(slug="sensei-09", img="instructor-sensei-09.jpg", coach_img="instructor-sensei-09.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7344
+ dict(slug="sensei-10", img="instructor-sensei-10.jpg", coach_img="instructor-sensei-10.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7291
+ dict(slug="sensei-11", img="instructor-sensei-11.jpg", coach_img="instructor-sensei-11.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7294
+ dict(slug="sensei-12", img="instructor-sensei-12.jpg", coach_img="instructor-sensei-12.jpg", big=False,
+      role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added.", pts=['Kyokushin Karate'], quote="",
+      about=["Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym. Full biography to be added."],
+      achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
 ]
 def prof_url(c): return f"instructor-{c['slug']}.html"
 
@@ -454,12 +518,12 @@ def coach_card(c):
     size, pad = ("coach-lg", 20) if c["big"] else ("coach-sm", 16)
     return f'''<a class="card coach {size} rv" style="padding:{pad}px" href="{prof_url(c)}" aria-label="{c['name']} — view profile">{ph(c['img'],"",c['name'])}
 <div><span class="coach__role">{c['role']}</span><h3 class="coach__name">{c['name']}</h3><p class="coach__loc">{svg("pin")}{c['loc']}</p><p class="coach__bio">{c['card']}</p>
-<ul class="ticks">{"".join(f"<li>{p}</li>" for p in c['pts'])}</ul><p class="quote-hand">“{c['quote']}”</p><span class="link coach__more">View profile</span></div></a>'''
+<ul class="ticks">{"".join(f"<li>{p}</li>" for p in c['pts'])}</ul>{"<p class=\"quote-hand\">“" + c["quote"] + "”</p>" if c["quote"] else ""}<span class="link coach__more">View profile</span></div></a>'''
 def coach_tile(c):
     return f'''<a class="coach-card" href="{prof_url(c)}" aria-label="{c['short']}, {c['tag']} — view profile">{ph(c['coach_img'],"ph--dark",c['short'])}<p class="coach-card__name">{c['short']}<small>{c['tag']}</small></p></a>'''
 
 def profile(c):
-    others = "".join(f'''<a class="card other" href="{prof_url(o)}">{ph(o['img'],"",o['name'])}<div><span class="coach__role">{o['role']}</span><b>{o['short']}</b></div></a>''' for o in INSTRUCTORS if o is not c)
+    others = "".join(f'''<a class="card other" href="{prof_url(o)}">{ph(o['img'],"",o['name'])}<div><span class="coach__role">{o['role']}</span><b>{o['short']}</b></div></a>''' for o in (INSTRUCTORS[INSTRUCTORS.index(c)+1:] + INSTRUCTORS[:INSTRUCTORS.index(c)])[:4])
     ach = "".join(f'<li class="{"is-tba" if a.startswith(TBA) else ""}">{a}</li>' for a in c['achievements'])
     more = f'<a class="btn btn--line" href="{c["more"]}">Read his full story {ARROW}</a>' if c.get("more") else ""
     wa_msg = f"Assalam o Alaikum! I'd like to train with {html.unescape(c['short'])}."
@@ -474,7 +538,7 @@ def profile(c):
         <p class="eyebrow">{c['role']}</p>
         <h1>{c['name']}</h1>
         <p class="coach__loc">{svg("pin")}{c['club']} · {c['loc']}</p>
-        <p class="quote-hand">“{c['quote']}”</p>
+        {"<p class=\"quote-hand\">“" + c["quote"] + "”</p>" if c["quote"] else ""}
         <dl class="prof-facts">
           <div><dt>Rank</dt><dd>{c['rank']}</dd></div>
           <div><dt>Experience</dt><dd>{c['exp']}</dd></div>
@@ -541,7 +605,7 @@ instr = f'''
   <div class="wrap">
     <div class="sec-head"><p class="eyebrow">Meet the team</p><h2 class="h-lg">Our <span class="red">instructors</span></h2></div>
     <!-- TODO: replace names, ranks, locations and bios with the real instructors -->
-    <div class="grid g2">{"".join(coach_card(c) for c in INSTRUCTORS if c["big"])}</div>
+    <div class="grid g1">{"".join(coach_card(c) for c in INSTRUCTORS if c["big"])}</div>
     <div class="grid g3" style="margin-top:24px">{"".join(coach_card(c) for c in INSTRUCTORS if not c["big"])}</div>
   </div>
 </section>

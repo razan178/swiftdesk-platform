@@ -772,3 +772,27 @@ a.other:hover{transform:scale(1.04)!important; border-color:#1F5FC4; box-shadow:
 @media(max-width:1000px){.others{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:860px){.prof-hero__grid{grid-template-columns:1fr} .prof-photo{max-width:320px} .prof-body{grid-template-columns:1fr} .prof-side{position:static}}
 @media(max-width:560px){.prof-facts{grid-template-columns:1fr} .prof-facts div{border-right:0; border-bottom:1px solid var(--line); padding:12px 0!important} .prof-facts div:last-child{border-bottom:0} .others{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   TEAM PHOTOS — white-background portraits
+   ========================================================================== */
+.grid.g1{grid-template-columns:1fr}
+.g1 .coach-lg{grid-template-columns:minmax(200px,300px) 1fr; gap:clamp(20px,3vw,40px); align-items:center}
+.g1 .coach-lg .coach__name{font-size:clamp(26px,3vw,38px)}
+.coach .ph{background:#fff}
+.coach-sm{grid-template-columns:140px 1fr}
+.coach-sm .ph{aspect-ratio:4/5}
+.coach .ph > img{object-position:50% 12%}
+.coach-card .ph{background:#fff}
+.coach-card .ph > img{object-position:50% 10%}
+/* readable names over white clothing */
+.coach-card::after{content:""; position:absolute; inset:auto 0 0 0; height:46%; z-index:1; pointer-events:none;
+  background:linear-gradient(transparent, rgba(8,8,10,.82))}
+.coach-card__name{z-index:2}
+a.other .ph{background:#fff}
+a.other .ph > img{object-position:50% 12%}
+.prof-photo{background:#fff}
+.prof-photo > img{object-position:50% 10%}
+.prof-hero__grid .prof-photo{border:1px solid var(--line)}
+@media(max-width:700px){.g1 .coach-lg{grid-template-columns:1fr} .g1 .coach-lg .ph{max-width:280px}}
+@media(max-width:560px){.coach-sm{grid-template-columns:1fr} .coach-sm .ph{max-width:240px}}
