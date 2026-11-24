@@ -431,6 +431,15 @@ INSTRUCTORS = [
       about=["Sensei Toheed Shah is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym."],
       achievements=['Trophy presented at the All Punjab Open So Kyokushin Karate Championship, Chakwal — 22 November 2026', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
       classes=["Class timings: see the schedule on the home page"]),
+ # IMG_7351 / IMG_7353 — name read from his trophy plate
+ dict(slug="kamran-yaseen", img="instructor-kamran-yaseen.jpg", coach_img="instructor-kamran-yaseen.jpg", big=False,
+      role="Instructor", name="Sensei M. Kamran Yaseen", short="Sensei Kamran", tag="Instructor",
+      club="Raja's Martial Arts &amp; Fitness Gym", loc="Civic Center, Bahria Town, Islamabad", rank="Rank TBC", exp="TBC",
+      card="Sensei M. Kamran Yaseen is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym.", pts=["Kyokushin Karate","Championship recognition"], quote="",
+      about=["Sensei M. Kamran Yaseen is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym."],
+      achievements=["Trophy presented at the All Punjab Open So Kyokushin Karate Championship, Chakwal — 22 November 2026", "To be added", "To be added"],
+      specialities=["Kyokushin Karate","Kumite","Kata"],
+      classes=["Class timings: see the schedule on the home page"]),
  # IMG_7375
  dict(slug="sensei-03", img="instructor-sensei-03.jpg", coach_img="instructor-sensei-03.jpg", big=False,
       role="Instructor", name="Sensei — name TBC", short="Sensei TBC", tag="Instructor",
