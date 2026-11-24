@@ -796,3 +796,7 @@ a.other .ph > img{object-position:50% 12%}
 .prof-hero__grid .prof-photo{border:1px solid var(--line)}
 @media(max-width:700px){.g1 .coach-lg{grid-template-columns:1fr} .g1 .coach-lg .ph{max-width:280px}}
 @media(max-width:560px){.coach-sm{grid-template-columns:1fr} .coach-sm .ph{max-width:240px}}
+
+/* home hero: pure-white cut-out portrait, shown in full (no edge fade) */
+.home-hero .ph--hero{aspect-ratio:4/5}
+.home-hero .ph--hero > img{-webkit-mask-image:none; mask-image:none; object-position:50% 100%}

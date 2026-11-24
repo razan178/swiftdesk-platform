@@ -154,7 +154,7 @@ home = f'''
       <div><a class="btn btn--red" href="#trial">Start your journey {ARROW}</a></div>
     </div>
     <div class="hero__art">
-      {ph("shihan-home.jpg","ph--photo","Shihan Raja Khalid Mehmood Janjua in his Kyokushin gi and black belt, arms crossed")}
+      {ph("hero-home.jpg","ph--photo ph--hero","Kyokushin instructor in a white blazer with both fists raised in a karate guard")}
       <div class="kanji" aria-hidden="true">極真会</div>
     </div>
   </div>
