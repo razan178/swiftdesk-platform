@@ -563,8 +563,8 @@ INSTRUCTORS = [
 ]
 # Hidden people keep their data here but get no card and no profile page. To bring someone back, remove their slug.
 # People left out of the "Raja's Coaches" strip (they still have their card and profile page)
-NO_CAROUSEL = {"shihan-raja"}
-HIDDEN = {"kamran-yaseen"}
+NO_CAROUSEL = set()
+HIDDEN = {"kamran-yaseen", "sensei-09"}   # sensei-09 = the white-blazer man, who is Shihan Raja (now shown on the Shihan card)
 # Order on the Instructors page and in the coaches strip (Shihan first). Anyone not listed follows, in list order.
 ORDER = ["shihan-raja", "sensei-09", "sensei-11", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-14"]
 INSTRUCTORS = [c for c in INSTRUCTORS if c["slug"] not in HIDDEN]

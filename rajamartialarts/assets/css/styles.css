@@ -800,3 +800,14 @@ a.other .ph > img{object-position:50% 12%}
 /* home hero: pure-white cut-out portrait, shown in full (no edge fade) */
 .home-hero .ph--hero{aspect-ratio:4/5}
 .home-hero .ph--hero > img{-webkit-mask-image:none; mask-image:none; object-position:50% 100%}
+
+/* Belt Test: white heading on a dark panel */
+.page-belt-test .belt-aside{background:var(--night-2); border-radius:var(--r); padding:clamp(24px,3vw,40px); color:var(--night-text)}
+.page-belt-test .belt-aside h1{color:#fff}
+.page-belt-test .belt-aside .eyebrow{color:#9a9aa2}
+.page-belt-test .belt-aside p{color:var(--night-text)}
+.page-belt-test .belt-aside .crit b{color:#fff}
+.page-belt-test .belt-aside .crit span{color:#9a9aa2}
+.page-belt-test .belt-aside .crit .ico svg{stroke:#fff}
+.page-belt-test .belt-aside .quote-hand{color:#fff}
+.page-belt-test .belt-aside .kanji{color:rgba(255,255,255,.2)}
