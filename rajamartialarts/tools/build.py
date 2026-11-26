@@ -566,7 +566,7 @@ INSTRUCTORS = [
 NO_CAROUSEL = set()
 HIDDEN = {"kamran-yaseen", "sensei-09"}   # sensei-09 = the white-blazer man, who is Shihan Raja (now shown on the Shihan card)
 # Order on the Instructors page and in the coaches strip (Shihan first). Anyone not listed follows, in list order.
-ORDER = ["shihan-raja", "sensei-09", "sensei-11", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-14"]
+ORDER = ["shihan-raja", "sensei-13", "sensei-11", "sensei-15", "sensei-10", "sensei-17", "sensei-14"]
 INSTRUCTORS = [c for c in INSTRUCTORS if c["slug"] not in HIDDEN]
 INSTRUCTORS.sort(key=lambda c: ORDER.index(c["slug"]) if c["slug"] in ORDER else len(ORDER))
 def prof_url(c): return f"instructor-{c['slug']}.html"
@@ -839,7 +839,7 @@ syllabus = f'''
 # =====================================================================  BELT TEST
 def belt_svg(c, dan=0, uid="b"):
     """Belt drawing. dan = number of gold bars on each tail (black belts only)."""
-    bars = "".join(f'<rect x="20" y="{62 + 9*i}" width="60" height="4" fill="#E2B93B"/><rect x="60" y="{62 + 9*i}" width="60" height="4" fill="#E2B93B"/>' for i in range(dan))
+    bars = "".join(f'<rect x="60" y="{62 + 9*i}" width="60" height="4" fill="#E2B93B"/>' for i in range(dan))   # one tail only (the right one)
     return f'''<svg viewBox="0 0 130 110" aria-hidden="true"><defs><clipPath id="t{uid}"><path d="M48 30 30 100h18l14-60z"/><path d="M82 30l18 70H82L68 40z"/></clipPath></defs>
 <g stroke="rgba(0,0,0,.25)" stroke-width="1"><rect x="6" y="12" width="118" height="22" rx="3" fill="{c}"/><path d="M48 30 30 100h18l14-60z" fill="{c}"/><path d="M82 30l18 70H82L68 40z" fill="{c}"/>
 <rect x="50" y="6" width="30" height="34" rx="5" fill="{c}"/><rect x="50" y="6" width="30" height="34" rx="5" fill="rgba(0,0,0,.18)"/></g>
