@@ -27,5 +27,11 @@ window.RAJA = {
   // Social links — leave "" to hide the icon
   instagram: "",
   facebook: "",
-  youtube: ""
+  youtube: "",
+
+  // Backend (Supabase project "rajas-martial-arts"). The publishable key is safe to
+  // ship in the browser: database rules only let visitors ADD a trial booking —
+  // they can't read or change anything. Admin panel: admin.html
+  supabaseUrl: "https://nouqkqqwmnvdthujxauo.supabase.co",
+  supabaseKey: "sb_publishable_zZ-D05ljV0ZRlzV0MAsGPg_Pw4oLAgC"
 };

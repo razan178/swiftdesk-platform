@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — Raja's Martial Arts</title>
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0C0C0E;--panel:#141416;--panel2:#1B1B1F;--line:#2A2A30;--txt:#F2F2F3;--mut:#9A9AA3;--red:#E01E26;--red2:#B3141B;--ok:#22A35A;--warn:#E0A31E;--blue:#3B82F6;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Oswald,sans-serif;font-weight:600;letter-spacing:.02em;margin:0;text-transform:uppercase}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--panel2);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;text-decoration:none}
+.btn:hover{border-color:#44444c}
+.btn--red{background:var(--red);border-color:var(--red);color:#fff}.btn--red:hover{background:var(--red2);border-color:var(--red2)}
+.btn--sm{padding:5px 10px;font-size:12px}
+.btn--ghost{background:transparent}
+.btn--ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--red)}
+label{display:block;font-size:12px;color:var(--mut);margin:0 0 5px;font-weight:500}
+.field{margin-bottom:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chk{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt)}.chk input{width:auto}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.login__card{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.brand img{width:40px;height:40px;object-fit:contain}
+.brand b{font-family:Oswald;font-size:20px;text-transform:uppercase;display:block;line-height:1}
+.brand small{color:var(--mut);font-size:12px}
+.msg{font-size:13px;margin-top:10px;color:var(--mut)}.msg.err{color:#ff6b70}.msg.ok{color:#5fd38d}
+
+/* app shell */
+.top{position:sticky;top:0;z-index:20;background:rgba(12,12,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top__in{max-width:1280px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.top .brand{margin:0}
+.tabs{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+.tab{background:none;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;color:var(--mut);font-weight:600}
+.tab[aria-selected=true]{background:var(--panel2);color:#fff;box-shadow:inset 0 -2px 0 var(--red)}
+.tab .badge{margin-left:6px}
+.who{color:var(--mut);font-size:12px}
+main{max-width:1280px;margin:0 auto;padding:24px 20px 60px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.head h2{font-size:24px}.head h2 span{color:var(--red)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tools input,.tools select{width:auto;min-width:150px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat small{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.stat b{display:block;font-family:Oswald;font-size:30px;line-height:1.2;margin-top:4px}
+.stat span{color:var(--mut);font-size:12px}
+.bar{height:6px;background:var(--panel2);border-radius:4px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok)}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.card h3{font-size:15px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.grid2 table{min-width:420px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600;background:var(--panel2)}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#18181b}
+td .sub{color:var(--mut);font-size:12px}
+td select{width:auto;padding:5px 8px;font-size:12px}
+.empty{padding:28px;text-align:center;color:var(--mut)}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;background:var(--panel2);border:1px solid var(--line)}
+.b-new{background:rgba(224,30,38,.15);border-color:rgba(224,30,38,.5);color:#ff7a7f}
+.b-contacted{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.5);color:#8db7ff}
+.b-trial_booked{background:rgba(224,163,30,.15);border-color:rgba(224,163,30,.5);color:#f3c96b}
+.b-joined,.b-paid,.b-active{background:rgba(34,163,90,.15);border-color:rgba(34,163,90,.5);color:#6fdc9d}
+.b-not_interested,.b-left{color:var(--mut)}
+.b-unpaid{background:rgba(224,30,38,.15);border-color:rgba(224,30,38,.5);color:#ff7a7f}
+.b-paused{background:rgba(224,163,30,.15);border-color:rgba(224,163,30,.5);color:#f3c96b}
+.acts{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+.wa{color:#5fd38d;text-decoration:none;font-weight:600}
+
+dialog{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:14px;padding:0;width:min(620px,94vw);max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+.dlg__h{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg__b{padding:20px;overflow:auto;max-height:calc(90vh - 130px)}
+.dlg__f{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
+.x{background:none;border:0;font-size:22px;cursor:pointer;color:var(--mut);line-height:1}
+.hist{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.hist h4{margin:0 0 8px;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.hist li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.hist ul{list-style:none;margin:0;padding:0}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;border:1px solid var(--line);padding:10px 16px;border-radius:10px;z-index:100;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.toast.err{border-color:var(--red)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #fff6;border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
+@media (max-width:820px){.grid2,.row{grid-template-columns:minmax(0,1fr)}.who{display:none}.top__in{gap:10px;padding:10px 14px}.top .brand{flex:1}.tabs{order:3;width:100%;flex:none;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}.tab{flex:none}main{padding:18px 14px 50px}.tools{width:100%}.tools input,.tools select{flex:1;min-width:0}.stats{grid-template-columns:1fr 1fr}.stat b{font-size:22px}}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<section class="login" id="v-login" hidden>
+  <form class="login__card" id="f-login" autocomplete="on">
+    <div class="brand"><img src="assets/img/logo.png" alt=""><div><b>Raja's Admin</b><small>Martial Arts &amp; Fitness Gym</small></div></div>
+    <div id="login-fields">
+      <div class="field"><label for="l-email">Email</label><input id="l-email" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="l-pass">Password</label><input id="l-pass" type="password" autocomplete="current-password" required></div>
+      <button class="btn btn--red" style="width:100%" type="submit">Sign in</button>
+      <p class="msg"><a href="#" id="l-forgot">Forgot password?</a></p>
+    </div>
+    <div id="reset-fields" hidden>
+      <div class="field"><label for="l-new">New password (min 8 characters)</label><input id="l-new" type="password" minlength="8" autocomplete="new-password"></div>
+      <button class="btn btn--red" style="width:100%" type="button" id="l-setpass">Save new password</button>
+    </div>
+    <p class="msg" id="l-msg" role="status"></p>
+  </form>
+</section>
+
+<!-- ===== APP ===== -->
+<div id="v-app" hidden>
+  <header class="top"><div class="top__in">
+    <div class="brand"><img src="assets/img/logo.png" alt=""><div><b>Raja's Admin</b><small>Dojo management</small></div></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="dash" aria-selected="true">Dashboard</button>
+      <button class="tab" role="tab" data-tab="leads" aria-selected="false">Trial leads<span class="badge b-new" id="nb-new" hidden></span></button>
+      <button class="tab" role="tab" data-tab="students" aria-selected="false">Students</button>
+      <button class="tab" role="tab" data-tab="fees" aria-selected="false">Fees</button>
+    </nav>
+    <span class="who" id="who"></span>
+    <button class="btn btn--sm btn--ghost" id="b-refresh" title="Refresh data">↻ Refresh</button>
+    <button class="btn btn--sm" id="b-logout">Sign out</button>
+  </div></header>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section data-view="dash">
+      <div class="head"><h2>Overview · <span id="d-month"></span></h2></div>
+      <div class="stats" id="d-stats"></div>
+      <div class="grid2">
+        <div class="card"><h3>Unpaid this month</h3><div class="tbl" id="d-unpaid"></div></div>
+        <div class="card"><h3>Latest trial leads</h3><div class="tbl" id="d-leads"></div></div>
+      </div>
+    </section>
+
+    <!-- LEADS -->
+    <section data-view="leads" hidden>
+      <div class="head"><h2>Trial <span>leads</span></h2>
+        <div class="tools">
+          <input type="search" id="lq" placeholder="Search name or phone">
+          <select id="ls"><option value="">All statuses</option></select>
+          <button class="btn" id="l-csv">Export CSV</button>
+        </div>
+      </div>
+      <div class="card tbl" id="l-table"></div>
+    </section>
+
+    <!-- STUDENTS -->
+    <section data-view="students" hidden>
+      <div class="head"><h2>Stu<span>dents</span></h2>
+        <div class="tools">
+          <input type="search" id="sq" placeholder="Search name, phone, family">
+          <select id="ss"><option value="active">Active</option><option value="paused">Paused</option><option value="left">Left</option><option value="">All</option></select>
+          <button class="btn" id="s-csv">Export CSV</button>
+          <button class="btn btn--red" id="s-add">+ Add student</button>
+        </div>
+      </div>
+      <div class="card tbl" id="s-table"></div>
+    </section>
+
+    <!-- FEES -->
+    <section data-view="fees" hidden>
+      <div class="head"><h2>Monthly <span>fees</span></h2>
+        <div class="tools">
+          <input type="month" id="fm">
+          <select id="ff"><option value="">All</option><option value="unpaid">Unpaid</option><option value="paid">Paid</option></select>
+          <button class="btn" id="f-csv">Export CSV</button>
+          <button class="btn" id="f-other">+ Other payment</button>
+        </div>
+      </div>
+      <div class="stats" id="f-stats"></div>
+      <div class="card tbl" id="f-table"></div>
+      <div class="card" style="margin-top:16px"><h3>Other payments this month <span class="sub" style="color:var(--mut);text-transform:none;font-family:Inter;font-weight:400;font-size:12px">(admission, gi, etc.)</span></h3><div class="tbl" id="f-others"></div></div>
+    </section>
+  </main>
+</div>
+
+<!-- STUDENT DIALOG -->
+<dialog id="dlg-student">
+  <form method="dialog" id="f-student">
+    <div class="dlg__h"><h3 id="st-title">Add student</h3><button class="x" value="cancel" formnovalidate aria-label="Close">×</button></div>
+    <div class="dlg__b">
+      <input type="hidden" name="sid"><input type="hidden" name="lead_id">
+      <div class="field"><label>Full name *</label><input name="full_name" required maxlength="120"></div>
+      <div class="row">
+        <div class="field"><label>Phone / WhatsApp</label><input name="phone" type="tel" maxlength="30"></div>
+        <div class="field"><label>Guardian (for kids)</label><input name="guardian_name" maxlength="120"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Age</label><input name="age" type="number" min="3" max="99"></div>
+        <div class="field"><label>Gender</label><select name="gender"><option value="">—</option><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Course</label><select name="course" data-opts="courses"></select></div>
+        <div class="field"><label>Class</label><select name="class_slot" data-opts="slots"></select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Plan</label><select name="plan"><option value="monthly">Monthly — PKR 8,000</option><option value="family">Family — PKR 7,000 / member</option><option value="personal">Personal 1-on-1 — PKR 25,000</option></select></div>
+        <div class="field"><label>Monthly fee (PKR)</label><input name="monthly_fee" type="number" min="0" step="100" required></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Family group (same name links siblings/parents)</label><input name="family_group" maxlength="80" placeholder="e.g. Khan family"></div>
+        <div class="field"><label>Belt</label><input name="belt" list="belts" maxlength="60"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Join date</label><input name="join_date" type="date" required></div>
+        <div class="field"><label>Status</label><select name="status"><option value="active">Active</option><option value="paused">Paused</option><option value="left">Left</option></select></div>
+      </div>
+      <div class="row" style="margin-bottom:12px">
+        <label class="chk"><input type="checkbox" name="admission_paid"> Admission fee paid (PKR 5,000)</label>
+        <label class="chk"><input type="checkbox" name="gi_purchased"> Gi purchased (PKR 5,000)</label>
+      </div>
+      <div class="field"><label>Notes</label><textarea name="notes" rows="2"></textarea></div>
+      <div class="hist" id="st-hist" hidden><h4>Payment history</h4><ul></ul></div>
+    </div>
+    <div class="dlg__f">
+      <button class="btn btn--ghost" type="button" id="st-del" hidden style="margin-right:auto;color:#ff7a7f">Delete</button>
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn btn--red" type="submit" value="save">Save student</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- PAYMENT DIALOG -->
+<dialog id="dlg-pay">
+  <form method="dialog" id="f-pay">
+    <div class="dlg__h"><h3 id="pay-title">Record payment</h3><button class="x" value="cancel" formnovalidate aria-label="Close">×</button></div>
+    <div class="dlg__b">
+      <div class="field" id="pay-student-wrap"><label>Student *</label><select name="student_id" required></select></div>
+      <div class="row">
+        <div class="field"><label>Type</label><select name="kind"><option value="monthly">Monthly fee</option><option value="admission">Admission fee</option><option value="gi">Gi (uniform)</option><option value="personal">Personal training</option><option value="other">Other</option></select></div>
+        <div class="field"><label>For month</label><input name="period" type="month"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Amount (PKR) *</label><input name="amount" type="number" min="0" step="100" required></div>
+        <div class="field"><label>Paid on</label><input name="paid_on" type="date" required></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Method</label><select name="pmethod"><option value="cash">Cash</option><option value="bank">Bank transfer</option><option value="easypaisa">Easypaisa</option><option value="jazzcash">JazzCash</option><option value="other">Other</option></select></div>
+        <div class="field"><label>Note</label><input name="notes" maxlength="200"></div>
+      </div>
+    </div>
+    <div class="dlg__f">
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn btn--ok" type="submit" value="save">Save payment</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- LEAD NOTE DIALOG -->
+<dialog id="dlg-note">
+  <form method="dialog" id="f-note">
+    <div class="dlg__h"><h3>Lead notes</h3><button class="x" value="cancel" formnovalidate aria-label="Close">×</button></div>
+    <div class="dlg__b"><input type="hidden" name="nid"><div class="field"><label id="note-who"></label><textarea name="notes" rows="5" maxlength="2000"></textarea></div></div>
+    <div class="dlg__f"><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn btn--red" type="submit" value="save">Save note</button></div>
+  </form>
+</dialog>
+
+<!-- CONFIRM DIALOG -->
+<dialog id="dlg-confirm" style="width:min(420px,94vw)">
+  <form method="dialog">
+    <div class="dlg__b"><p id="cf-msg" style="margin:0;font-size:15px"></p></div>
+    <div class="dlg__f"><button class="btn" value="no">Cancel</button><button class="btn btn--red" value="yes" id="cf-yes">Delete</button></div>
+  </form>
+</dialog>
+
+<datalist id="belts">
+  <option value="10 kyu — White"><option value="9 kyu — Yellow"><option value="8 kyu — Orange"><option value="7 kyu — Green">
+  <option value="6 kyu — Blue"><option value="5 kyu — Purple"><option value="4 kyu — Purple"><option value="3 kyu — Brown">
+  <option value="2 kyu — Brown"><option value="1 kyu — Brown"><option value="1 dan — Black (Shodan)"><option value="2 dan — Black">
+</datalist>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="assets/js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  "use strict";
+  var C = window.RAJA || {};
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  if (!window.supabase || !C.supabaseUrl) {
+    document.body.innerHTML = '<p style="padding:40px;text-align:center">Backend not configured — check assets/js/config.js.</p>';
+    return;
+  }
+  var sb = window.supabase.createClient(C.supabaseUrl, C.supabaseKey, { auth: { persistSession: true, autoRefreshToken: true } });
+
+  /* ---------- constants ---------- */
+  var LEAD_STATUS = [["new","New"],["contacted","Contacted"],["trial_booked","Trial booked"],["joined","Joined"],["not_interested","Not interested"]];
+  var LEAD_LABEL = {}; LEAD_STATUS.forEach(function (s) { LEAD_LABEL[s[0]] = s[1]; });
+  var COURSES = ["Kyokushin Karate","Self Defense","Weight Loss","Mental Health & Focus","Kickboxing","Personal Training (1-on-1)","Family membership"];
+  var SLOTS = ["Female class (10:00 am – 12:30 pm)","Kids & teens (4:00 – 6:00 pm)","Mixed class (6:00 – 8:00 pm)","Kickboxing & boxing (9:00 – 10:30 pm)","Personal training (by appointment)"];
+  var PLAN_FEE = { monthly: 8000, family: 7000, personal: 25000 };
+  var PLAN_LABEL = { monthly: "Monthly", family: "Family", personal: "Personal" };
+  var KIND_LABEL = { monthly: "Monthly fee", admission: "Admission", gi: "Gi", personal: "Personal training", other: "Other" };
+  var METHOD_LABEL = { cash: "Cash", bank: "Bank", easypaisa: "Easypaisa", jazzcash: "JazzCash", other: "Other" };
+
+  /* ---------- state ---------- */
+  var S = { leads: [], students: [], curMonthly: [], selMonthly: [], selOthers: [], month: ym(new Date()) };
+
+  /* ---------- helpers ---------- */
+  function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function ym(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1); }
+  function today() { var d = new Date(); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function monthStart(m) { return m + "-01"; }
+  function monthEnd(m) { var p = m.split("-"), d = new Date(+p[0], +p[1], 0); return m + "-" + pad(d.getDate()); }
+  function monthName(m) { var p = m.split("-"); return new Date(+p[0], +p[1] - 1, 1).toLocaleDateString("en-GB", { month: "long", year: "numeric" }); }
+  function pkr(n) { return "PKR " + Number(n || 0).toLocaleString("en-PK"); }
+  function fmtDate(s) { if (!s) return ""; var d = new Date(s.length <= 10 ? s + "T00:00:00" : s); return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
+  function fmtWhen(s) { var d = new Date(s); return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }) + ", " + d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }
+  function waNum(p) { var d = String(p || "").replace(/\D/g, ""); if (d.indexOf("00") === 0) d = d.slice(2); if (d.charAt(0) === "0") d = "92" + d.slice(1); return d; }
+  function waLink(p, text) { var n = waNum(p); return n ? "https://wa.me/" + n + (text ? "?text=" + encodeURIComponent(text) : "") : ""; }
+  function badge(cls, txt) { return '<span class="badge b-' + esc(cls) + '">' + esc(txt) + "</span>"; }
+  function toast(msg, err) {
+    var t = $("#toast"); t.textContent = msg; t.className = "toast" + (err ? " err" : ""); t.hidden = false;
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.hidden = true; }, 3200);
+  }
+  function fail(e) { console.error(e); toast((e && e.message) || "Something went wrong", true); }
+  function csv(name, rows) {
+    var out = rows.map(function (r) { return r.map(function (c) { c = c == null ? "" : String(c); return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(","); }).join("\n");
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["﻿" + out], { type: "text/csv;charset=utf-8" }));
+    a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  }
+  function fillSelect(sel, list, withBlank) {
+    sel.innerHTML = (withBlank ? '<option value="">—</option>' : "") + list.map(function (o) { return '<option value="' + esc(o) + '">' + esc(o) + "</option>"; }).join("");
+  }
+  function ask(msg, yesLabel) {
+    return new Promise(function (resolve) {
+      var d = $("#dlg-confirm");
+      $("#cf-msg").textContent = msg; $("#cf-yes").textContent = yesLabel || "Delete";
+      d.returnValue = "";
+      d.addEventListener("close", function h() { d.removeEventListener("close", h); resolve(d.returnValue === "yes"); });
+      d.showModal();
+    });
+  }
+  function studentById(id) { for (var i = 0; i < S.students.length; i++) if (S.students[i].id === id) return S.students[i]; return null; }
+
+  /* ---------- auth ---------- */
+  var loginMsg = $("#l-msg");
+  function setLoginMsg(t, cls) { loginMsg.textContent = t || ""; loginMsg.className = "msg" + (cls ? " " + cls : ""); }
+
+  $("#f-login").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!$("#reset-fields").hidden) return;
+    setLoginMsg("Signing in…");
+    sb.auth.signInWithPassword({ email: $("#l-email").value.trim(), password: $("#l-pass").value })
+      .then(function (r) { if (r.error) setLoginMsg(r.error.message, "err"); else setLoginMsg(""); });
+  });
+  $("#l-forgot").addEventListener("click", function (e) {
+    e.preventDefault();
+    var email = $("#l-email").value.trim();
+    if (!email) { setLoginMsg("Type your email above first.", "err"); return; }
+    sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname })
+      .then(function (r) { setLoginMsg(r.error ? r.error.message : "If that email is an admin, a reset link has been sent.", r.error ? "err" : "ok"); });
+  });
+  $("#l-setpass").addEventListener("click", function () {
+    var p = $("#l-new").value;
+    if (p.length < 8) { setLoginMsg("Password must be at least 8 characters.", "err"); return; }
+    sb.auth.updateUser({ password: p }).then(function (r) {
+      if (r.error) return setLoginMsg(r.error.message, "err");
+      $("#reset-fields").hidden = true; $("#login-fields").hidden = false;
+      setLoginMsg("Password updated.", "ok"); boot();
+    });
+  });
+  $("#b-logout").addEventListener("click", function () { sb.auth.signOut(); });
+
+  var recovering = false;
+  sb.auth.onAuthStateChange(function (ev) {
+    if (ev === "PASSWORD_RECOVERY") {
+      recovering = true; showLogin();
+      $("#login-fields").hidden = true; $("#reset-fields").hidden = false;
+      setLoginMsg("Choose a new password.");
+      return;
+    }
+    if (ev === "SIGNED_IN" && !recovering) boot();
+    if (ev === "SIGNED_OUT") showLogin();
+  });
+
+  function showLogin() { $("#v-app").hidden = true; $("#v-login").hidden = false; }
+
+  var booting = false;
+  function boot() {
+    if (booting) return; booting = true;
+    sb.auth.getSession().then(function (r) {
+      var sess = r.data && r.data.session;
+      if (!sess) { booting = false; return showLogin(); }
+      return sb.from("admins").select("email").maybeSingle().then(function (a) {
+        booting = false;
+        if (a.error || !a.data) {
+          showLogin();
+          setLoginMsg("This account (" + sess.user.email + ") is not an admin. Ask the site owner to add it.", "err");
+          sb.auth.signOut();
+          return;
+        }
+        $("#who").textContent = sess.user.email;
+        $("#v-login").hidden = true; $("#v-app").hidden = false;
+        loadAll();
+      });
+    }).catch(function (e) { booting = false; fail(e); });
+  }
+
+  /* ---------- data ---------- */
+  function q(p) { return p.then(function (r) { if (r.error) throw r.error; return r.data; }); }
+
+  function loadAll() {
+    var cur = ym(new Date());
+    return Promise.all([
+      q(sb.from("leads").select("*").order("created_at", { ascending: false }).limit(2000)),
+      q(sb.from("students").select("*").order("full_name")),
+      q(sb.from("fee_payments").select("*").eq("kind", "monthly").eq("period", monthStart(cur)))
+    ]).then(function (res) {
+      S.leads = res[0]; S.students = res[1]; S.curMonthly = res[2];
+      return loadMonth();
+    }).then(renderAll).catch(fail);
+  }
+  function loadMonth() {
+    var m = S.month;
+    return Promise.all([
+      q(sb.from("fee_payments").select("*").eq("kind", "monthly").eq("period", monthStart(m))),
+      q(sb.from("fee_payments").select("*").neq("kind", "monthly").gte("paid_on", monthStart(m)).lte("paid_on", monthEnd(m)).order("paid_on", { ascending: false }))
+    ]).then(function (r) { S.selMonthly = r[0]; S.selOthers = r[1]; if (m === ym(new Date())) S.curMonthly = r[0]; });
+  }
+  $("#b-refresh").addEventListener("click", function () { loadAll().then(function () { toast("Refreshed"); }); });
+
+  /* ---------- tabs ---------- */
+  function showTab(name) {
+    $$(".tab").forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.tab === name)); });
+    $$("[data-view]").forEach(function (v) { v.hidden = v.dataset.view !== name; });
+    try { sessionStorage.setItem("rma-admin-tab", name); } catch (e) {}
+  }
+  $$(".tab").forEach(function (t) { t.addEventListener("click", function () { showTab(t.dataset.tab); }); });
+  try { var lastTab = sessionStorage.getItem("rma-admin-tab"); if (lastTab) showTab(lastTab); } catch (e) {}
+
+  /* ---------- render ---------- */
+  function renderAll() { renderDash(); renderLeads(); renderStudents(); renderFees(); }
+
+  function feeRows(payments, month) {
+    var paid = {}; payments.forEach(function (p) { paid[p.student_id] = p; });
+    var mStart = monthStart(month);
+    return S.students.filter(function (s) { return s.status === "active" && s.join_date <= monthEnd(month); })
+      .map(function (s) { return { s: s, p: paid[s.id] || null }; })
+      .concat(payments.filter(function (p) { var s = studentById(p.student_id); return s && (s.status !== "active" || s.join_date > monthEnd(month)); })
+        .map(function (p) { return { s: studentById(p.student_id), p: p }; }))
+      .sort(function (a, b) { return (a.p ? 1 : 0) - (b.p ? 1 : 0) || a.s.full_name.localeCompare(b.s.full_name); });
+  }
+  function feeSummary(rows) {
+    var exp = 0, got = 0, unpaid = 0;
+    rows.forEach(function (r) { if (r.s.status === "active") exp += r.s.monthly_fee; if (r.p) got += r.p.amount; else unpaid++; });
+    return { exp: exp, got: got, unpaid: unpaid, pct: exp ? Math.min(100, Math.round(got / exp * 100)) : 0 };
+  }
+
+  function renderDash() {
+    var cur = ym(new Date());
+    $("#d-month").textContent = monthName(cur);
+    var newLeads = S.leads.filter(function (l) { return l.status === "new"; }).length;
+    var monthLeads = S.leads.filter(function (l) { return l.created_at.slice(0, 7) === cur; });
+    var joined = monthLeads.filter(function (l) { return l.status === "joined"; }).length;
+    var active = S.students.filter(function (s) { return s.status === "active"; }).length;
+    var rows = feeRows(S.curMonthly, cur), f = feeSummary(rows);
+    $("#nb-new").textContent = newLeads; $("#nb-new").hidden = !newLeads;
+    $("#d-stats").innerHTML =
+      stat("New leads to call", newLeads, "waiting for a reply") +
+      stat("Leads this month", monthLeads.length, joined + " joined") +
+      stat("Active students", active, S.students.length + " on record") +
+      stat("Collected " + monthName(cur).split(" ")[0], pkr(f.got), "of " + pkr(f.exp) + " expected", f.pct) +
+      stat("Unpaid this month", f.unpaid, "students still to pay");
+    var un = rows.filter(function (r) { return !r.p; });
+    $("#d-unpaid").innerHTML = un.length ? "<table><thead><tr><th>Student</th><th>Fee</th><th></th></tr></thead><tbody>" + un.slice(0, 12).map(function (r) {
+      return "<tr><td><b>" + esc(r.s.full_name) + '</b><div class="sub">' + esc(PLAN_LABEL[r.s.plan]) + (r.s.family_group ? " · " + esc(r.s.family_group) : "") + "</div></td><td>" + pkr(r.s.monthly_fee) +
+        '</td><td><div class="acts">' + (r.s.phone ? '<a class="btn btn--sm" target="_blank" rel="noopener" href="' + esc(waLink(r.s.phone, "Assalam o Alaikum! A gentle reminder from Raja's Martial Arts: the " + monthName(cur) + " fee of " + pkr(r.s.monthly_fee) + " for " + r.s.full_name + " is due. JazakAllah!")) + '">Remind</a>' : "") +
+        '<button class="btn btn--sm btn--ok" data-pay="' + r.s.id + '" data-month="' + cur + '">Paid</button></div></td></tr>';
+    }).join("") + "</tbody></table>" + (un.length > 12 ? '<p class="empty" style="padding:12px">+ ' + (un.length - 12) + " more in the Fees tab</p>" : "") : '<p class="empty">Everyone has paid this month. 🥋</p>';
+    var latest = S.leads.slice(0, 8);
+    $("#d-leads").innerHTML = latest.length ? "<table><thead><tr><th>Name</th><th>Course</th><th>Status</th></tr></thead><tbody>" + latest.map(function (l) {
+      return "<tr><td><b>" + esc(l.name) + '</b><div class="sub">' + esc(fmtWhen(l.created_at)) + "</div></td><td>" + esc(l.course || "—") + "</td><td>" + badge(l.status, LEAD_LABEL[l.status]) + "</td></tr>";
+    }).join("") + "</tbody></table>" : '<p class="empty">No trial bookings yet. They will appear here as soon as someone submits the website form.</p>';
+  }
+  function stat(label, val, sub, pct) {
+    return '<div class="stat"><small>' + esc(label) + "</small><b>" + esc(val) + "</b><span>" + esc(sub) + "</span>" + (pct != null ? '<div class="bar"><i style="width:' + pct + '%"></i></div>' : "") + "</div>";
+  }
+
+  /* leads */
+  $("#ls").innerHTML = '<option value="">All statuses</option>' + LEAD_STATUS.map(function (s) { return '<option value="' + s[0] + '">' + s[1] + "</option>"; }).join("");
+  $("#lq").addEventListener("input", renderLeads); $("#ls").addEventListener("change", renderLeads);
+
+  function filteredLeads() {
+    var t = $("#lq").value.trim().toLowerCase(), st = $("#ls").value;
+    return S.leads.filter(function (l) {
+      return (!st || l.status === st) && (!t || (l.name + " " + l.phone).toLowerCase().indexOf(t) > -1);
+    });
+  }
+  function renderLeads() {
+    var rows = filteredLeads();
+    $("#l-table").innerHTML = rows.length ? "<table><thead><tr><th>Received</th><th>Name</th><th>Phone</th><th>Course / time</th><th>Status</th><th></th></tr></thead><tbody>" + rows.map(function (l) {
+      var wa = waLink(l.phone, "Assalam o Alaikum " + l.name + "! This is Raja's Martial Arts — thank you for booking a free trial class.");
+      return "<tr><td>" + esc(fmtWhen(l.created_at)) + "</td><td><b>" + esc(l.name) + "</b>" + (l.age ? '<div class="sub">Age ' + esc(l.age) + "</div>" : "") + (l.notes ? '<div class="sub" title="' + esc(l.notes) + '">📝 ' + esc(l.notes.slice(0, 40)) + (l.notes.length > 40 ? "…" : "") + "</div>" : "") +
+        "</td><td>" + (wa ? '<a class="wa" target="_blank" rel="noopener" href="' + esc(wa) + '">' + esc(l.phone) + "</a>" : esc(l.phone)) +
+        "</td><td>" + esc(l.course || "—") + '<div class="sub">' + esc(l.preferred_time || "") + "</div></td>" +
+        '<td><select data-lead-status="' + l.id + '">' + LEAD_STATUS.map(function (s) { return '<option value="' + s[0] + '"' + (s[0] === l.status ? " selected" : "") + ">" + s[1] + "</option>"; }).join("") + "</select></td>" +
+        '<td><div class="acts"><button class="btn btn--sm" data-note="' + l.id + '">Note</button>' +
+        (l.student_id ? '<button class="btn btn--sm" data-edit="' + l.student_id + '">Student ↗</button>' : '<button class="btn btn--sm btn--red" data-convert="' + l.id + '">Enroll</button>') +
+        '<button class="btn btn--sm btn--ghost" data-del-lead="' + l.id + '" title="Delete lead">✕</button></div></td></tr>';
+    }).join("") + "</tbody></table>" : '<p class="empty">' + (S.leads.length ? "No leads match this filter." : "No trial bookings yet.") + "</p>";
+  }
+  $("#l-csv").addEventListener("click", function () {
+    csv("trial-leads-" + today() + ".csv", [["Received", "Name", "Phone", "Age", "Course", "Preferred time", "Status", "Notes"]].concat(filteredLeads().map(function (l) {
+      return [fmtWhen(l.created_at), l.name, l.phone, l.age, l.course, l.preferred_time, LEAD_LABEL[l.status], l.notes];
+    })));
+  });
+
+  /* students */
+  $("#sq").addEventListener("input", renderStudents); $("#ss").addEventListener("change", renderStudents);
+  function filteredStudents() {
+    var t = $("#sq").value.trim().toLowerCase(), st = $("#ss").value;
+    return S.students.filter(function (s) {
+      return (!st || s.status === st) && (!t || [s.full_name, s.phone, s.family_group, s.guardian_name].join(" ").toLowerCase().indexOf(t) > -1);
+    });
+  }
+  function renderStudents() {
+    var rows = filteredStudents(), cur = ym(new Date()), paid = {};
+    S.curMonthly.forEach(function (p) { paid[p.student_id] = 1; });
+    $("#s-table").innerHTML = rows.length ? "<table><thead><tr><th>Name</th><th>Phone</th><th>Class</th><th>Belt</th><th>Plan</th><th>" + esc(monthName(cur).split(" ")[0]) + "</th><th>Status</th><th></th></tr></thead><tbody>" + rows.map(function (s) {
+      var wa = waLink(s.phone);
+      return "<tr><td><b>" + esc(s.full_name) + '</b><div class="sub">' + [s.age ? "Age " + s.age : "", s.guardian_name ? "Guardian: " + s.guardian_name : "", s.family_group].filter(Boolean).map(esc).join(" · ") + "</div></td>" +
+        "<td>" + (wa ? '<a class="wa" target="_blank" rel="noopener" href="' + esc(wa) + '">' + esc(s.phone) + "</a>" : "—") + "</td>" +
+        "<td>" + esc(s.course || "—") + '<div class="sub">' + esc(s.class_slot || "") + "</div></td><td>" + esc(s.belt) + "</td>" +
+        "<td>" + esc(PLAN_LABEL[s.plan]) + '<div class="sub">' + pkr(s.monthly_fee) + "</div></td>" +
+        "<td>" + (s.status !== "active" ? "—" : paid[s.id] ? badge("paid", "Paid") : badge("unpaid", "Unpaid")) + "</td>" +
+        "<td>" + badge(s.status, s.status.charAt(0).toUpperCase() + s.status.slice(1)) + "</td>" +
+        '<td><div class="acts">' + (s.status === "active" && !paid[s.id] ? '<button class="btn btn--sm btn--ok" data-pay="' + s.id + '" data-month="' + cur + '">Paid</button>' : "") +
+        '<button class="btn btn--sm" data-edit="' + s.id + '">Edit</button></div></td></tr>';
+    }).join("") + "</tbody></table>" : '<p class="empty">' + (S.students.length ? "No students match this filter." : "No students yet. Add one, or enroll a trial lead.") + "</p>";
+  }
+  $("#s-csv").addEventListener("click", function () {
+    csv("students-" + today() + ".csv", [["Name", "Phone", "Guardian", "Age", "Gender", "Course", "Class", "Plan", "Monthly fee", "Family", "Belt", "Joined", "Status", "Admission paid", "Gi", "Notes"]].concat(filteredStudents().map(function (s) {
+      return [s.full_name, s.phone, s.guardian_name, s.age, s.gender, s.course, s.class_slot, PLAN_LABEL[s.plan], s.monthly_fee, s.family_group, s.belt, s.join_date, s.status, s.admission_paid ? "Yes" : "No", s.gi_purchased ? "Yes" : "No", s.notes];
+    })));
+  });
+
+  /* fees */
+  $("#fm").value = S.month;
+  $("#fm").addEventListener("change", function () {
+    if (!this.value) return; S.month = this.value;
+    loadMonth().then(renderFees).catch(fail);
+  });
+  $("#ff").addEventListener("change", renderFees);
+  function renderFees() {
+    var m = S.month, rows = feeRows(S.selMonthly, m), f = feeSummary(rows), flt = $("#ff").value;
+    var others = S.selOthers.reduce(function (a, p) { return a + p.amount; }, 0);
+    $("#f-stats").innerHTML = stat("Collected (monthly)", pkr(f.got), "of " + pkr(f.exp) + " expected", f.pct) + stat("Unpaid", f.unpaid, "active students") + stat("Other income", pkr(others), "admission, gi, etc.") + stat("Total in " + monthName(m).split(" ")[0], pkr(f.got + others), monthName(m));
+    var shown = rows.filter(function (r) { return !flt || (flt === "paid" ? !!r.p : !r.p); });
+    $("#f-table").innerHTML = shown.length ? "<table><thead><tr><th>Student</th><th>Plan</th><th>Fee</th><th>Status</th><th>Paid on</th><th></th></tr></thead><tbody>" + shown.map(function (r) {
+      var s = r.s, p = r.p;
+      return "<tr><td><b>" + esc(s.full_name) + '</b><div class="sub">' + esc(s.family_group || s.phone || "") + "</div></td><td>" + esc(PLAN_LABEL[s.plan]) + "</td><td>" + pkr(p ? p.amount : s.monthly_fee) + "</td>" +
+        "<td>" + (p ? badge("paid", "Paid") : badge("unpaid", "Unpaid")) + "</td><td>" + (p ? esc(fmtDate(p.paid_on)) + '<div class="sub">' + esc(METHOD_LABEL[p.method]) + (p.notes ? " · " + esc(p.notes) : "") + "</div>" : "—") + "</td>" +
+        '<td><div class="acts">' + (p ? '<button class="btn btn--sm btn--ghost" data-del-pay="' + p.id + '">Undo</button>' :
+          (s.phone ? '<a class="btn btn--sm" target="_blank" rel="noopener" href="' + esc(waLink(s.phone, "Assalam o Alaikum! A gentle reminder from Raja's Martial Arts: the " + monthName(m) + " fee of " + pkr(s.monthly_fee) + " for " + s.full_name + " is due. JazakAllah!")) + '">Remind</a>' : "") +
+          '<button class="btn btn--sm btn--ok" data-pay="' + s.id + '" data-month="' + m + '">Mark paid</button>') + "</div></td></tr>";
+    }).join("") + "</tbody></table>" : '<p class="empty">' + (rows.length ? "Nothing in this filter." : "No active students for this month.") + "</p>";
+    $("#f-others").innerHTML = S.selOthers.length ? "<table><thead><tr><th>Date</th><th>Student</th><th>Type</th><th>Amount</th><th>Method</th><th></th></tr></thead><tbody>" + S.selOthers.map(function (p) {
+      var s = studentById(p.student_id);
+      return "<tr><td>" + esc(fmtDate(p.paid_on)) + "</td><td>" + esc(s ? s.full_name : "—") + "</td><td>" + esc(KIND_LABEL[p.kind]) + (p.notes ? '<div class="sub">' + esc(p.notes) + "</div>" : "") + "</td><td>" + pkr(p.amount) + "</td><td>" + esc(METHOD_LABEL[p.method]) + '</td><td><div class="acts"><button class="btn btn--sm btn--ghost" data-del-pay="' + p.id + '">Delete</button></div></td></tr>';
+    }).join("") + "</tbody></table>" : '<p class="empty">No other payments recorded this month.</p>';
+  }
+  $("#f-csv").addEventListener("click", function () {
+    var m = S.month;
+    csv("fees-" + m + ".csv", [["Student", "Phone", "Plan", "Fee", "Status", "Amount paid", "Paid on", "Method"]].concat(feeRows(S.selMonthly, m).map(function (r) {
+      return [r.s.full_name, r.s.phone, PLAN_LABEL[r.s.plan], r.s.monthly_fee, r.p ? "Paid" : "Unpaid", r.p ? r.p.amount : "", r.p ? r.p.paid_on : "", r.p ? METHOD_LABEL[r.p.method] : ""];
+    })).concat(S.selOthers.map(function (p) { var s = studentById(p.student_id); return [s ? s.full_name : "", s ? s.phone : "", KIND_LABEL[p.kind], "", "Paid", p.amount, p.paid_on, METHOD_LABEL[p.method]]; })));
+  });
+
+  /* ---------- actions (delegated) ---------- */
+  document.addEventListener("change", function (e) {
+    var id = e.target.getAttribute("data-lead-status");
+    if (!id) return;
+    var val = e.target.value;
+    q(sb.from("leads").update({ status: val }).eq("id", id).select().single()).then(function (row) {
+      S.leads = S.leads.map(function (l) { return l.id === id ? row : l; });
+      renderDash(); toast("Lead marked " + LEAD_LABEL[val]);
+    }).catch(fail);
+  });
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button,a"); if (!b) return;
+    var d = b.dataset;
+    if (d.pay) openPay(d.pay, d.month);
+    else if (d.edit) openStudent(studentById(d.edit));
+    else if (d.convert) convertLead(d.convert);
+    else if (d.note) openNote(d.note);
+    else if (d.delLead) {
+      ask("Delete this lead permanently?").then(function (ok) { if (!ok) return;
+        return q(sb.from("leads").delete().eq("id", d.delLead)).then(function () { S.leads = S.leads.filter(function (l) { return l.id !== d.delLead; }); renderAll(); toast("Lead deleted"); });
+      }).catch(fail);
+    } else if (d.delPay) {
+      ask("Remove this payment record?", "Remove").then(function (ok) { if (!ok) return;
+        return q(sb.from("fee_payments").delete().eq("id", d.delPay)).then(function () {
+          [ "curMonthly", "selMonthly", "selOthers" ].forEach(function (k) { S[k] = S[k].filter(function (p) { return p.id !== d.delPay; }); });
+          renderAll(); toast("Payment removed");
+        });
+      }).catch(fail);
+    }
+  });
+  $("#s-add").addEventListener("click", function () { openStudent(null); });
+  $("#f-other").addEventListener("click", function () { openPay(null, S.month, "admission"); });
+
+  /* student dialog */
+  var dS = $("#dlg-student"), fS = $("#f-student");
+  fillSelect($('[name="course"]', fS), COURSES, true);
+  fillSelect($('[name="class_slot"]', fS), SLOTS, true);
+  $('[name="plan"]', fS).addEventListener("change", function () { fS.monthly_fee.value = PLAN_FEE[this.value]; });
+
+  function openStudent(s, prefill) {
+    fS.reset();
+    var v = s || Object.assign({ plan: "monthly", monthly_fee: 8000, belt: "10 kyu — White", join_date: today(), status: "active" }, prefill || {});
+    ["sid", "full_name", "phone", "guardian_name", "age", "gender", "course", "class_slot", "plan", "monthly_fee", "family_group", "belt", "join_date", "status", "notes", "lead_id"].forEach(function (k) {
+      var val = k === "sid" ? v.id : v[k]; if (fS[k]) fS[k].value = val == null ? "" : val;
+    });
+    if (v.course && COURSES.indexOf(v.course) < 0) fS.course.value = "";
+    if (v.class_slot && SLOTS.indexOf(v.class_slot) < 0) { var o = document.createElement("option"); o.value = o.textContent = v.class_slot; fS.class_slot.appendChild(o); fS.class_slot.value = v.class_slot; }
+    fS.admission_paid.checked = !!v.admission_paid; fS.gi_purchased.checked = !!v.gi_purchased;
+    $("#st-title").textContent = s ? "Edit student" : (prefill ? "Enroll trial lead" : "Add student");
+    $("#st-del").hidden = !s;
+    var h = $("#st-hist"); h.hidden = true;
+    if (s) q(sb.from("fee_payments").select("*").eq("student_id", s.id).order("paid_on", { ascending: false }).limit(24)).then(function (ps) {
+      h.hidden = false;
+      $("ul", h).innerHTML = ps.length ? ps.map(function (p) {
+        return "<li><span>" + esc(KIND_LABEL[p.kind]) + (p.period ? " · " + esc(monthName(p.period.slice(0, 7))) : "") + '</span><span class="sub" style="color:var(--mut)">' + esc(fmtDate(p.paid_on)) + " · <b style=\"color:var(--txt)\">" + pkr(p.amount) + "</b></span></li>";
+      }).join("") : '<li><span class="sub" style="color:var(--mut)">No payments recorded yet.</span></li>';
+    }).catch(fail);
+    dS.showModal();
+  }
+  fS.addEventListener("submit", function (e) {
+    if (e.submitter && e.submitter.value !== "save") return;
+    e.preventDefault();
+    var id = fS.sid.value, leadId = fS.lead_id.value;
+    var row = {
+      full_name: fS.full_name.value.trim(), phone: fS.phone.value.trim() || null, guardian_name: fS.guardian_name.value.trim() || null,
+      age: fS.age.value ? +fS.age.value : null, gender: fS.gender.value || null, course: fS.course.value || null, class_slot: fS.class_slot.value || null,
+      plan: fS.plan.value, monthly_fee: +fS.monthly_fee.value || 0, family_group: fS.family_group.value.trim() || null,
+      belt: fS.belt.value.trim() || "10 kyu — White", join_date: fS.join_date.value, status: fS.status.value,
+      admission_paid: fS.admission_paid.checked, gi_purchased: fS.gi_purchased.checked, notes: fS.notes.value.trim() || null
+    };
+    var btn = e.submitter; if (btn) { btn.disabled = true; }
+    var p = id ? q(sb.from("students").update(row).eq("id", id).select().single()) : q(sb.from("students").insert(row).select().single());
+    p.then(function (st) {
+      if (id) S.students = S.students.map(function (x) { return x.id === id ? st : x; }); else S.students.push(st);
+      S.students.sort(function (a, b) { return a.full_name.localeCompare(b.full_name); });
+      if (leadId) return q(sb.from("leads").update({ status: "joined", student_id: st.id }).eq("id", leadId).select().single()).then(function (l) {
+        S.leads = S.leads.map(function (x) { return x.id === leadId ? l : x; });
+      });
+    }).then(function () { dS.close(); renderAll(); toast(id ? "Student updated" : "Student added"); })
+      .catch(fail).then(function () { if (btn) btn.disabled = false; });
+  });
+  $("#st-del").addEventListener("click", function () {
+    var id = fS.sid.value;
+    ask("Delete this student and ALL their payment records? To keep history, set status to “Left” instead.").then(function (ok) { if (!ok) return;
+    return q(sb.from("students").delete().eq("id", id)).then(function () {
+      S.students = S.students.filter(function (s) { return s.id !== id; });
+      ["curMonthly", "selMonthly", "selOthers"].forEach(function (k) { S[k] = S[k].filter(function (p) { return p.student_id !== id; }); });
+      S.leads = S.leads.map(function (l) { return l.student_id === id ? Object.assign({}, l, { student_id: null }) : l; });
+      dS.close(); renderAll(); toast("Student deleted");
+    }); }).catch(fail);
+  });
+
+  function convertLead(id) {
+    var l = S.leads.filter(function (x) { return x.id === id; })[0]; if (!l) return;
+    var slot = SLOTS.filter(function (s) { return l.preferred_time && s.indexOf(l.preferred_time.split(" (")[0]) === 0; })[0] || l.preferred_time;
+    var plan = /personal/i.test(l.course || "") ? "personal" : /family/i.test(l.course || "") ? "family" : "monthly";
+    openStudent(null, { full_name: l.name, phone: l.phone, age: l.age, course: l.course, class_slot: slot, plan: plan, monthly_fee: PLAN_FEE[plan], lead_id: l.id, notes: l.notes });
+  }
+
+  /* payment dialog */
+  var dP = $("#dlg-pay"), fP = $("#f-pay");
+  function openPay(studentId, month, kind) {
+    fP.reset();
+    var active = S.students.filter(function (s) { return s.status !== "left" || s.id === studentId; });
+    fP.student_id.innerHTML = '<option value="">Select student…</option>' + active.map(function (s) { return '<option value="' + s.id + '">' + esc(s.full_name) + (s.family_group ? " (" + esc(s.family_group) + ")" : "") + "</option>"; }).join("");
+    fP.student_id.value = studentId || "";
+    fP.kind.value = kind || "monthly"; fP.period.value = month || S.month; fP.paid_on.value = today();
+    setPayAmount();
+    var s = studentById(studentId);
+    $("#pay-title").textContent = s ? "Payment — " + s.full_name : "Record payment";
+    dP.showModal();
+  }
+  function setPayAmount() {
+    var s = studentById(fP.student_id.value), k = fP.kind.value;
+    fP.amount.value = k === "monthly" ? (s ? s.monthly_fee : "") : k === "admission" || k === "gi" ? 5000 : k === "personal" ? 25000 : "";
+    fP.period.parentElement.style.opacity = k === "monthly" ? 1 : .4;
+  }
+  fP.student_id.addEventListener("change", setPayAmount); fP.kind.addEventListener("change", setPayAmount);
+  fP.addEventListener("submit", function (e) {
+    if (e.submitter && e.submitter.value !== "save") return;
+    e.preventDefault();
+    var k = fP.kind.value;
+    if (k === "monthly" && !fP.period.value) { toast("Choose the month this fee is for", true); return; }
+    var row = { student_id: fP.student_id.value, kind: k, period: k === "monthly" ? monthStart(fP.period.value) : null, amount: +fP.amount.value, paid_on: fP.paid_on.value, method: fP.pmethod.value, notes: fP.notes.value.trim() || null };
+    var btn = e.submitter; if (btn) btn.disabled = true;
+    q(sb.from("fee_payments").insert(row).select().single()).then(function (p) {
+      var stu = studentById(p.student_id);
+      var extra = null;
+      if (stu && (k === "admission" || k === "gi") && !(k === "admission" ? stu.admission_paid : stu.gi_purchased)) {
+        var upd = k === "admission" ? { admission_paid: true } : { gi_purchased: true };
+        extra = q(sb.from("students").update(upd).eq("id", stu.id).select().single()).then(function (st) { S.students = S.students.map(function (x) { return x.id === st.id ? st : x; }); });
+      }
+      return Promise.resolve(extra).then(function () { return loadMonth(); }).then(function () {
+        if (k === "monthly" && p.period === monthStart(ym(new Date()))) {
+          if (!S.curMonthly.some(function (x) { return x.id === p.id; })) S.curMonthly.push(p);
+        }
+      });
+    }).then(function () { dP.close(); renderAll(); toast("Payment saved"); })
+      .catch(function (err) {
+        if (err && err.code === "23505") toast("This month's fee is already recorded for that student.", true); else fail(err);
+      }).then(function () { if (btn) btn.disabled = false; });
+  });
+
+  /* note dialog */
+  var dN = $("#dlg-note"), fN = $("#f-note");
+  function openNote(id) {
+    var l = S.leads.filter(function (x) { return x.id === id; })[0]; if (!l) return;
+    fN.nid.value = id; fN.notes.value = l.notes || ""; $("#note-who").textContent = l.name + " · " + l.phone;
+    dN.showModal();
+  }
+  fN.addEventListener("submit", function (e) {
+    if (e.submitter && e.submitter.value !== "save") return;
+    e.preventDefault();
+    var id = fN.nid.value;
+    q(sb.from("leads").update({ notes: fN.notes.value.trim() || null }).eq("id", id).select().single()).then(function (row) {
+      S.leads = S.leads.map(function (l) { return l.id === id ? row : l; }); dN.close(); renderLeads(); toast("Note saved");
+    }).catch(fail);
+  });
+
+  /* ---------- start ---------- */
+  sb.auth.getSession().then(function (r) {
+    if (location.hash.indexOf("type=recovery") > -1) return; // handled by PASSWORD_RECOVERY
+    if (r.data && r.data.session) boot(); else showLogin();
+  });
+})();
+</script>
+</body>
+</html>

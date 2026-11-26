@@ -185,7 +185,28 @@
     });
   }
 
-  /* trial / enquiry forms → Netlify Forms copy + WhatsApp message */
+  /* save a trial booking to the backend (Supabase "leads" table).
+     Visitors can only insert — never read — so this is safe from the browser. */
+  function saveLead(form, d) {
+    if (d.get("bot-field")) return; // honeypot filled → bot, don't store
+    if (!C.supabaseUrl || !C.supabaseKey || !window.fetch) return;
+    var age = parseInt(d.get("age"), 10);
+    var body = {
+      name: String(d.get("name") || "").trim().slice(0, 100),
+      phone: String(d.get("phone") || "").trim().slice(0, 30),
+      age: age >= 3 && age <= 99 ? age : null,
+      course: d.get("course") || null,
+      preferred_time: d.get("time") || null
+    };
+    fetch(C.supabaseUrl.replace(/\/$/, "") + "/rest/v1/leads", {
+      method: "POST",
+      keepalive: true,
+      headers: { "apikey": C.supabaseKey, "Content-Type": "application/json", "Prefer": "return=minimal" },
+      body: JSON.stringify(body)
+    }).catch(function () {});
+  }
+
+  /* trial / enquiry forms → saved to the backend + WhatsApp message */
   $$("form[data-trial]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -197,7 +218,7 @@
         lines.push((lab ? lab.textContent.replace(/\s*\(.*\)/, "") : f.name) + ": " + f.value);
       });
       var win = window.open(wa(lines.join("\n")), "_blank", "noopener");
-      fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(d).toString() }).catch(function () {});
+      saveLead(form, d);
       var note = $(".form__note", form);
       if (note) {
         note.className = "form__note is-ok";

@@ -130,7 +130,7 @@ def trial_form(fid="trial"):
   <h3>Book a Free Trial</h3>
   <div class="field"><label for="{fid}-name">Full name</label><input id="{fid}-name" name="name" autocomplete="name" required></div>
   <div class="row2">
-    <div class="field"><label for="{fid}-phone">Phone / WhatsApp</label><input id="{fid}-phone" name="phone" type="tel" autocomplete="tel" required></div>
+    <div class="field"><label for="{fid}-phone">Phone / WhatsApp</label><input id="{fid}-phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9+()\\-\\s]{{7,30}}" title="Phone number, e.g. 0300 1234567" placeholder="0300 1234567"></div>
     <div class="field"><label for="{fid}-age">Age</label><input id="{fid}-age" name="age" type="number" min="3" max="99" inputmode="numeric"></div>
   </div>
   <div class="field"><label for="{fid}-course">Course</label><select id="{fid}-course" name="course">
