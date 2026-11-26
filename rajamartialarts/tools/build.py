@@ -562,6 +562,8 @@ INSTRUCTORS = [
       classes=["Class timings: see the schedule on the home page"]),
 ]
 # Hidden people keep their data here but get no card and no profile page. To bring someone back, remove their slug.
+# People left out of the "Raja's Coaches" strip (they still have their card and profile page)
+NO_CAROUSEL = {"shihan-raja"}
 HIDDEN = {"kamran-yaseen"}
 # Order on the Instructors page and in the coaches strip (Shihan first). Anyone not listed follows, in list order.
 ORDER = ["shihan-raja", "sensei-09", "sensei-11", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-14"]
@@ -672,7 +674,7 @@ instr = f'''
     <div class="carousel">
       <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Previous coaches">{svg("left")}</button>
       <div class="carousel__track">
-        {"".join(coach_tile(c) for c in INSTRUCTORS)}
+        {"".join(coach_tile(c) for c in INSTRUCTORS if c["slug"] not in NO_CAROUSEL)}
       </div>
       <button class="carousel__btn carousel__btn--next" type="button" aria-label="Next coaches">{svg("right")}</button>
     </div>
