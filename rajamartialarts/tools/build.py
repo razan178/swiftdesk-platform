@@ -561,6 +561,12 @@ INSTRUCTORS = [
       achievements=['To be added', 'To be added', 'To be added'], specialities=["Kyokushin Karate","Kumite","Kata"],
       classes=["Class timings: see the schedule on the home page"]),
 ]
+# Hidden people keep their data here but get no card and no profile page. To bring someone back, remove their slug.
+HIDDEN = {"kamran-yaseen"}
+# Order on the Instructors page and in the coaches strip (Shihan first). Anyone not listed follows, in list order.
+ORDER = ["shihan-raja", "sensei-09", "sensei-11", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-14"]
+INSTRUCTORS = [c for c in INSTRUCTORS if c["slug"] not in HIDDEN]
+INSTRUCTORS.sort(key=lambda c: ORDER.index(c["slug"]) if c["slug"] in ORDER else len(ORDER))
 def prof_url(c): return f"instructor-{c['slug']}.html"
 
 def coach_card(c):
@@ -829,23 +835,26 @@ syllabus = f'''
 '''
 
 # =====================================================================  BELT TEST
-def belt_svg(c, stripe="#000", knot_dark="rgba(0,0,0,.18)", tip=None):
-    tipc = tip or c
-    return f'''<svg viewBox="0 0 130 110" aria-hidden="true"><g stroke="rgba(0,0,0,.25)" stroke-width="1">
-<rect x="6" y="12" width="118" height="22" rx="3" fill="{c}"/><path d="M48 30 30 100h18l14-60z" fill="{c}"/><path d="M82 30l18 70H82L68 40z" fill="{c}"/>
-<rect x="30" y="88" width="18" height="12" fill="{tipc}"/><rect x="82" y="88" width="18" height="12" fill="{tipc}"/>
-<rect x="50" y="6" width="30" height="34" rx="5" fill="{c}"/><rect x="50" y="6" width="30" height="34" rx="5" fill="{knot_dark}"/></g>
+def belt_svg(c, dan=0, uid="b"):
+    """Belt drawing. dan = number of gold bars on each tail (black belts only)."""
+    bars = "".join(f'<rect x="20" y="{62 + 9*i}" width="60" height="4" fill="#E2B93B"/><rect x="60" y="{62 + 9*i}" width="60" height="4" fill="#E2B93B"/>' for i in range(dan))
+    return f'''<svg viewBox="0 0 130 110" aria-hidden="true"><defs><clipPath id="t{uid}"><path d="M48 30 30 100h18l14-60z"/><path d="M82 30l18 70H82L68 40z"/></clipPath></defs>
+<g stroke="rgba(0,0,0,.25)" stroke-width="1"><rect x="6" y="12" width="118" height="22" rx="3" fill="{c}"/><path d="M48 30 30 100h18l14-60z" fill="{c}"/><path d="M82 30l18 70H82L68 40z" fill="{c}"/>
+<rect x="50" y="6" width="30" height="34" rx="5" fill="{c}"/><rect x="50" y="6" width="30" height="34" rx="5" fill="rgba(0,0,0,.18)"/></g>
+<g clip-path="url(#t{uid})">{bars}</g>
 <path d="M8 17h114M8 29h114" stroke="rgba(0,0,0,.12)"/></svg>'''
-BELTS = [("10 kyu","White belt","#F4F2EE","Beginner","The start of the journey. Etiquette, basic stances, punches and blocks."),
-         ("9 kyu","Yellow belt","#F2C318","3 months","Basic kicks, first kata and the Japanese counting system."),
-         ("8 kyu","Orange belt","#EE7A1E","3 months","Stronger stances, combinations and Taikyoku kata."),
-         ("7 kyu","Green belt","#1E8A44","4 months","Kumite fundamentals, Pinan kata and improved conditioning."),
-         ("6 kyu","Blue belt","#1F5FC4","4 months","Controlled sparring, Sanchin breathing and timing."),
-         ("5 kyu","Purple belt","#7A3FB3","6 months","Advanced combinations, endurance and kata detail."),
-         ("3 kyu","Brown belt","#7A4A26","6–12 months","Senior grade: teaching juniors, full kumite and advanced kata."),
-         ("1st Dan","Black belt","#151517","3+ years","Mastery of the basics. The real journey begins.")]
-belts_html = "".join(f'''<div class="belt-row rv"><div class="belt-pic">{belt_svg(c, tip="#c9a227" if n=="Black belt" else None)}</div>
-<div class="belt-name"><small>{k}</small><b>{n}</b><span>{t}</span></div><p>{d}</p></div>''' for k,n,c,t,d in BELTS)
+# TODO: confirm the requirements and timings used at your dojo (these are draft wording)
+BELTS = [("Belt 1", "White belt",  "#F4F2EE", "Beginner",   "The start of the journey. Etiquette, basic stances, punches and blocks.", 0),
+         ("Belt 2", "Yellow belt", "#F2C318", "3 months",   "Basic kicks, first kata and the Japanese counting system.", 0),
+         ("Belt 3", "Orange belt", "#EE7A1E", "3 months",   "Stronger stances, combinations and Taikyoku kata.", 0),
+         ("Belt 4", "Green belt",  "#1E8A44", "4 months",   "Kumite fundamentals, Pinan kata and improved conditioning.", 0),
+         ("Belt 5", "Blue belt",   "#1F5FC4", "4 months",   "Controlled sparring, Sanchin breathing and timing.", 0),
+         ("Belt 6", "Brown belt",  "#7A4A26", "6–12 months", "Senior grade: teaching juniors, full kumite and advanced kata.", 0),
+         ("Belt 7", "Black belt",  "#151517", "1st Dan",    "Mastery of the basics. The real journey begins.", 1),
+         ("Dan 2",  "Black belt",  "#151517", "2nd Dan",    "Deeper technique, strong kumite and a growing role teaching others.", 2),
+         ("Dan 3",  "Black belt",  "#151517", "3rd Dan",    "Senior level: leads classes, mentors instructors and takes part in examining.", 3)]
+belts_html = "".join(f'''<div class="belt-row rv"><div class="belt-pic">{belt_svg(c, dan, i)}</div>
+<div class="belt-name"><small>{k}</small><b>{n}</b><span>{t}</span></div><p>{d}</p></div>''' for i,(k,n,c,t,d,dan) in enumerate(BELTS))
 belt = f'''
 <section class="sec" style="padding-top:clamp(40px,6vw,72px)">
   <div class="wrap belt-layout">

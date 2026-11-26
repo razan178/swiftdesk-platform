@@ -643,7 +643,7 @@ main .tl h4{font-size:13px}
 
 /* belt test progress line */
 .belt-list{position:relative}
-.belt-line{position:absolute; left:-18px; top:0; bottom:0; width:3px; background:linear-gradient(#F4F2EE,#F2C318,#EE7A1E,#1E8A44,#1F5FC4,#7A3FB3,#7A4A26,#151517); transform-origin:50% 0; border-radius:2px}
+.belt-line{position:absolute; left:-18px; top:0; bottom:0; width:3px; background:linear-gradient(#F4F2EE,#F2C318,#EE7A1E,#1E8A44,#1F5FC4,#7A4A26,#151517); transform-origin:50% 0; border-radius:2px}
 @media(max-width:960px){.belt-line{left:-10px}}
 
 /* marquee strip (home) */
