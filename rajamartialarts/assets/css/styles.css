@@ -818,3 +818,15 @@ a.other .ph > img{object-position:50% 12%}
 .social-more span{font-family:var(--f-sans); text-transform:uppercase; letter-spacing:.16em; font-size:11px; color:#8a8a92; width:100%}
 .social-more a{color:var(--night-text); text-decoration:none; border-bottom:1px solid var(--night-line)}
 .social-more a:hover{color:#fff; border-color:var(--red)}
+
+/* map: address card (shown when an embedded map is blocked) and static map photo */
+.map-card{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center; padding:28px;
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0/44px 44px,
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0/44px 44px,
+    radial-gradient(circle at 50% 38%, rgba(224,30,38,.28), transparent 55%), #17181d; color:#cfcfd6}
+.map-card svg{width:46px; height:46px; fill:none; stroke:var(--red); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+.map-card b{font-family:var(--f-sans); font-style:italic; text-transform:uppercase; font-size:clamp(20px,2.4vw,28px); color:#fff; line-height:1.1}
+.map-card span{max-width:34ch; font-size:14.5px; margin-bottom:8px}
+.map-pic{position:absolute; inset:0; display:block}
+.map-pic img{width:100%; height:100%; object-fit:cover}
