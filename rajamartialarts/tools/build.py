@@ -569,7 +569,28 @@ INSTRUCTORS = [
 NO_CAROUSEL = set()
 HIDDEN = {"kamran-yaseen", "sensei-09"}   # sensei-09 = the white-blazer man, who is Shihan Raja (now shown on the Shihan card)
 # Order on the Instructors page and in the coaches strip (Shihan first). Anyone not listed follows, in list order.
-ORDER = ["shihan-raja", "sensei-13", "sensei-11", "sensei-15", "sensei-10", "sensei-17", "sensei-14"]
+# Real names (slug -> (title, name)). The title decides the order: Shihan first, then Sensei, then unnamed, white-gi last.
+NAMES = {
+ "sensei-11": ("Shihan", "Babar Suhail Bhatti"), "sensei-15": ("Shihan", "Dildar Hussain"),
+ "sensei-10": ("Shihan", "Shahid Naeem"), "sensei-17": ("Shihan", "Majid Mughal"),
+ "sensei-13": ("Sensei", "Kamran Yaseen"), "aneeb-butt": ("Sensei", "Aneeb Butt"), "toheed-shah": ("Sensei", "Toheed Shah"),
+ "sensei-03": ("Sensei", "Bilal Tipu"), "sensei-04": ("Sensei", "Ayaan"), "sensei-05": ("Sensei", "Ejaz"),
+ "sensei-12": ("Sensei", "Akram"),
+}
+for _c in INSTRUCTORS:
+    if _c["slug"] in NAMES:
+        _t, _n = NAMES[_c["slug"]]
+        _c.update(name=f"{_t} {_n}", short=f"{_t} {_n.split()[0]}", rank=_t, tag="Shihan" if _t == "Shihan" else "Instructor",
+                  role="Shihan · Senior Instructor" if _t == "Shihan" else "Instructor",
+                  card=f"{_t} {_n} is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym.",
+                  about=[f"{_t} {_n} is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym."])
+for _c in INSTRUCTORS:
+    if _c["slug"] in ("sensei-06", "sensei-07"):      # white-gi instructors: shown last, no name
+        _c.update(name="Instructor", short="Instructor", rank="Instructor")
+ORDER = ["shihan-raja", "sensei-11", "sensei-15", "sensei-10", "sensei-17",          # Shihans
+         "sensei-13", "aneeb-butt", "toheed-shah", "sensei-03", "sensei-04", "sensei-05", "sensei-12",   # named Senseis
+         "sensei-08", "sensei-14", "sensei-16",                                         # names to be added
+         "sensei-06", "sensei-07"]                                                      # white gi, no names yet, always last
 INSTRUCTORS = [c for c in INSTRUCTORS if c["slug"] not in HIDDEN]
 INSTRUCTORS.sort(key=lambda c: ORDER.index(c["slug"]) if c["slug"] in ORDER else len(ORDER))
 def prof_url(c): return f"instructor-{c['slug']}.html"
