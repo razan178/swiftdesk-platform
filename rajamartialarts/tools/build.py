@@ -571,11 +571,11 @@ HIDDEN = {"kamran-yaseen", "sensei-09"}   # sensei-09 = the white-blazer man, wh
 # Order on the Instructors page and in the coaches strip (Shihan first). Anyone not listed follows, in list order.
 # Real names (slug -> (title, name)). The title decides the order: Shihan first, then Sensei, then unnamed, white-gi last.
 NAMES = {
- "sensei-13": ("Shihan", "Dildar Hussain"), "sensei-15": ("Shihan", "Babar Suhail Bhatti"),
- "sensei-10": ("Shihan", "Shahid Naeem"), "sensei-17": ("Shihan", "Majid Mughal"),
+ "sensei-13": ("Shihan", "Muzammil"), "sensei-15": ("Shihan", "Dildar Hussain"),
+ "sensei-10": ("Shihan", "Shahid Naeem"), "sensei-17": ("Shihan", "Naeem"), "sensei-12": ("Shihan", "Majid Mughal"),
  "sensei-11": ("Sensei", "Kamran Yaseen"), "aneeb-butt": ("Sensei", "Aneeb Butt"), "toheed-shah": ("Sensei", "Toheed Shah"),
  "sensei-03": ("Sensei", "Bilal Tipu"), "sensei-04": ("Sensei", "Ayaan"), "sensei-05": ("Sensei", "Ejaz"),
- "sensei-12": ("Sensei", "Akram"),
+
 }
 for _c in INSTRUCTORS:
     if _c["slug"] in NAMES:
@@ -587,8 +587,8 @@ for _c in INSTRUCTORS:
 for _c in INSTRUCTORS:
     if _c["slug"] in ("sensei-06", "sensei-07"):      # white-gi instructors: shown last, no name
         _c.update(name="Instructor", short="Instructor", rank="Instructor")
-ORDER = ["shihan-raja", "sensei-13", "sensei-15", "sensei-10", "sensei-17",          # Shihans
-         "sensei-11", "aneeb-butt", "toheed-shah", "sensei-03", "sensei-04", "sensei-05", "sensei-12",   # named Senseis
+ORDER = ["shihan-raja", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-12",          # Shihans
+         "sensei-11", "aneeb-butt", "toheed-shah", "sensei-03", "sensei-04", "sensei-05",   # named Senseis
          "sensei-08", "sensei-14", "sensei-16",                                         # names to be added
          "sensei-06", "sensei-07"]                                                      # white gi, no names yet, always last
 INSTRUCTORS = [c for c in INSTRUCTORS if c["slug"] not in HIDDEN]
