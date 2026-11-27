@@ -574,8 +574,8 @@ NAMES = {
  "sensei-13": ("Shihan", "Muzammil"), "sensei-15": ("Shihan", "Babar Suhail"),
  "sensei-10": ("Shihan", "Dildar Hussain"), "sensei-17": ("Shihan", "Shahid Naeem"), "sensei-14": ("Shihan", "Majid Mughal"),
  "sensei-12": ("Sensei", "Akram"), "sensei-11": ("Sensei", "Muhammad Kamran Yaseen"), "aneeb-butt": ("Sensei", "Aneeb Butt"),
- "toheed-shah": ("Sensei", "Toheed Shah"), "sensei-03": ("Sensei", "Bilal Tipu"), "sensei-04": ("Sensei", "Ayaan"),
- "sensei-05": ("Sensei", "Ejaz"), "sensei-08": ("Sensei", "Raja Abdul Rahim"), "sensei-16": ("Sensei", "Tipu"),
+ "toheed-shah": ("Sensei", "Toheed Shah"), "sensei-03": ("Shihan", "Bilal Tipu"), "sensei-04": ("Sensei", "Ayaan"),
+ "sensei-05": ("Sensei", "Ejaz"), "sensei-08": ("Sensei", "Raja Abdul Rahim"), "sensei-16": ("Sensei", "Bilal"),
 }
 for _c in INSTRUCTORS:
     if _c["slug"] in NAMES:
@@ -587,8 +587,8 @@ for _c in INSTRUCTORS:
 for _c in INSTRUCTORS:
     if _c["slug"] in ("sensei-06", "sensei-07"):      # white-gi instructors: shown last, no name
         _c.update(name="Instructor", short="Instructor", rank="Instructor")
-ORDER = ["shihan-raja", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-14",      # Shihans
-         "sensei-12", "sensei-11", "aneeb-butt", "toheed-shah", "sensei-03", "sensei-04", "sensei-05",  # named Senseis
+ORDER = ["shihan-raja", "sensei-13", "sensei-15", "sensei-10", "sensei-17", "sensei-14", "sensei-03",      # Shihans
+         "sensei-12", "sensei-11", "aneeb-butt", "toheed-shah", "sensei-04", "sensei-05",  # named Senseis
          "sensei-08", "sensei-16",
          "sensei-06", "sensei-07"]                                                      # white gi, no names yet, always last
 INSTRUCTORS = [c for c in INSTRUCTORS if c["slug"] not in HIDDEN]
