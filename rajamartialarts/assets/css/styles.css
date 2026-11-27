@@ -926,3 +926,29 @@ a.other .ph > img{object-position:50% 12%}
 .hdr__cta.btn--sm{padding:11px 18px; font-size:12px}
 .hdr__pay + .hdr__cta{margin-left:-6px}
 @media(max-width:1260px){.logo__txt small{display:none}}
+
+/* Header v3: menu truly centred between logo and buttons, soft pill highlight */
+.logo{margin-right:0; flex:1 1 0; min-width:0}
+.menu{flex:none; justify-content:center; gap:clamp(4px,.6vw,10px)}
+.menu a{padding:10px clamp(9px,1vw,15px); border-radius:999px; transition:background .2s, color .2s}
+.menu a::after{display:none}
+.menu a:hover{background:rgba(224,30,38,.08)}
+.menu a[aria-current="page"]{background:rgba(224,30,38,.12)}
+.dark-top .menu a:hover{background:rgba(255,255,255,.10)}
+.dark-top .menu a[aria-current="page"]{background:rgba(224,30,38,.22)}
+.hdr__ctas{flex:1 1 0; display:flex; justify-content:flex-end; align-items:center; gap:10px}
+.hdr__pay + .hdr__cta, .hdr__ctas .hdr__cta{margin:0}
+.hdr__cta.btn--sm{transition:transform .2s, box-shadow .2s}
+.hdr__cta.btn--sm:hover{transform:translateY(-1px); box-shadow:0 6px 16px rgba(224,30,38,.35)}
+@media(max-width:1100px){.hdr__ctas{display:none} .logo{flex:1 1 auto}}
+/* v3 fixes: logo text never wraps; compact sizes so the menu stays centred */
+.logo__txt{white-space:nowrap}
+.logo__txt small{white-space:nowrap}
+@media(max-width:1500px){.logo__txt small{display:none}}
+.menu{gap:2px}
+.menu a{padding:10px clamp(7px,.85vw,13px); font-size:12px}
+.hdr__ctas{gap:8px}
+.hdr__cta.btn--sm{padding:10px 15px; font-size:11.5px}
+.hdr__in{gap:12px}
+.menu a{padding:10px clamp(6px,.6vw,11px); letter-spacing:.04em}
+.hdr__cta.btn--sm{padding:9px 13px}

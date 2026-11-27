@@ -91,7 +91,7 @@ def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
   <div class="wrap hdr__in">
     <a class="logo" href="index.html" aria-label="Raja's Martial Arts — home">{LOGO}</a>
     <nav class="menu" aria-label="Main">{links}</nav>
-    <a class="btn btn--red btn--sm hdr__cta hdr__pay" href="pay.html">Pay Fees</a><a class="btn btn--red btn--sm hdr__cta" href="index.html#trial">Book Free Trial</a>
+    <div class="hdr__ctas"><a class="btn btn--red btn--sm hdr__cta hdr__pay" href="pay.html">Pay Fees</a><a class="btn btn--red btn--sm hdr__cta" href="index.html#trial">Book Free Trial</a></div>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
   </div>
   <nav class="drawer" id="drawer" aria-label="Mobile" hidden>{links}<a class="btn btn--red btn--full" href="index.html#trial">Book Free Trial</a><a class="btn btn--red btn--full" href="pay.html">Pay Fees</a></nav>
