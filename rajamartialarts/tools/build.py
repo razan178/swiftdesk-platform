@@ -580,7 +580,7 @@ NAMES = {
 for _c in INSTRUCTORS:
     if _c["slug"] in NAMES:
         _t, _n = NAMES[_c["slug"]]
-        _c.update(name=f"{_t} {_n}", short=f"{_t} {_n.split()[0]}", rank=_t, tag="Shihan" if _t == "Shihan" else "Instructor",
+        _c.update(name=f"{_t} {_n}", short=f"{_t} {_n.split()[1] if _n.startswith("Muhammad ") else _n.split()[0]}", rank=_t, tag="Shihan" if _t == "Shihan" else "Instructor",
                   role="Shihan · Senior Instructor" if _t == "Shihan" else "Instructor",
                   card=f"{_t} {_n} is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym.",
                   about=[f"{_t} {_n} is a Kyokushin instructor at Raja's Martial Arts &amp; Fitness Gym."])
