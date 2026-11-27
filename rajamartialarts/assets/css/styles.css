@@ -952,3 +952,8 @@ a.other .ph > img{object-position:50% 12%}
 .hdr__in{gap:12px}
 .menu a{padding:10px clamp(6px,.6vw,11px); letter-spacing:.04em}
 .hdr__cta.btn--sm{padding:9px 13px}
+
+/* Instructor numbers (1, 2, 3 …) on cards and carousel tiles */
+.coach, .coach-card{position:relative}
+.coach__no{position:absolute; top:12px; left:12px; z-index:3; min-width:34px; height:34px; padding:0 8px; display:grid; place-items:center; border-radius:999px; background:var(--red); color:#fff; font:800 15px/1 var(--f-sans); box-shadow:0 2px 8px rgba(0,0,0,.25); pointer-events:none}
+.coach-card .coach__no{top:8px; left:8px; min-width:28px; height:28px; font-size:13px}

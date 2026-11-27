@@ -597,11 +597,11 @@ def prof_url(c): return f"instructor-{c['slug']}.html"
 
 def coach_card(c):
     size, pad = ("coach-lg", 20) if c["big"] else ("coach-sm", 16)
-    return f'''<a class="card coach {size} rv" style="padding:{pad}px" href="{prof_url(c)}" aria-label="{c['name']} — view profile">{ph(c['img'],"",c['name'])}
+    return f'''<a class="card coach {size} rv" style="padding:{pad}px" href="{prof_url(c)}" aria-label="{c['name']} — view profile"><span class="coach__no" aria-label="Number {INSTRUCTORS.index(c)+1}">{INSTRUCTORS.index(c)+1}</span>{ph(c['img'],"",c['name'])}
 <div><span class="coach__role">{c['role']}</span><h3 class="coach__name">{c['name']}</h3><p class="coach__loc">{svg("pin")}{c['loc']}</p><p class="coach__bio">{c['card']}</p>
 <ul class="ticks">{"".join(f"<li>{p}</li>" for p in c['pts'])}</ul>{"<p class=\"quote-hand\">“" + c["quote"] + "”</p>" if c["quote"] else ""}<span class="link coach__more">View profile</span></div></a>'''
 def coach_tile(c):
-    return f'''<a class="coach-card" href="{prof_url(c)}" aria-label="{c['short']}, {c['tag']} — view profile">{ph(c['coach_img'],"ph--dark",c['short'])}<p class="coach-card__name">{c['short']}<small>{c['tag']}</small></p></a>'''
+    return f'''<a class="coach-card" href="{prof_url(c)}" aria-label="{c['short']}, {c['tag']} — view profile"><span class="coach__no" aria-label="Number {INSTRUCTORS.index(c)+1}">{INSTRUCTORS.index(c)+1}</span>{ph(c['coach_img'],"ph--dark",c['short'])}<p class="coach-card__name">{c['short']}<small>{c['tag']}</small></p></a>'''
 
 def profile(c):
     others = "".join(f'''<a class="card other" href="{prof_url(o)}">{ph(o['img'],"",o['name'])}<div><span class="coach__role">{o['role']}</span><b>{o['short']}</b></div></a>''' for o in (INSTRUCTORS[INSTRUCTORS.index(c)+1:] + INSTRUCTORS[:INSTRUCTORS.index(c)])[:4])
