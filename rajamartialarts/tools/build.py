@@ -573,7 +573,7 @@ HIDDEN = {"kamran-yaseen", "sensei-09"}   # sensei-09 = the white-blazer man, wh
 NAMES = {
  "sensei-13": ("Shihan", "Muzammil"), "sensei-15": ("Shihan", "Dildar Hussain"),
  "sensei-10": ("Shihan", "Shahid Naeem"), "sensei-17": ("Shihan", "Naeem"), "sensei-12": ("Shihan", "Majid Mughal"),
- "sensei-11": ("Sensei", "Kamran Yaseen"), "aneeb-butt": ("Sensei", "Aneeb Butt"), "toheed-shah": ("Sensei", "Toheed Shah"),
+ "sensei-11": ("Sensei", "Muhammad Kamran Yaseen"), "aneeb-butt": ("Sensei", "Aneeb Butt"), "toheed-shah": ("Sensei", "Toheed Shah"),
  "sensei-03": ("Sensei", "Bilal Tipu"), "sensei-04": ("Sensei", "Ayaan"), "sensei-05": ("Sensei", "Ejaz"),
 
 }
