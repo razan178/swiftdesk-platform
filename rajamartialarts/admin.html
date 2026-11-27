@@ -131,6 +131,7 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
       <button class="tab" role="tab" data-tab="leads" aria-selected="false">Trial leads<span class="badge b-new" id="nb-new" hidden></span></button>
       <button class="tab" role="tab" data-tab="students" aria-selected="false">Students</button>
       <button class="tab" role="tab" data-tab="fees" aria-selected="false">Fees</button>
+      <button class="tab" role="tab" data-tab="payments" aria-selected="false">Payments<span class="badge b-new" id="nb-pay" hidden></span></button>
     </nav>
     <span class="who" id="who"></span>
     <button class="btn btn--sm btn--ghost" id="b-refresh" title="Refresh data">↻ Refresh</button>
@@ -174,6 +175,9 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
     </section>
 
     <!-- FEES -->
+    <!-- PAYMENTS (built by assets/js/admin-payments.js) -->
+    <section data-view="payments" hidden></section>
+
     <section data-view="fees" hidden>
       <div class="head"><h2>Monthly <span>fees</span></h2>
         <div class="tools">
@@ -301,6 +305,7 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
     return;
   }
   var sb = window.supabase.createClient(C.supabaseUrl, C.supabaseKey, { auth: { persistSession: true, autoRefreshToken: true } });
+  window.RMA_SB = sb;
 
   /* ---------- constants ---------- */
   var LEAD_STATUS = [["new","New"],["contacted","Contacted"],["trial_booked","Trial booked"],["joined","Joined"],["not_interested","Not interested"]];
@@ -755,5 +760,6 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
   });
 })();
 </script>
+<script src="assets/js/admin-payments.js"></script>
 </body>
 </html>

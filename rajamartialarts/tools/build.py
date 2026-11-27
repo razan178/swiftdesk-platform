@@ -58,6 +58,7 @@ HEADJS = '<script>try{if(sessionStorage.getItem("rma-nav")&&!matchMedia("(prefer
 LOGO = '<span class="logo__img"><img src="assets/img/logo.png" alt=""></span><span class="logo__txt"><b>Raja\'s</b><small>Martial Arts &amp; Fitness Gym</small></span>'
 
 def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
+    PAYJS = '<script src="assets/js/pay.js" defer></script>' if fname in ('pay.html', 'pay-result.html') else ''
     cur = cur or fname
     AC = ' aria-current="page"'
     links = "".join(f'<a href="{h}"{AC if h==cur else ""}>{t}</a>' for h,t in NAV)
@@ -106,7 +107,7 @@ def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
       <div class="social">{soc}</div>
       <div class="social-more" id="social-more" hidden></div>
     </div>
-    <div><h4>Explore</h4><ul><li><a href="biography.html">About Shihan</a></li><li><a href="instructors.html">Instructors</a></li><li><a href="courses.html">Courses &amp; Fees</a></li><li><a href="syllabus.html">Syllabus</a></li></ul></div>
+    <div><h4>Explore</h4><ul><li><a href="biography.html">About Shihan</a></li><li><a href="instructors.html">Instructors</a></li><li><a href="courses.html">Courses &amp; Fees</a></li><li><a href="syllabus.html">Syllabus</a></li><li data-pay-link hidden><a href="pay.html">Pay Fees Online</a></li></ul></div>
     <div><h4>Learn</h4><ul><li><a href="belt-test.html">Belt Test</a></li><li><a href="terminology.html">Terminology</a></li><li><a href="index.html#schedule">Class Schedule</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
     <div><h4>Visit</h4><ul class="contact-list">
       <li>{svg("pin")}<span data-bind="address">Address coming soon</span></li>
@@ -121,6 +122,7 @@ def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/animations.js" defer></script>
+{PAYJS}
 </body>
 </html>
 '''
@@ -787,6 +789,7 @@ courses = f'''
       <div class="fee-extra">{ic("cal")}<div><b>Admission fee</b><span>One-time, on joining</span></div><strong>PKR 5,000</strong></div>
       <div class="fee-extra">{ic("user")}<div><b>Gi (dojo uniform)</b><span>Charged separately</span></div><strong>PKR 5,000</strong></div>
     </div>
+    <div class="pay-strip" data-pay-link hidden><div><b>Pay your fees online</b><span>Choose a payment method on the next page.</span></div><a class="btn btn--red" href="pay.html">Pay online</a></div>
   </div>
 </section>
 
@@ -947,6 +950,26 @@ term = f'''
 </section>
 '''
 
+# =====================================================================  PAYMENTS
+SB_JS = '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>'
+pay = f'''
+<section class="pay-hero"><div class="wrap">
+  <p class="eyebrow">Pay online</p>
+  <h1>Pay your <span class="red">fees</span></h1>
+  <p class="lede">Choose what you are paying for and how. Every payment is confirmed by our server with the payment provider or our bank before it counts.</p>
+</div></section>
+<div class="paywrap"><div class="paycard" id="pay-app"><p class="pay-load">Loading…</p></div>
+<noscript><p class="pay-fine">Please turn on JavaScript to pay online, or message us on WhatsApp.</p></noscript></div>
+{SB_JS}
+'''
+pay_result = f'''
+<section class="pay-hero"><div class="wrap">
+  <p class="eyebrow">Payment status</p>
+  <h1>Your <span class="red">payment</span></h1>
+</div></section>
+<div class="paywrap"><div class="paycard" id="pay-result"><p class="pay-load">Checking…</p></div></div>
+'''
+
 PAGES = [
  ("index.html","Raja's Martial Arts — More Than Just a Martial Art | Kyokushin Karate","Kyokushin Karate, self defense and fitness under Shihan Raja Khalid Mehmood Janjua. Book a free trial class.",home,False),
  ("biography.html","Shihan Raja Khalid Mehmood Janjua — Biography | Raja's Martial Arts","The story of Shihan Raja Khalid Mehmood Janjua, founder of Raja's Martial Arts — a life built on Kyokushin discipline.",bio,True),
@@ -954,6 +977,8 @@ PAGES = [
  ("courses.html","Courses & Fees — Kyokushin, Self Defense, Weight Loss | Raja's Martial Arts","Kyokushin Karate, self defense, weight loss and mental health courses, PKR 8,000 a month, PKR 7,000 for families, personal training PKR 25,000. Bahria Town Civic Center, Islamabad.",courses,True),
  ("syllabus.html","Syllabus — Your Journey, Our Syllabus | Raja's Martial Arts","Module-by-module syllabus for every course at Raja's Martial Arts.",syllabus,False),
  ("belt-test.html","Belt Test — From White Belt to Black Belt | Raja's Martial Arts","Kyokushin belt ranks, grading requirements and timings at Raja's Martial Arts.",belt,False),
+ ("pay.html","Pay Your Fees | Raja's Martial Arts","Pay Raja's Martial Arts fees online by Easypaisa, JazzCash or bank transfer.",pay,False),
+ ("pay-result.html","Payment Status | Raja's Martial Arts","Check the status of your payment.",pay_result,False),
  ("terminology.html","Kyokushin Techniques & Terminology | Raja's Martial Arts","Japanese names and meanings of Kyokushin stances, blocks, strikes, kicks, kata and combinations.",term,True),
 ]
 for f, t, d, b, dark in PAGES:

@@ -50,6 +50,24 @@
     var url = C[a.getAttribute("data-social")];
     if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; } else { a.hidden = true; }
   });
+  /* "Pay fees online" links stay hidden until the server says at least one payment method is really available */
+  var payLinks = $$("[data-pay-link]");
+  if (payLinks.length && C.supabaseUrl && window.fetch) {
+    var showPay = function () { payLinks.forEach(function (el) { el.hidden = false; }); };
+    var cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem("rma-pay-ok") || "null"); } catch (e) {}
+    if (cached && Date.now() - cached.t < 600000) { if (cached.ok) showPay(); }
+    else {
+      fetch(C.supabaseUrl.replace(/\/$/, "") + "/functions/v1/pay/api", {
+        method: "POST", headers: { "Content-Type": "application/json", apikey: C.supabaseKey || "" }, body: JSON.stringify({ action: "config" })
+      }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+        var ok = !!(j && j.methods && (j.methods.bank_transfer || j.methods.jazzcash || j.methods.easypaisa));
+        try { sessionStorage.setItem("rma-pay-ok", JSON.stringify({ ok: ok, t: Date.now() })); } catch (e) {}
+        if (ok) showPay();
+      }).catch(function () {});
+    }
+  }
+
   /* extra Instagram pages (config.js → instagramMore) */
   var more = $("#social-more");
   if (more && C.instagramMore && C.instagramMore.length) {
