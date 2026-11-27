@@ -906,3 +906,23 @@ a.other .ph > img{object-position:50% 12%}
 .hdr__pay{margin-right:8px}
 .fee__pay{display:block;margin-top:12px;text-align:center;font-weight:600;font-size:14px;color:var(--red);text-decoration:none}
 .fee__pay:hover{text-decoration:underline}
+
+/* Header polish: roomier menu, animated underline, tidy button pair, soft shadow on scroll */
+.hdr{box-shadow:0 0 0 rgba(0,0,0,0); transition:box-shadow .25s, background .2s, border-color .2s}
+.hdr.is-scrolled{box-shadow:0 6px 24px rgba(0,0,0,.07)}
+.hdr__in{gap:clamp(18px,2.2vw,34px)}
+.menu{gap:clamp(16px,2.1vw,34px)}
+.menu a{font-size:13px; letter-spacing:.07em; text-transform:uppercase; font-family:var(--f-sans); font-weight:600; padding:10px 0}
+.menu a::after{content:""; position:absolute; left:0; right:0; bottom:3px; height:2px; background:var(--red); transform:scaleX(0); transform-origin:left; transition:transform .25s ease}
+.menu a:hover::after, .menu a[aria-current="page"]::after{transform:scaleX(1)}
+.hdr__pay{margin-right:0}
+.hdr__cta.btn--sm{padding:12px 22px; font-size:13px; border-radius:999px; white-space:nowrap}
+.hdr__pay + .hdr__cta{margin-left:-10px}
+.drawer .btn + .btn{margin-top:10px}
+/* fit check: keep the whole header inside the page width */
+.menu{gap:clamp(12px,1.35vw,24px)}
+.menu a{font-size:12px; letter-spacing:.05em}
+.hdr__in{gap:clamp(14px,1.6vw,26px)}
+.hdr__cta.btn--sm{padding:11px 18px; font-size:12px}
+.hdr__pay + .hdr__cta{margin-left:-6px}
+@media(max-width:1260px){.logo__txt small{display:none}}
