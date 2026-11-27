@@ -50,6 +50,18 @@
     var url = C[a.getAttribute("data-social")];
     if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; } else { a.hidden = true; }
   });
+  /* extra Instagram pages (config.js → instagramMore) */
+  var more = $("#social-more");
+  if (more && C.instagramMore && C.instagramMore.length) {
+    var h = document.createElement("span"); h.textContent = "More pages"; more.appendChild(h);
+    C.instagramMore.forEach(function (m) {
+      if (!m || !m.url) return;
+      var a = document.createElement("a");
+      a.href = m.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = m.label || m.url;
+      more.appendChild(a);
+    });
+    more.hidden = false;
+  }
 
   /* photo placeholders: if the named file is missing, the labelled placeholder stays */
   $$(".ph > img, .logo__img > img").forEach(function (img) {

@@ -811,3 +811,10 @@ a.other .ph > img{object-position:50% 12%}
 .page-belt-test .belt-aside .crit .ico svg{stroke:#fff}
 .page-belt-test .belt-aside .quote-hand{color:#fff}
 .page-belt-test .belt-aside .kanji{color:rgba(255,255,255,.2)}
+
+/* extra Instagram pages in the footer */
+.social-more{display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; margin-top:16px; font-size:13px}
+.social-more[hidden]{display:none}
+.social-more span{font-family:var(--f-sans); text-transform:uppercase; letter-spacing:.16em; font-size:11px; color:#8a8a92; width:100%}
+.social-more a{color:var(--night-text); text-decoration:none; border-bottom:1px solid var(--night-line)}
+.social-more a:hover{color:#fff; border-color:var(--red)}

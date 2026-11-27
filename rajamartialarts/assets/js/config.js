@@ -25,9 +25,15 @@ window.RAJA = {
   lng: null,
 
   // Social links — leave "" to hide the icon
-  instagram: "",
-  facebook: "",
-  youtube: "",
+  instagram: "https://www.instagram.com/rajas.martialarts/",
+  facebook: "https://www.facebook.com/rajasmartialarts",
+  youtube: "https://www.youtube.com/@RajasMartialarts",
+  // Other Instagram pages, shown as a small "More pages" list in the footer
+  instagramMore: [
+    { label: "@_girlkyokushin", url: "https://www.instagram.com/_girlkyokushin/" },
+    { label: "@wolvespack.dojo", url: "https://www.instagram.com/wolvespack.dojo/" },
+    { label: "@kyokushin_family007", url: "https://www.instagram.com/kyokushin_family007/" }
+  ],
 
   // Backend (Supabase project "rajas-martial-arts"). The publishable key is safe to
   // ship in the browser: database rules only let visitors ADD a trial booking —

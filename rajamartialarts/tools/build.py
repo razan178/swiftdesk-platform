@@ -104,6 +104,7 @@ def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
       <a class="logo" href="index.html">{LOGO}</a>
       <p class="ftr__about">I.K.O So-Kyokushin karate and fitness under Shihan Raja Khalid Mehmood Janjua. Fight · Discipline · Fitness.</p>
       <div class="social">{soc}</div>
+      <div class="social-more" id="social-more" hidden></div>
     </div>
     <div><h4>Explore</h4><ul><li><a href="biography.html">About Shihan</a></li><li><a href="instructors.html">Instructors</a></li><li><a href="courses.html">Courses &amp; Fees</a></li><li><a href="syllabus.html">Syllabus</a></li></ul></div>
     <div><h4>Learn</h4><ul><li><a href="belt-test.html">Belt Test</a></li><li><a href="terminology.html">Terminology</a></li><li><a href="index.html#schedule">Class Schedule</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
