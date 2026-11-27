@@ -8,7 +8,7 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var qs = new URLSearchParams(location.search);
 
-  var KIND = { monthly: "Monthly fee", admission: "Admission fee (one-time)", gi: "Gi (dojo uniform)", personal: "Personal training (1-on-1)" };
+  var KIND = { monthly: "Monthly fee", family: "Family monthly fee (per member)", admission: "Admission fee (one-time)", gi: "Gi (dojo uniform)", personal: "Personal training (1-on-1)" };
   var METHOD = {
     easypaisa: { name: "Easypaisa", note: "Pay with your Easypaisa account or card" },
     jazzcash: { name: "JazzCash", note: "Pay with your JazzCash account or card" },
@@ -75,10 +75,10 @@
         kinds = '<div class="pay-summary"><span>Paying for</span><b>' + esc(KIND[link.kind]) + (link.period ? " — " + esc(monthLabel(link.period)) : "") + "</b>" +
           "<strong>" + pkr(link.amount) + "</strong>" + (link.first_name ? "<small>For " + esc(link.first_name) + "</small>" : "") + (link.note ? "<small>" + esc(link.note) + "</small>" : "") + "</div>";
       } else {
-        kinds = '<fieldset class="pay-kinds"><legend>What are you paying for?</legend>' + ["monthly", "admission", "gi", "personal"].map(function (k, i) {
+        kinds = '<fieldset class="pay-kinds"><legend>What are you paying for?</legend>' + ["monthly", "family", "admission", "gi", "personal"].map(function (k, i) {
           var price = cfg.prices && cfg.prices[k];
           if (!price) return "";
-          return '<label class="pay-opt"><input type="radio" name="kind" value="' + k + '"' + (i === 0 ? " checked" : "") + '><span><b>' + esc(KIND[k]) + "</b><em>" + pkr(price) + "</em></span></label>";
+          return '<label class="pay-opt"><input type="radio" name="kind" value="' + k + '"' + ((qs.get("kind") ? k === qs.get("kind") : i === 0) ? " checked" : "") + '><span><b>' + esc(KIND[k]) + "</b><em>" + pkr(price) + "</em></span></label>";
         }).join("") + '</fieldset><div class="field" id="month-field"><label for="pay-month">For which month?</label><select id="pay-month">' + monthOptions() + "</select></div>";
       }
       var methods = ["easypaisa", "jazzcash", "bank_transfer"].map(function (m) {
@@ -98,7 +98,7 @@
         '<button class="btn btn--red btn--full" type="submit" id="pay-go">Continue</button>' +
         '<p class="pay-fine">Payments are confirmed by our server with the payment provider or our bank. A screenshot alone never confirms a payment.</p></form>';
       var mf = $("#month-field");
-      var sync = function () { if (mf) { var k = ($('input[name="kind"]:checked') || {}).value; mf.hidden = k !== "monthly"; } };
+      var sync = function () { if (mf) { var k = ($('input[name="kind"]:checked') || {}).value; mf.hidden = k !== "monthly" && k !== "family"; } };
       $$('input[name="kind"]').forEach(function (r) { r.addEventListener("change", sync); }); sync();
       $("#pay-form").addEventListener("submit", submitForm);
     };
@@ -113,7 +113,7 @@
       if (!/^[0-9+()\-\s]{7,30}$/.test(phone)) return showErr("Enter a valid phone number, for example 0300 1234567.");
       busy(btn, true, "Continue");
       var body = { method: method, name: name, phone: phone };
-      if (link) body.link = qs.get("link"); else { body.kind = kind; if (kind === "monthly") body.month = $("#pay-month").value; }
+      if (link) body.link = qs.get("link"); else { body.kind = kind; if (kind === "monthly" || kind === "family") body.month = $("#pay-month").value; }
       api("start", body).then(function (r) {
         if (r.checkout) goGateway(r.checkout); else renderBank(r);
       }).catch(function (err) { showErr(err.message); busy(btn, false, "Continue"); });

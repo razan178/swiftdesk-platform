@@ -90,7 +90,7 @@ async function actStart(req: Request, b: Record<string, unknown>) {
     if (!KINDS.includes(kind)) throw new HttpError(400, "Choose what you are paying for");
     amount = Number(s.prices?.[kind]);                // the price list on the server, never a number from the browser
     if (!Number.isInteger(amount) || amount <= 0) throw new HttpError(400, "No price is set for this item yet");
-    if (kind === "monthly") { period = monthToPeriod(b.month); if (!period) throw new HttpError(400, "Choose the month you are paying for"); }
+    if (kind === "monthly" || kind === "family") { period = monthToPeriod(b.month); if (!period) throw new HttpError(400, "Choose the month you are paying for"); }
   }
   if (!name) throw new HttpError(400, "Enter the student's full name");
   if (!phone) throw new HttpError(400, "Enter a valid phone number");

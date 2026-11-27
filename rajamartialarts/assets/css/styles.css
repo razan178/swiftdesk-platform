@@ -901,3 +901,8 @@ a.other .ph > img{object-position:50% 12%}
 .pay-strip{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; margin-top:clamp(16px,2vw,24px); border:1.5px dashed #C9C5BB; border-radius:var(--r); padding:18px 22px; background:#fff}
 .pay-strip b{font-family:var(--f-sans); font-style:italic; text-transform:uppercase; font-size:20px; color:var(--ink)}
 .pay-strip span{display:block; font-size:14px; color:var(--muted)}
+
+/* Pay Fees: header button sits beside Book Free Trial; links under each fee card */
+.hdr__pay{margin-right:8px}
+.fee__pay{display:block;margin-top:12px;text-align:center;font-weight:600;font-size:14px;color:var(--red);text-decoration:none}
+.fee__pay:hover{text-decoration:underline}

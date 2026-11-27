@@ -1,6 +1,6 @@
 // Shared helpers for the payment function. Pure code: no network, no database (so it can be unit-tested).
 
-export const KINDS = ["monthly", "admission", "gi", "personal"] as const;
+export const KINDS = ["monthly", "family", "admission", "gi", "personal"] as const;
 export type Kind = typeof KINDS[number];
 export const METHODS = ["bank_transfer", "jazzcash", "easypaisa"] as const;
 export type Method = typeof METHODS[number];

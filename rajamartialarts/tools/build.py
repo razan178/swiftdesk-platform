@@ -91,10 +91,10 @@ def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
   <div class="wrap hdr__in">
     <a class="logo" href="index.html" aria-label="Raja's Martial Arts — home">{LOGO}</a>
     <nav class="menu" aria-label="Main">{links}</nav>
-    <a class="btn btn--red btn--sm hdr__cta" href="index.html#trial">Book Free Trial</a>
+    <a class="btn btn--red btn--sm hdr__cta hdr__pay" href="pay.html">Pay Fees</a><a class="btn btn--red btn--sm hdr__cta" href="index.html#trial">Book Free Trial</a>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
   </div>
-  <nav class="drawer" id="drawer" aria-label="Mobile" hidden>{links}<a class="btn btn--red btn--full" href="index.html#trial">Book Free Trial</a></nav>
+  <nav class="drawer" id="drawer" aria-label="Mobile" hidden>{links}<a class="btn btn--red btn--full" href="index.html#trial">Book Free Trial</a><a class="btn btn--red btn--full" href="pay.html">Pay Fees</a></nav>
 </header>
 <main id="main">
 {body}
@@ -107,7 +107,7 @@ def page(fname, title, desc, body, dark_top=False, cls=None, cur=None):
       <div class="social">{soc}</div>
       <div class="social-more" id="social-more" hidden></div>
     </div>
-    <div><h4>Explore</h4><ul><li><a href="biography.html">About Shihan</a></li><li><a href="instructors.html">Instructors</a></li><li><a href="courses.html">Courses &amp; Fees</a></li><li><a href="syllabus.html">Syllabus</a></li><li data-pay-link hidden><a href="pay.html">Pay Fees Online</a></li></ul></div>
+    <div><h4>Explore</h4><ul><li><a href="biography.html">About Shihan</a></li><li><a href="instructors.html">Instructors</a></li><li><a href="courses.html">Courses &amp; Fees</a></li><li><a href="syllabus.html">Syllabus</a></li><li><a href="pay.html">Pay Fees Online</a></li></ul></div>
     <div><h4>Learn</h4><ul><li><a href="belt-test.html">Belt Test</a></li><li><a href="terminology.html">Terminology</a></li><li><a href="index.html#schedule">Class Schedule</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
     <div><h4>Visit</h4><ul class="contact-list">
       <li>{svg("pin")}<span data-bind="address">Address coming soon</span></li>
@@ -777,19 +777,19 @@ courses = f'''
     <div class="fees">
       <article class="card fee fee--hot rv"><p class="fee__days">Monthly <small>/ per student</small></p><p class="fee__price">PKR 8,000 <small>/ month</small></p>
         <ul class="ticks"><li>Kyokushin Karate classes</li><li>Fitness &amp; conditioning</li><li>Belt test eligibility</li><li>Sparring sessions</li></ul>
-        <a class="btn btn--red btn--full" data-wa="Assalam o Alaikum! I'd like to join — monthly membership (PKR 8,000)." href="#">Join now</a></article>
+        <a class="btn btn--red btn--full" data-wa="Assalam o Alaikum! I'd like to join — monthly membership (PKR 8,000)." href="#">Join now</a><a class="fee__pay" href="pay.html?kind=monthly">Pay monthly fee online &rarr;</a></article>
       <article class="card fee rv"><p class="fee__days">Family <small>/ per member</small></p><p class="fee__price">PKR 7,000 <small>/ month</small></p>
         <ul class="ticks"><li>For 2 or more family members</li><li>Same classes as monthly</li><li>Kids, parents &amp; siblings</li><li>Save PKR 1,000 per person</li></ul>
-        <a class="btn btn--line btn--full" data-wa="Assalam o Alaikum! We'd like to join as a family (PKR 7,000 per member)." href="#">Join as a family</a></article>
+        <a class="btn btn--line btn--full" data-wa="Assalam o Alaikum! We'd like to join as a family (PKR 7,000 per member)." href="#">Join as a family</a><a class="fee__pay" href="pay.html?kind=family">Pay family fee online &rarr;</a></article>
       <article class="card fee rv"><p class="fee__days">Personal <small>/ 1-on-1 training</small></p><p class="fee__price">PKR 25,000 <small>/ month</small></p>
         <ul class="ticks"><li>Kyokushin &amp; kickboxing</li><li>Self defense</li><li>Weight loss &amp; fitness</li><li>Mental health &amp; focus</li></ul>
-        <a class="btn btn--line btn--full" data-wa="Assalam o Alaikum! I'm interested in personal training (PKR 25,000)." href="#">Book personal training</a></article>
+        <a class="btn btn--line btn--full" data-wa="Assalam o Alaikum! I'm interested in personal training (PKR 25,000)." href="#">Book personal training</a><a class="fee__pay" href="pay.html?kind=personal">Pay personal training online &rarr;</a></article>
     </div>
     <div class="fee-extras rv">
       <div class="fee-extra">{ic("cal")}<div><b>Admission fee</b><span>One-time, on joining</span></div><strong>PKR 5,000</strong></div>
       <div class="fee-extra">{ic("user")}<div><b>Gi (dojo uniform)</b><span>Charged separately</span></div><strong>PKR 5,000</strong></div>
     </div>
-    <div class="pay-strip" data-pay-link hidden><div><b>Pay your fees online</b><span>Choose a payment method on the next page.</span></div><a class="btn btn--red" href="pay.html">Pay online</a></div>
+    <div class="pay-strip"><div><b>Pay your fees online</b><span>Choose a payment method on the next page.</span></div><a class="btn btn--red" href="pay.html">Pay online</a></div>
   </div>
 </section>
 

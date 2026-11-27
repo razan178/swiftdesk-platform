@@ -14,7 +14,7 @@
   var pkr = function (n) { return "PKR " + Number(n || 0).toLocaleString("en-PK"); };
   var when = function (s) { var d = new Date(s); return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }) + ", " + d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); };
   var monthName = function (p) { if (!p) return ""; return new Date(p + "T00:00:00").toLocaleDateString("en-GB", { month: "short", year: "numeric" }); };
-  var KIND = { monthly: "Monthly fee", admission: "Admission", gi: "Gi", personal: "Personal training" };
+  var KIND = { monthly: "Monthly fee", family: "Family fee", admission: "Admission", gi: "Gi", personal: "Personal training" };
   var METHOD = { easypaisa: "Easypaisa", jazzcash: "JazzCash", bank_transfer: "Bank transfer" };
   var API = String(C.supabaseUrl || "").replace(/\/$/, "") + "/functions/v1/pay/api";
 
@@ -117,7 +117,7 @@
       '<div class="row"><div class="field"><label>IBAN</label><input name="iban" maxlength="40" value="' + esc(cfg.iban) + '"></div><div class="field"><label>Account number</label><input name="account_number" maxlength="40" value="' + esc(cfg.account_number) + '"></div></div>' +
       '<div class="field"><label>Branch (optional)</label><input name="branch" maxlength="120" value="' + esc(cfg.branch) + '"></div>' +
       '<div class="field"><label>Instructions shown to payers (optional)</label><textarea name="instructions" rows="2" maxlength="600">' + esc(cfg.instructions) + "</textarea></div>" +
-      '<div class="row">' + ["monthly", "admission", "gi", "personal"].map(function (k) { return '<div class="field"><label>' + KIND[k] + ' (PKR)</label><input name="p_' + k + '" type="number" min="1" max="500000" step="1" value="' + esc((cfg.prices || {})[k]) + '"></div>'; }).join("") + "</div>" +
+      '<div class="row">' + ["monthly", "family", "admission", "gi", "personal"].map(function (k) { return '<div class="field"><label>' + KIND[k] + ' (PKR)</label><input name="p_' + k + '" type="number" min="1" max="500000" step="1" value="' + esc((cfg.prices || {})[k]) + '"></div>'; }).join("") + "</div>" +
       '<button class="btn btn--red" type="submit">Save</button><p class="hint">These are what customers see and pay. Customers cannot change an amount.</p></form></div></div></div>';
 
     var lk = $("#lk-form"); if (lk) { setAmount(lk); lk.student_id.addEventListener("change", function () { setAmount(lk); }); lk.kind.addEventListener("change", function () { setAmount(lk); }); }
@@ -125,7 +125,7 @@
   function setAmount(f) {
     var k = f.kind.value, s = S.students.filter(function (x) { return x.id === f.student_id.value; })[0];
     f.amount.value = k === "monthly" && s ? s.monthly_fee : ((S.settings && S.settings.prices) || {})[k] || "";
-    f.month.parentElement.style.opacity = k === "monthly" ? 1 : .4;
+    f.month.parentElement.style.opacity = (k === "monthly" || k === "family") ? 1 : .4;
   }
 
   /* ---------- dialogs ---------- */
@@ -211,8 +211,8 @@
   root.addEventListener("submit", function (e) {
     if (e.target.id === "lk-form") {
       e.preventDefault(); var f = e.target, k = f.kind.value;
-      if (k === "monthly" && !f.month.value) return toast("Choose the month", true);
-      var row = { student_id: f.student_id.value, kind: k, period: k === "monthly" ? f.month.value + "-01" : null, amount: +f.amount.value, note: f.note.value.trim() || null };
+      if ((k === "monthly" || k === "family") && !f.month.value) return toast("Choose the month", true);
+      var row = { student_id: f.student_id.value, kind: k, period: (k === "monthly" || k === "family") ? f.month.value + "-01" : null, amount: +f.amount.value, note: f.note.value.trim() || null };
       sb.auth.getSession().then(function (r) {
         row.created_by = r.data && r.data.session ? r.data.session.user.email : null;
         return q(sb.from("payment_links").insert(row).select("*").single());
@@ -228,7 +228,7 @@
     }
     if (e.target.id === "st-form") {
       e.preventDefault(); var g = e.target, prices = {}, ok = true;
-      ["monthly", "admission", "gi", "personal"].forEach(function (k) { var v = parseInt(g["p_" + k].value, 10); if (!(v > 0 && v <= 500000)) ok = false; prices[k] = v; });
+      ["monthly", "family", "admission", "gi", "personal"].forEach(function (k) { var v = parseInt(g["p_" + k].value, 10); if (!(v > 0 && v <= 500000)) ok = false; prices[k] = v; });
       if (!ok) return toast("Enter a price for every item", true);
       var upd = { bank_name: g.bank_name.value.trim() || null, account_title: g.account_title.value.trim() || null, iban: g.iban.value.trim() || null, account_number: g.account_number.value.trim() || null,
         branch: g.branch.value.trim() || null, instructions: g.instructions.value.trim() || null, prices: prices, updated_at: new Date().toISOString() };
