@@ -675,9 +675,8 @@ instr = f'''
       </div>
     </div>
     <div class="hero__art">
-      {ph("instructor-hero.png","ph--cut","Instructor from behind, 極真会 on his gi")}
+      <figure class="instr-photo"><img src="assets/img/instructors-hero.jpg" width="1266" height="1166" alt="Shihan Raja with a guest at a dinner" fetchpriority="high"></figure>
       <div class="kanji" aria-hidden="true">極真会</div>
-      <p class="quote-hand">Great teachers don't give answers, they build stronger people.</p>
     </div>
   </div>
 </section>
