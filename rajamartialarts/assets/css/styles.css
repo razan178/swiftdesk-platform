@@ -974,3 +974,5 @@ a.other .ph > img{object-position:50% 12%}
 .courses-photo img{aspect-ratio:429/726}
 .courses-hero .hero__art .kanji{display:none}
 @media(max-width:900px){.courses-photo{width:min(78%,300px)}}
+
+.instr-photo:not(.courses-photo) img{aspect-ratio:1278/1202}
