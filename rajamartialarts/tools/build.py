@@ -738,7 +738,7 @@ courses = f'''
       <div style="display:flex; gap:12px; flex-wrap:wrap"><a class="btn btn--red" href="#fees">View fees {ARROW}</a><a class="btn btn--line" href="index.html#trial">Free trial</a></div>
     </div>
     <div class="hero__art">
-      <figure class="instr-photo courses-photo"><img src="assets/img/courses-hero.jpg" width="858" height="1452" alt="Shihan Raja with Pakistani boxer Mr. Amir Khan" fetchpriority="high"><figcaption class="instr-note">A memorable moment with Pakistan's famous boxer Mr. Amir Khan</figcaption></figure>
+      <figure class="instr-photo courses-photo"><img src="assets/img/courses-hero.jpg" width="782" height="812" alt="Shihan Raja with Pakistani boxer Mr. Amir Khan" fetchpriority="high"><figcaption class="instr-note">A memorable moment with Pakistan's famous boxer Mr. Amir Khan</figcaption></figure>
     </div>
   </div>
 </section>

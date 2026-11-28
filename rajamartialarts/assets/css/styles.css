@@ -976,3 +976,7 @@ a.other .ph > img{object-position:50% 12%}
 @media(max-width:900px){.courses-photo{width:min(78%,300px)}}
 
 .instr-photo:not(.courses-photo) img{aspect-ratio:1278/1202}
+
+.courses-photo{width:min(100%,460px)}
+.courses-photo img{aspect-ratio:782/812}
+@media(max-width:900px){.courses-photo{width:min(88%,400px)}}
