@@ -959,7 +959,7 @@ a.other .ph > img{object-position:50% 12%}
 .coach-card .coach__no{top:8px; left:8px; min-width:28px; height:28px; font-size:13px}
 
 /* Instructors hero photo: framed, never stretched */
-.instr-photo{margin:0; position:relative; z-index:1; width:min(100%,520px); align-self:center; border-radius:18px; overflow:hidden; border:6px solid #fff; box-shadow:0 18px 50px rgba(10,25,60,.22), 0 0 0 1px rgba(10,25,60,.08); transform:rotate(1.2deg)}
+.instr-photo{margin:0; position:relative; z-index:1; width:min(100%,520px); align-self:center; border-radius:18px; overflow:hidden; border:6px solid #fff; box-shadow:0 18px 50px rgba(10,25,60,.22), 0 0 0 1px rgba(10,25,60,.08)}
 .instr-photo img{display:block; width:100%; height:auto; aspect-ratio:633/583; object-fit:cover; image-rendering:auto}
 .instr-hero .hero__art .kanji{display:none}
 @media(max-width:900px){.instr-photo{width:min(88%,420px); transform:none}}
